@@ -4,12 +4,9 @@ export interface INumeralOptions {
 }
 
 class Numeral {
-	constructor(value: number, options: INumeralOptions = {}) {
-		this.value = value
+	constructor(options: INumeralOptions = {}) {
 		this.options = options
 	}
-
-	private value: number
 
 	private options: INumeralOptions
 }

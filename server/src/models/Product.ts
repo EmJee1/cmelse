@@ -3,12 +3,12 @@ import Text from '../datatypes/Text'
 import BaseModel from './abstracts/BaseModel'
 
 export default class Product extends BaseModel {
-	constructor(title: string, description: string, price: number) {
+	constructor() {
 		super('products')
 
-		this.title = new Text(title)
-		this.description = new Text(description, { multiline: true })
-		this.price = new Numeral(price, { noNegative: true })
+		this.title = new Text()
+		this.description = new Text({ multiline: true })
+		this.price = new Numeral({ noNegative: true })
 	}
 
 	private title: Text
@@ -17,5 +17,3 @@ export default class Product extends BaseModel {
 
 	private price: Numeral
 }
-
-new Product('Schoen', 'Schoen beschrijving', 129.95)

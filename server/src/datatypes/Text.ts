@@ -3,12 +3,9 @@ export interface ITextOptions {
 }
 
 class Text {
-	constructor(value: string, options: ITextOptions = {}) {
-		this.value = value
+	constructor(options: ITextOptions = {}) {
 		this.options = options
 	}
-
-	private value: string
 
 	private options: ITextOptions
 }
