@@ -8,8 +8,10 @@
 		"start:dev": "nodemon --exec npx ts-node ./src/app.ts",
 		"lint": "eslint ./src/ --ext .ts"
 	},
-	"keywords": [],
-	"author": "",
+	"keywords": [
+		"cms"
+	],
+	"author": "EmJee1",
 	"license": "ISC",
 	"dependencies": {
 		"express": "^4.17.1",

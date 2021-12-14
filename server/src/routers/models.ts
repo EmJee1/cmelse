@@ -5,13 +5,13 @@ const router = Router()
 const modelInstances = models.map(Model => new Model())
 
 modelInstances.forEach(model => {
-	router.get(model.endpoint, (req, res) => {
+	router.get(model.endpoint, (req, res) =>
 		res.json({
 			properties: model.modelProperties,
 			endpoint: model.endpoint,
 			table: model.table,
 		})
-	})
+	)
 })
 
 router.get('/', (req, res) => {
