@@ -1,3 +1,5 @@
+import { Datatype } from '../models'
+
 export interface ITextOptions {
 	multiline?: boolean
 }
@@ -7,6 +9,8 @@ class Text {
 		this.title = title
 		this.options = options
 	}
+
+	private readonly datatype = Datatype.Text
 
 	private title: string
 
