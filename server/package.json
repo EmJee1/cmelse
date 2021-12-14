@@ -15,10 +15,15 @@
 	"author": "EmJee1",
 	"license": "ISC",
 	"dependencies": {
+		"cors": "^2.8.5",
+		"dotenv": "^10.0.0",
+		"dotenv-expand": "^5.1.0",
 		"express": "^4.17.1",
+		"mongodb": "^4.2.2",
 		"uuid": "^8.3.2"
 	},
 	"devDependencies": {
+		"@types/cors": "^2.8.12",
 		"@types/express": "^4.17.13",
 		"@types/node": "^16.11.12",
 		"@types/uuid": "^8.3.3",

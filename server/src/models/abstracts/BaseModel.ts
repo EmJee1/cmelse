@@ -1,14 +1,24 @@
-const IGNORE_PROPERTIES = ['table', 'endpoint']
+import db from '../../config/database'
+
+const IGNORE_PROPERTIES = ['collection', 'endpoint']
 
 export default abstract class BaseModel {
-	constructor(table: string, endpoint?: string) {
-		this.table = table
-		this.endpoint = endpoint ?? `/${table}`
+	constructor(collection: string, endpoint?: string) {
+		this.collection = collection
+		this.endpoint = endpoint ?? `/${collection}`
 	}
 
-	public readonly table: string
+	public readonly collection: string
 
 	public readonly endpoint: string
+
+	async insertOne(item: { [key: string]: unknown }) {
+		return db.collection(this.collection).insertOne(item)
+	}
+
+	async fetchAll() {
+		return db.collection(this.collection).find().toArray()
+	}
 
 	get modelProperties() {
 		return (
