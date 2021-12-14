@@ -5,4 +5,6 @@ const app = express()
 
 app.use(modelsRouter)
 
-app.listen(3001)
+app.listen(3001, () =>
+	console.log('> Express ready and listening \n> http://localhost:3001')
+)
