@@ -6,9 +6,9 @@ export default class Users extends BaseModel {
 	constructor() {
 		super('users')
 
-		this.username = new Text()
-		this.biography = new Text({ multiline: true })
-		this.age = new Numeral({ noDecimal: true, noNegative: true })
+		this.username = new Text('username')
+		this.biography = new Text('biography', { multiline: true })
+		this.age = new Numeral('age', { noDecimal: true, noNegative: true })
 	}
 
 	private username: Text

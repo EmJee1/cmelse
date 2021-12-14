@@ -6,9 +6,9 @@ export default class Product extends BaseModel {
 	constructor() {
 		super('products')
 
-		this.title = new Text()
-		this.description = new Text({ multiline: true })
-		this.price = new Numeral({ noNegative: true })
+		this.title = new Text('title')
+		this.description = new Text('description', { multiline: true })
+		this.price = new Numeral('price', { noNegative: true })
 	}
 
 	private title: Text
