@@ -37,6 +37,7 @@
 		"no-console": "off",
 		"implicit-arrow-linebreak": "off",
 		"comma-dangle": ["error", "only-multiline"],
-		"function-paren-newline": "off"
+		"function-paren-newline": "off",
+		"linebreak-style": "off"
 	}
 }
