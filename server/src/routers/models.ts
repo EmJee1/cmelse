@@ -3,15 +3,24 @@ import models from '../models'
 
 const router = Router()
 
-models.forEach(model => {
-	const modelInstance = new model()
+const modelInstances = models.map(Model => new Model())
 
-	router.get(modelInstance.endpoint, (req, res) => {
+modelInstances.forEach(model => {
+	router.get(model.endpoint, (req, res) => {
 		res.json({
-			properties: modelInstance.modelProperties,
-			endpoint: modelInstance.endpoint,
-			table: modelInstance.table,
+			properties: model.modelProperties,
+			endpoint: model.endpoint,
+			table: model.table,
 		})
+	})
+})
+
+router.get('/', (req, res) => {
+	res.json({
+		model: modelInstances.map(model => ({
+			table: model.table,
+			properties: model.modelProperties,
+		})),
 	})
 })
 
