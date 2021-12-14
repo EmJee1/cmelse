@@ -1,11 +1,18 @@
 import { Router } from 'express'
-import Users from '../models/User'
-import Product from '../models/Product'
-
-const models = [Product, Users] as const
+import models from '../models'
 
 const router = Router()
 
-router.get('/', (req, res) => res.json({ msg: 'received' }))
+models.forEach(model => {
+	const modelInstance = new model()
+
+	router.get(modelInstance.endpoint, (req, res) => {
+		res.json({
+			properties: modelInstance.modelProperties,
+			endpoint: modelInstance.endpoint,
+			table: modelInstance.table,
+		})
+	})
+})
 
 export default router
