@@ -1,5 +1,5 @@
-import Users from '../models/User'
-import Product from '../models/Product'
+import Users from './User'
+import Product from './Product'
 
 const models = [Product, Users] as const
 export type Model = typeof models[number]
