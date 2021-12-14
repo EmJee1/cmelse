@@ -2,7 +2,6 @@ import { Router } from 'express'
 import models from '../models'
 
 const router = Router()
-
 const modelInstances = models.map(Model => new Model())
 
 modelInstances.forEach(model => {
