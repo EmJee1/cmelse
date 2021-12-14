@@ -1,6 +1,13 @@
+import { Datatype } from '..'
 import db from '../../config/database'
 
 const IGNORE_PROPERTIES = ['collection', 'endpoint']
+
+interface ModelProperties {
+	datatype: Datatype
+	title: string
+	options: { [key: string]: boolean | string | number }
+}
 
 export default abstract class BaseModel {
 	constructor(collection: string, endpoint?: string) {
@@ -20,7 +27,7 @@ export default abstract class BaseModel {
 		return db.collection(this.collection).find().toArray()
 	}
 
-	get modelProperties() {
+	get modelsWithProperties(): ModelProperties[] {
 		return (
 			Object.getOwnPropertyNames(this)
 				.filter(prop => !IGNORE_PROPERTIES.includes(prop))

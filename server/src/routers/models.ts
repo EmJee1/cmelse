@@ -25,7 +25,7 @@ router.get('/', (req, res) => {
 	res.json({
 		data: modelInstances.map(model => ({
 			collection: model.collection,
-			properties: model.modelProperties,
+			properties: model.modelsWithProperties,
 		})),
 	})
 })
