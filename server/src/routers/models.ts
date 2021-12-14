@@ -16,7 +16,7 @@ modelInstances.forEach(model => {
 			await model.insertOne(req.body)
 			res.sendStatus(204)
 		} catch (err) {
-			res.json({ msg: 'Insertion error', err }).status(500)
+			res.json({ msg: 'Insertion error' }).status(500)
 		}
 	})
 })
