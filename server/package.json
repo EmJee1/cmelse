@@ -4,6 +4,7 @@
 	"description": "",
 	"main": "./dist/app.js",
 	"scripts": {
+		"ci": "npm ci && npm run lint && tsc",
 		"start": "tsc && node ./dist/app.js",
 		"start:dev": "nodemon --exec npx ts-node ./src/app.ts",
 		"lint": "eslint ./src/ --ext .ts"
