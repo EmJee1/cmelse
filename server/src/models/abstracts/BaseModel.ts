@@ -14,6 +14,8 @@ export default abstract class BaseModel {
 		return (
 			Object.getOwnPropertyNames(this)
 				.filter(prop => !IGNORE_PROPERTIES.includes(prop))
+				// TODO: fix typescript
+				// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 				// @ts-ignore
 				.map(prop => this[prop])
 		)
