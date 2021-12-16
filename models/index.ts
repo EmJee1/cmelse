@@ -1,8 +1,9 @@
-import Users from './User'
 import Product from './Product'
 
-const models = [Product, Users] as const
-export type Model = typeof models[number]
+const models = [Product] as const
+
+export type Model = Product
+
 export enum Datatype {
 	Text = 'TEXT',
 	Numeral = 'NUMERAL',
