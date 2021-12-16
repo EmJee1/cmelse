@@ -38,6 +38,7 @@
 		"implicit-arrow-linebreak": "off",
 		"comma-dangle": ["error", "only-multiline"],
 		"function-paren-newline": "off",
-		"linebreak-style": "off"
+		"linebreak-style": "off",
+		"import/no-extraneous-dependencies": "off"
 	}
 }
