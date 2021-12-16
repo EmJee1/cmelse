@@ -1,5 +1,5 @@
-import Numeral from '../datatypes/Numeral'
-import Text from '../datatypes/Text'
+import Numeral from 'datatypes/Numeral'
+import Text from 'datatypes/Text'
 import BaseModel from './abstracts/BaseModel'
 
 export default class Users extends BaseModel {

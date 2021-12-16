@@ -1,4 +1,4 @@
-import { Datatype } from '../models'
+import { Datatype } from 'models'
 
 export interface INumeralOptions {
 	noDecimal?: boolean
