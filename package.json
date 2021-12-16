@@ -1,0 +1,16 @@
+{
+	"name": "cmelse",
+	"version": "1.0.0",
+	"description": "",
+	"keywords": [
+		"cms"
+	],
+	"author": "EmJee1",
+	"license": "ISC",
+	"workspaces": [
+		"server",
+		"client",
+		"models",
+		"datatypes"
+	]
+}
