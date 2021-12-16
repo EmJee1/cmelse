@@ -2,6 +2,7 @@ import { Datatype } from 'models'
 
 export interface ITextOptions {
 	multiline?: boolean
+	validationSchema?: any
 }
 
 class Text {

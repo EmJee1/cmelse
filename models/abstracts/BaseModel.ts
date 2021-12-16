@@ -3,7 +3,7 @@ interface IBaseModel {
 	title?: string
 }
 
-interface ICmsMetadata extends Required<IBaseModel> {
+export interface ICmsMetadata extends Required<IBaseModel> {
 	collection: string
 }
 
