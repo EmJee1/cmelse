@@ -1,32 +1,30 @@
 import { Router } from 'express'
-import models from '../models'
+import models from 'models'
+import db from '../config/database'
 
 const router = Router()
 const modelInstances = models.map(Model => new Model())
 
 modelInstances.forEach(model => {
-	router.get(model.endpoint, async (req, res) => {
-		const data = await model.fetchAll()
+	router.get(model.cmsMetadata.endpoint, async (req, res) => {
+		const data = await db
+			.collection(model.cmsMetadata.collection)
+			.find()
+			.toArray()
 
 		res.json({ data })
 	})
 
-	router.post(model.endpoint, async (req, res) => {
+	router.post(model.cmsMetadata.endpoint, async (req, res) => {
 		try {
-			await model.insertOne(req.body)
+			await db
+				.collection(model.cmsMetadata.collection)
+				.insertOne(req.body)
+
 			res.sendStatus(204)
 		} catch (err) {
 			res.json({ msg: 'Insertion error' }).status(500)
 		}
-	})
-})
-
-router.get('/', (req, res) => {
-	res.json({
-		data: modelInstances.map(model => ({
-			collection: model.collection,
-			properties: model.modelsWithProperties,
-		})),
 	})
 })
 

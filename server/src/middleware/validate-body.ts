@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express'
-import { Model } from '../models'
+import { Model } from 'models'
 
 const validateBody = (Item: Model) => {
 	const properties = new Item().modelsWithProperties
