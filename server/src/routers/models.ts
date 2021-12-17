@@ -1,3 +1,4 @@
+import { ObjectId } from 'mongodb'
 import { Router } from 'express'
 import models from 'models'
 import validateBody from '../middlewares/validate-body'
@@ -28,6 +29,28 @@ models.forEach(model => {
 			} catch (err) {
 				res.json({ msg: 'Insertion error' }).status(500)
 			}
+		}
+	)
+
+	router.patch(
+		`${model.cmsMetadata.endpoint}/:id`,
+		validateBody(model, true),
+		async (req, res) => {
+			// TODO: send 404 response if model does not exist
+			const modelToUpdate = req.params.id
+
+			try {
+				await db
+					.collection(model.cmsMetadata.collection)
+					.updateOne(
+						{ _id: new ObjectId(modelToUpdate) },
+						{ $set: req.body }
+					)
+			} catch (err) {
+				res.json({ msg: 'Update error' }).status(500)
+			}
+
+			res.sendStatus(204)
 		}
 	)
 })
