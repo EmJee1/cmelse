@@ -4,9 +4,8 @@ import validateBody from '../middlewares/validate-body'
 import db from '../config/database'
 
 const router = Router()
-const modelInstances = models.map(Model => new Model())
 
-modelInstances.forEach(model => {
+models.forEach(model => {
 	router.get(model.cmsMetadata.endpoint, async (req, res) => {
 		const data = await db
 			.collection(model.cmsMetadata.collection)
