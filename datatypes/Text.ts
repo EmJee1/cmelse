@@ -1,12 +1,12 @@
 import { Datatype } from 'models'
+import { IDatatypeOptions } from './interfaces/interfaces'
 
-export interface ITextOptions {
+export interface ITextOptions extends IDatatypeOptions {
 	multiline?: boolean
-	validationSchema?: any
 }
 
 class Text {
-	constructor(title: string, options: ITextOptions = {}) {
+	constructor(title: string, options: ITextOptions) {
 		this.title = title
 		this.options = options
 	}

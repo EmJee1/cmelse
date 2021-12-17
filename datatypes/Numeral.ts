@@ -1,12 +1,10 @@
 import { Datatype } from 'models'
+import { IDatatypeOptions } from './interfaces/interfaces'
 
-export interface INumeralOptions {
-	noDecimal?: boolean
-	noNegative?: boolean
-}
+export interface INumeralOptions extends IDatatypeOptions {}
 
 class Numeral {
-	constructor(title: string, options: INumeralOptions = {}) {
+	constructor(title: string, options: INumeralOptions) {
 		this.title = title
 		this.options = options
 	}

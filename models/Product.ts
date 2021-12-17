@@ -12,7 +12,9 @@ export default class Product extends BaseModel {
 			multiline: true,
 			validationSchema: Joi.string(),
 		})
-		this.price = new Numeral('price', { noNegative: true })
+		this.price = new Numeral('price', {
+			validationSchema: Joi.number().min(0),
+		})
 	}
 
 	private title: Text

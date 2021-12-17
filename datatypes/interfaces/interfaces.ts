@@ -1,7 +1,8 @@
+import { AnySchema } from 'joi'
 import { Datatype } from 'models'
 
 export interface IDatatypeOptions {
-	validationSchema: any
+	validationSchema: AnySchema
 }
 
 export interface IDatatype {
