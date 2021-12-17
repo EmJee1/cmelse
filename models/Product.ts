@@ -7,13 +7,15 @@ export default class Product extends BaseModel {
 	constructor() {
 		super('products', { title: 'Products' })
 
-		this.title = new Text('title', { validationSchema: Joi.string() })
+		this.title = new Text('title', {
+			validationSchema: Joi.string().required(),
+		})
 		this.description = new Text('description', {
 			multiline: true,
-			validationSchema: Joi.string(),
+			validationSchema: Joi.string().required(),
 		})
 		this.price = new Numeral('price', {
-			validationSchema: Joi.number().min(0),
+			validationSchema: Joi.number().min(0).required(),
 		})
 	}
 
