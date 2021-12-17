@@ -36,18 +36,22 @@ models.forEach(model => {
 		`${model.cmsMetadata.endpoint}/:id`,
 		validateBody(model, true),
 		async (req, res) => {
-			// TODO: send 404 response if model does not exist
-			const modelToUpdate = req.params.id
+			let updateResult
 
 			try {
-				await db
+				const modelToUpdate = new ObjectId(req.params.id)
+
+				updateResult = await db
 					.collection(model.cmsMetadata.collection)
-					.updateOne(
-						{ _id: new ObjectId(modelToUpdate) },
-						{ $set: req.body }
-					)
+					.updateOne({ _id: modelToUpdate }, { $set: req.body })
 			} catch (err) {
 				res.json({ msg: 'Update error' }).status(500)
+				return
+			}
+
+			if (!updateResult.matchedCount) {
+				res.json({ msg: 'No matches found' }).status(404)
+				return
 			}
 
 			res.sendStatus(204)
