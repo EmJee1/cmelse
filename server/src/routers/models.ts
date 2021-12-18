@@ -1,3 +1,4 @@
+import { ObjectId } from 'mongodb'
 import { Router } from 'express'
 import models from 'models'
 import validateBody from '../middlewares/validate-body'
@@ -28,6 +29,58 @@ models.forEach(model => {
 			} catch (err) {
 				res.json({ msg: 'Insertion error' }).status(500)
 			}
+		}
+	)
+
+	router.patch(
+		`${model.cmsMetadata.endpoint}/:id`,
+		validateBody(model, true),
+		async (req, res) => {
+			let updateResult
+
+			try {
+				const modelToUpdate = new ObjectId(req.params.id)
+
+				updateResult = await db
+					.collection(model.cmsMetadata.collection)
+					.updateOne({ _id: modelToUpdate }, { $set: req.body })
+			} catch (err) {
+				res.json({ msg: 'Update error' }).status(500)
+				return
+			}
+
+			if (!updateResult.matchedCount) {
+				res.sendStatus(404)
+				return
+			}
+
+			res.sendStatus(204)
+		}
+	)
+
+	router.delete(
+		`${model.cmsMetadata.endpoint}/:id`,
+		validateBody(model, true),
+		async (req, res) => {
+			let deleteResult
+
+			try {
+				const modelToDelete = new ObjectId(req.params.id)
+
+				deleteResult = await db
+					.collection(model.cmsMetadata.collection)
+					.deleteOne({ _id: modelToDelete })
+			} catch (err) {
+				res.json({ msg: 'Deletion error' }).status(500)
+				return
+			}
+
+			if (!deleteResult.deletedCount) {
+				res.sendStatus(404)
+				return
+			}
+
+			res.sendStatus(204)
 		}
 	)
 })
