@@ -1,0 +1,12 @@
+<svg width="800" height="567" xmlns="http://www.w3.org/2000/svg">
+ <g>
+  <title>Layer 1</title>
+  <rect stroke="#000" rx="75" id="svg_1" height="567.4971" width="802.00004" y="0" x="-1" stroke-width="0" fill="#007fff"/>
+  <text font-weight="normal" fill="#ffffff" stroke-width="0" x="182.96038" y="237.59911" id="svg_3" font-size="20" font-family="'Dosis'" text-anchor="start" xml:space="preserve" stroke="#000" transform="matrix(16.0644 0 0 16.0644 -2856.56 -3394.55)">CM</text>
+  <text fill="#ffffff" stroke-width="0" x="335.3011" y="305.43818" id="svg_2" font-size="24" font-family="'Dosis'" text-anchor="start" xml:space="preserve" stroke="#000" transform="rotate(0.994726 593.626 384.013) matrix(4.16514 0 0 4.16514 -807.8 -855.136)">Else</text>
+  <path id="svg_5" d="m702.00094,172.49899c-38.67403,0 -70,-31.32597 -70,-70c0,-38.67403 31.32597,-70 70,-70c38.67403,0 70,31.32597 70,70c0,19.33702 -7.83149,36.83702 -20.49724,49.50276c-12.66574,12.66575 -30.16574,20.49724 -49.50276,20.49724z" opacity="undefined" stroke-width="0" stroke="#000" fill="#ffffff"/>
+  <path id="svg_6" d="m703.59493,161.59255c-32.0446,0 -58.00073,-25.95613 -58.00073,-58.00074c0,-32.0446 25.95613,-58.00073 58.00073,-58.00073c32.04461,0 58.00074,25.95613 58.00074,58.00073c0,32.04461 -25.95613,58.00074 -58.00074,58.00074z" opacity="undefined" stroke-width="0" stroke="#000" fill="#007fff"/>
+  <path stroke="#000" id="svg_8" d="m702.72536,152.76903c-27.81971,0 -50.35368,-22.53397 -50.35368,-50.35369c0,-27.81971 22.53397,-50.35368 50.35368,-50.35368c27.81972,0 50.35369,22.53397 50.35369,50.35368c0,27.81972 -22.53397,50.35369 -50.35369,50.35369z" opacity="undefined" stroke-width="0" fill="#ffffff"/>
+ </g>
+
+</svg>
