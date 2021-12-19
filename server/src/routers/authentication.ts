@@ -13,7 +13,12 @@ router.post('/register', async (req, res) => {
 			.findOne({ $or: [{ username }, { email }] })
 
 		if (result) {
-			res.sendStatus(409)
+			const msg =
+				username === result.username
+					? 'A user with that username already exists'
+					: 'A user with that email already exists'
+
+			res.json({ msg }).status(409)
 			return
 		}
 
