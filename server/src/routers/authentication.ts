@@ -1,11 +1,11 @@
 import { Router } from 'express'
-import { sign as signJwt } from 'jsonwebtoken'
 import { genSalt, hash as genHash } from 'bcrypt'
+import { signJwt } from '../utils/jsonwebtoken'
 import db from '../config/database'
 
 const router = Router()
 
-const { JSON_WEBTOKEN_SECRET, BCRYPT_SALT_ROUNDS } = process.env
+const { BCRYPT_SALT_ROUNDS } = process.env
 
 // TODO: validate body
 router.post('/register', async (req, res) => {
@@ -44,11 +44,7 @@ router.post('/register', async (req, res) => {
 		return
 	}
 
-	const token = signJwt(
-		{ id: insertResult.insertedId },
-		JSON_WEBTOKEN_SECRET,
-		{ expiresIn: '2 days' }
-	)
+	const token = signJwt(insertResult.insertedId)
 
 	res.json({ token }).status(201)
 })
