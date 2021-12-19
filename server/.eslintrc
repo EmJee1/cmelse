@@ -39,6 +39,7 @@
 		"comma-dangle": ["error", "only-multiline"],
 		"function-paren-newline": "off",
 		"linebreak-style": "off",
-		"import/no-extraneous-dependencies": "off"
+		"import/no-extraneous-dependencies": "off",
+		"operator-linebreak": "off"
 	}
 }
