@@ -27,7 +27,7 @@ export const verifyJwt = (token: string): string | null => {
 		const decoded = verify(token, JSON_WEBTOKEN_SECRET)
 
 		// return as invalid jwt if decoded does not contain the user id
-		if (typeof decoded === 'string' || !decoded.id) throw new Error()
+		if (typeof decoded === 'string' || !decoded.id) return null
 
 		return decoded.id
 	} catch (err) {

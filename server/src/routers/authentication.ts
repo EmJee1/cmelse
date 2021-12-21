@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { genSalt, hash as genHash } from 'bcrypt'
+import { genSalt, hash as genHash, compare } from 'bcrypt'
 import { signJwt } from '../utils/jsonwebtoken'
 import db from '../config/database'
 
@@ -47,6 +47,33 @@ router.post('/register', async (req, res) => {
 	const token = signJwt(insertResult.insertedId)
 
 	res.json({ token }).status(201)
+})
+
+router.post('/login', async (req, res) => {
+	// identifier can be username or email
+	const { identifier, password } = req.body
+
+	let user
+	try {
+		user = await db
+			.collection('users')
+			.findOne({ $or: [{ username: identifier }, { email: identifier }] })
+	} catch (err) {
+		res.sendStatus(500)
+		return
+	}
+
+	try {
+		await compare(password, user?.password)
+	} catch (err) {
+		res.status(400).json({
+			msg: 'Login credentials invalid',
+			err: err.message,
+		})
+		return
+	}
+
+	res.json({ login: true })
 })
 
 export default router
