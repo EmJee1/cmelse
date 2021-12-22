@@ -1,5 +1,7 @@
 import { Router } from 'express'
 import { genSalt, hash as genHash, compare } from 'bcrypt'
+import validateBodySchema from '../middlewares/validate-body-schema'
+import { login, register } from '../validation/authentication'
 import { signJwt } from '../utils/jsonwebtoken'
 import db from '../config/database'
 
@@ -8,7 +10,7 @@ const router = Router()
 const { BCRYPT_SALT_ROUNDS } = process.env
 
 // TODO: validate body
-router.post('/register', async (req, res) => {
+router.post('/register', validateBodySchema(register), async (req, res) => {
 	const { username, email, password } = req.body
 
 	let queryResult
@@ -49,7 +51,7 @@ router.post('/register', async (req, res) => {
 	res.json({ token }).status(201)
 })
 
-router.post('/login', async (req, res) => {
+router.post('/login', validateBodySchema(login), async (req, res) => {
 	// identifier can be username or email
 	const { identifier, password } = req.body
 

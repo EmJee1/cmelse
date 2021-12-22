@@ -8,7 +8,7 @@ import getModelProperties from '../utils/getModelProperties'
  * @param {Model} Model - Model parameter to check against body
  * @param {boolean} emptyValueIsValid - Validate empty items as true
  */
-const validateBody = (model: Model, emptyValueIsValid?: boolean) => {
+const validateBodyModel = (model: Model, emptyValueIsValid?: boolean) => {
 	const modelProperties = getModelProperties(model)
 
 	return (req: Request, res: Response, next: NextFunction) => {
@@ -39,4 +39,4 @@ const validateBody = (model: Model, emptyValueIsValid?: boolean) => {
 	}
 }
 
-export default validateBody
+export default validateBodyModel
