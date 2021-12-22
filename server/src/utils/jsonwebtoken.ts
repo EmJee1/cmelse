@@ -19,18 +19,17 @@ export const signJwt = (userId: ObjectId) => {
 /**
  * Verify a jsonwebtoken and return userid
  * @param {string} token - The Jsonwebtoken to verify
- * @returns {null} If token is invalid
  * @returns {string} The decoded user id
  */
-export const verifyJwt = (token: string): string | null => {
+export const verifyJwt = (token: string): string => {
 	try {
 		const decoded = verify(token, JSON_WEBTOKEN_SECRET)
 
 		// return as invalid jwt if decoded does not contain the user id
-		if (typeof decoded === 'string' || !decoded.id) return null
+		if (typeof decoded === 'string' || !decoded.id) throw new Error()
 
 		return decoded.id
 	} catch (err) {
-		return null
+		throw new Error()
 	}
 }
