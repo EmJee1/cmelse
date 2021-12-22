@@ -63,17 +63,22 @@ router.post('/login', async (req, res) => {
 		return
 	}
 
+	let passwordValid
 	try {
-		await compare(password, user?.password)
+		passwordValid = await compare(password, user?.password)
 	} catch (err) {
-		res.status(400).json({
-			msg: 'Login credentials invalid',
-			err: err.message,
-		})
+		res.sendStatus(500)
 		return
 	}
 
-	res.json({ login: true })
+	if (!passwordValid) {
+		res.status(401).json({ msg: 'Login credentials invalid' })
+		return
+	}
+
+	const token = signJwt(user._id)
+
+	res.json({ token }).status(200)
 })
 
 export default router
