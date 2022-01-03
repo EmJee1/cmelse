@@ -2,6 +2,7 @@ import { ObjectId } from 'mongodb'
 import { Router } from 'express'
 import models from 'models'
 import validateBodyModel from '../middlewares/validate-body-model'
+import authenticated from '../middlewares/authenticated'
 import db from '../config/database'
 
 const router = Router()
@@ -18,6 +19,7 @@ models.forEach(model => {
 
 	router.post(
 		model.cmsMetadata.endpoint,
+		authenticated,
 		validateBodyModel(model),
 		async (req, res) => {
 			try {
@@ -34,6 +36,7 @@ models.forEach(model => {
 
 	router.patch(
 		`${model.cmsMetadata.endpoint}/:id`,
+		authenticated,
 		validateBodyModel(model, true),
 		async (req, res) => {
 			let updateResult
@@ -60,6 +63,7 @@ models.forEach(model => {
 
 	router.delete(
 		`${model.cmsMetadata.endpoint}/:id`,
+		authenticated,
 		validateBodyModel(model, true),
 		async (req, res) => {
 			let deleteResult
