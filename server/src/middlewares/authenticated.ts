@@ -11,6 +11,11 @@ const authenticated = async (
 	res: Response,
 	next: NextFunction
 ) => {
+	if (!req.headers.authorization) {
+		res.status(401).json({ err: 'Authentication token is required' })
+		return
+	}
+
 	const [protocol, token] = req.headers.authorization.split(' ')
 
 	if (protocol !== 'Bearer') {
