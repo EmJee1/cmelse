@@ -1,4 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
+import IUser from 'models/interfaces/user'
+import db from '../config/database'
 import { verifyJwt } from '../utils/jsonwebtoken'
 
 /**
@@ -17,7 +19,8 @@ const authenticated = async (
 	}
 
 	try {
-		verifyJwt(token)
+		const userId = verifyJwt(token)
+		req.user = await db.collection('users').findOne<IUser>({ _id: userId })
 	} catch (err) {
 		res.status(401).json({ err: 'The token is not valid' })
 		return
