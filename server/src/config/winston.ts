@@ -14,7 +14,8 @@ const logger = createLogger({
 	],
 })
 
-// TODO: only load this when NODE_ENV is development
-logger.add(new transports.Console({ format: format.simple() }))
+if (process.env.NODE_ENV === 'development') {
+	logger.add(new transports.Console({ format: format.simple() }))
+}
 
 export default logger
