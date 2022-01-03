@@ -5,7 +5,7 @@ import { verifyJwt } from '../utils/jsonwebtoken'
 
 /**
  * Express middleware to ensure the request has a valid token in the header.
- * Populates the user property on the request object with the user id from the token
+ * Populates the user property on the request object with the user by id from the token
  */
 const authenticated = async (
 	req: Request,
