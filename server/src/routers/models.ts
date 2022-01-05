@@ -7,8 +7,6 @@ import db from '../config/database'
 const router = Router()
 
 models.forEach(model => {
-	console.log(model)
-
 	router.get(model.cmsMetadata.endpoint, async (req, res) => {
 		const data = await db
 			.collection(model.cmsMetadata.collection)
