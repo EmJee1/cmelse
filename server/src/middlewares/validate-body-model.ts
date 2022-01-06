@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express'
 import { Model } from 'models/interfaces/interfaces'
 import { IDatatype } from 'datatypes/interfaces/interfaces'
-import getModelProperties from '../utils/getModelProperties'
+import getModelProperties from '../utils/get-model-properties'
 
 /**
  * Express middleware to validate a json request body by Joi validation set in the model.
