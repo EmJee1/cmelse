@@ -8,6 +8,7 @@
 		"sourceMap": false,
 		"outDir": "dist",
 		"baseUrl": ".",
+		"lib": ["ESNext"],
 		"paths": {
 			"*": ["node_modules/*"]
 		}

@@ -1,5 +1,6 @@
 {
 	"name": "models",
+	"main": "./index.ts",
 	"version": "1.0.0",
 	"dependencies": {
 		"joi": "^17.5.0"
