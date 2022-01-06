@@ -1,21 +1,19 @@
 import { Datatype } from 'models'
 import { IDatatypeOptions } from './interfaces/interfaces'
+import { parseOptions } from './utils/create-options'
 
 export interface ITextOptions extends IDatatypeOptions {
 	multiline?: boolean
 }
 
 class Text {
-	constructor(title: string, options: ITextOptions) {
-		this.title = title
-		this.options = options
+	constructor(options: ITextOptions) {
+		this.options = parseOptions(options)
 	}
 
 	private readonly datatype = Datatype.Text
 
-	private title: string
-
-	private options: ITextOptions
+	private options: Required<ITextOptions>
 }
 
 export default Text
