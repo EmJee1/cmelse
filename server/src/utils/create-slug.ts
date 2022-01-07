@@ -1,6 +1,6 @@
 import slugify from 'slugify'
 
-const createDatabaseKeySlug = (string: string) =>
+const createStrictSlug = (string: string) =>
 	slugify(string, {
 		lower: true,
 		strict: true,
@@ -8,4 +8,4 @@ const createDatabaseKeySlug = (string: string) =>
 		replacement: '_',
 	})
 
-export default createDatabaseKeySlug
+export default createStrictSlug
