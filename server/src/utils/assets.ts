@@ -2,9 +2,17 @@ import logger from '../config/winston'
 import storage from '../config/storage'
 import { createFileSlug } from './create-slug'
 
-const bucket = storage.bucket('asset-library')
+const BUCKET_NAME = 'asset-library'
 
-const uploadAsset = ({ originalname, buffer }: Express.Multer.File) =>
+const bucket = storage.bucket(BUCKET_NAME)
+
+export const parseAssetUrl = (filename: string) =>
+	`https://storage.googleapis.com/${BUCKET_NAME}/${filename}`
+
+export const uploadAsset = ({
+	originalname,
+	buffer,
+}: Express.Multer.File): Promise<string> =>
 	new Promise((resolve, reject) => {
 		const filename = createFileSlug(originalname)
 		const blob = bucket.file(filename)
@@ -12,8 +20,8 @@ const uploadAsset = ({ originalname, buffer }: Express.Multer.File) =>
 
 		blobStream
 			.on('finish', () => {
-				const publicUrl = `https://storage.googleapis.com/${bucket.name}/${blob.name}`
-				resolve(publicUrl)
+				logger.info(`Uploaded image ${blob.name} to Cloud Storage`)
+				resolve(blob.name)
 			})
 			.on('error', err => {
 				logger.error(`Error uploading image to Cloud Storage: ${err}`)
@@ -21,5 +29,3 @@ const uploadAsset = ({ originalname, buffer }: Express.Multer.File) =>
 			})
 			.end(buffer)
 	})
-
-export default uploadAsset
