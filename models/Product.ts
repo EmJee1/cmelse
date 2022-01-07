@@ -23,7 +23,7 @@ export default class Product extends BaseModel {
 		})
 
 		this.IsFeatured = new Toggle({
-			displayTitle: 'Is Featured',
+			displayTitle: 'Is featured',
 			validationSchema: Joi.boolean().required(),
 		})
 	}
