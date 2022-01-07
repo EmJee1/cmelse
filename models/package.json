@@ -3,6 +3,7 @@
 	"main": "./index.ts",
 	"version": "1.0.0",
 	"dependencies": {
-		"joi": "^17.5.0"
+		"joi": "^17.5.0",
+		"mongodb": "^4.2.2"
 	}
 }
