@@ -9,6 +9,11 @@ const bucket = storage.bucket(BUCKET_NAME)
 export const parseAssetUrl = (filename: string) =>
 	`https://storage.googleapis.com/${BUCKET_NAME}/${filename}`
 
+/**
+ * Uploads a Multer parsed file to Cloud Storage
+ * @param {Express.Multer.File} file - A parsed multer file
+ * @returns {string} The filename
+ */
 export const uploadAsset = ({
 	originalname,
 	buffer,
