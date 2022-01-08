@@ -30,25 +30,31 @@ router.post(
 	authenticated,
 	fileMemoryStorage.single('asset'),
 	async (req, res) => {
+		if (!req.file) {
+			res.status(400).json({ err: 'No asset was sent' })
+			return
+		}
+
+		const assetProvider = new CloudStorageAssetProvider(
+			storage.bucket('asset-library')
+		)
+		const asset = new Asset(assetProvider, req.file)
+
 		try {
-			const assetProvider = new CloudStorageAssetProvider(
-				storage.bucket('asset-library')
-			)
-			const asset = new Asset(assetProvider, req.file)
+			asset.ensureValidity()
+		} catch {
+			logger.warn('Tried uploading asset with unsupported mimetype')
+			res.status(400).json({ err: 'Mimetype is unsupported' })
+			return
+		}
 
-			try {
-				asset.ensureValidity()
-			} catch {
-				logger.warn('Tried uploading asset with unsupported mimetype')
-				res.status(400).json({ err: 'Mimetype is unsupported' })
-				return
-			}
+		try {
+			await asset.store()
+			const id = await asset.saveToDb()
 
-			await asset.save()
-
-			res.status(201).json({ id: 1 })
+			res.status(201).json({ id, url: asset.assetUrl })
 		} catch (err) {
-			logger.error(`Error while uploading asset to GCP Storage: ${err}`)
+			logger.error(`Error while uploading asset: ${err}`)
 			res.status(500).json({ err: 'unexpected error occurred' })
 		}
 	}

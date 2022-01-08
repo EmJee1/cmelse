@@ -1,5 +1,7 @@
 import { extname } from 'path'
 import { ObjectId } from 'mongodb'
+import db from '../config/database'
+import logger from '../config/winston'
 import { createFileSlug } from '../utils/create-slug'
 import IAssetProvider from './providers/ProviderInterface'
 
@@ -31,16 +33,47 @@ class Asset {
 
 	private readonly filename: string
 
+	/**
+	 * Throws error if the asset is not validated
+	 * Checks for valid mimetype
+	 */
 	public ensureValidity() {
 		if (!this.allowedMimetypes.includes(this.file.mimetype)) {
+			logger.warn(
+				`Asset ${this.filename} with mimetype ${this.file.mimetype} is not supported`
+			)
 			throw new Error('Unsupported mimetype')
 		}
 	}
 
-	public async save() {
+	/**
+	 * Store asset in the selected asset provider
+	 */
+	public async store() {
 		await this.assetProvider.saveAsset(this.file, this.filename)
 	}
 
+	/**
+	 * Save asset data to database
+	 * @returns {ObjectId} The database id
+	 */
+	public async saveToDb() {
+		try {
+			const { insertedId } = await db
+				.collection<IAsset>('assets')
+				.insertOne({ filename: this.filename, createdAt: new Date() })
+
+			return insertedId
+		} catch (err) {
+			logger.error(`Inserting ${this.filename} into assets: ${err}`)
+			throw new Error('Db asset insertion error')
+		}
+	}
+
+	/**
+	 * Retrieve the asset url
+	 * @returns {string} url
+	 */
 	get assetUrl() {
 		return this.assetProvider.getAssetUrl(this.filename)
 	}
