@@ -22,8 +22,8 @@ export default class Product extends BaseModel {
 			validationSchema: Joi.number().min(0).required(),
 		})
 
-		this.IsFeatured = new Toggle({
-			displayTitle: 'Is Featured',
+		this.isFeatured = new Toggle({
+			displayTitle: 'Is featured',
 			validationSchema: Joi.boolean().required(),
 		})
 	}
@@ -34,5 +34,5 @@ export default class Product extends BaseModel {
 
 	private price: Numeral
 
-	private IsFeatured: Toggle
+	private isFeatured: Toggle
 }

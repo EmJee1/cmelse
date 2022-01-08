@@ -1,9 +1,10 @@
 import { ObjectId } from 'mongodb'
 import { Router } from 'express'
 import models from 'models'
+import db from '../config/database'
+import timestamps from '../utils/timestamps'
 import validateBodyModel from '../middlewares/validate-body-model'
 import authenticated from '../middlewares/authenticated'
-import db from '../config/database'
 
 const router = Router()
 
@@ -23,13 +24,14 @@ models.forEach(model => {
 		validateBodyModel(model),
 		async (req, res) => {
 			try {
-				await db
-					.collection(model.cmsMetadata.collection)
-					.insertOne(req.body)
+				await db.collection(model.cmsMetadata.collection).insertOne({
+					...req.body,
+					...timestamps(),
+				})
 
 				res.sendStatus(204)
 			} catch (err) {
-				res.json({ msg: 'Insertion error' }).status(500)
+				res.status(500).json({ msg: 'Insertion error' })
 			}
 		}
 	)
@@ -46,9 +48,12 @@ models.forEach(model => {
 
 				updateResult = await db
 					.collection(model.cmsMetadata.collection)
-					.updateOne({ _id: modelToUpdate }, { $set: req.body })
+					.updateOne(
+						{ _id: modelToUpdate },
+						{ $set: { ...req.body, ...timestamps(false) } }
+					)
 			} catch (err) {
-				res.json({ msg: 'Update error' }).status(500)
+				res.status(500).json({ err: 'Update error' })
 				return
 			}
 
@@ -75,7 +80,7 @@ models.forEach(model => {
 					.collection(model.cmsMetadata.collection)
 					.deleteOne({ _id: modelToDelete })
 			} catch (err) {
-				res.json({ msg: 'Deletion error' }).status(500)
+				res.status(500).json({ msg: 'Deletion error' })
 				return
 			}
 
