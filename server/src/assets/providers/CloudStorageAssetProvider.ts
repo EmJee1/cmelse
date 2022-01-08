@@ -12,7 +12,7 @@ class CloudStorageAssetProvider implements IAssetProvider {
 	public async saveAsset(file: Express.Multer.File, filename: string) {
 		const cloudFile = this.bucket.file(filename)
 
-		if (await cloudFile.exists()) {
+		if ((await cloudFile.exists())[0]) {
 			logger.warn(`Asset ${filename} already exists`)
 			throw new Error('Duplicate asset error')
 		}
