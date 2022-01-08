@@ -8,6 +8,7 @@ import IAssetProvider from './providers/ProviderInterface'
 export interface IAsset {
 	_id: ObjectId
 	filename: string
+	contentType: string
 	createdAt: Date
 }
 
@@ -61,7 +62,11 @@ class Asset {
 		try {
 			const { insertedId } = await db
 				.collection<IAsset>('assets')
-				.insertOne({ filename: this.filename, createdAt: new Date() })
+				.insertOne({
+					filename: this.filename,
+					contentType: this.file.mimetype,
+					createdAt: new Date(),
+				})
 
 			return insertedId
 		} catch (err) {
