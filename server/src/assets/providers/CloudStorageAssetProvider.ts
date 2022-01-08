@@ -3,13 +3,20 @@ import logger from '../../config/winston'
 import IAssetProvider from './ProviderInterface'
 
 class CloudStorageAssetProvider implements IAssetProvider {
-	constructor(bucket: Bucket) {
+	constructor(bucket?: Bucket) {
 		this.bucket = bucket
 	}
 
 	private bucket: Bucket
 
 	public async saveAsset(file: Express.Multer.File, filename: string) {
+		if (!this.bucket) {
+			logger.error(
+				`The bucket was not configured in CloudStorageAssetProvider while trying to save asset ${filename}`
+			)
+			throw new Error('No bucket was configured assetProvider')
+		}
+
 		const cloudFile = this.bucket.file(filename)
 
 		if ((await cloudFile.exists())[0]) {
