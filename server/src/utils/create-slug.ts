@@ -1,3 +1,4 @@
+import { v4 as uuid } from 'uuid'
 import slugify from 'slugify'
 
 export const createStrictSlug = (string: string) =>
@@ -8,10 +9,4 @@ export const createStrictSlug = (string: string) =>
 		replacement: '_',
 	})
 
-export const createFileSlug = (string: string) =>
-	slugify(string, {
-		lower: false,
-		strict: false,
-		trim: true,
-		replacement: '-',
-	})
+export const createFileSlug = () => uuid()

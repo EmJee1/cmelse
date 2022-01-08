@@ -1,18 +1,14 @@
 import { Router } from 'express'
-import { ObjectId } from 'mongodb'
 import db from '../config/database'
 import logger from '../config/winston'
-import { parseAssetUrl, uploadAsset } from '../utils/assets'
+import storage from '../config/storage'
+import Asset, { IAsset } from '../assets/Asset'
+import { parseAssetUrl } from '../utils/assets'
 import authenticated from '../middlewares/authenticated'
 import fileMemoryStorage from '../middlewares/file-memory-storage'
+import CloudStorageAssetProvider from '../assets/providers/CloudStorageAssetProvider'
 
 const router = Router()
-
-interface IAsset {
-	_id: ObjectId
-	filename: string
-	createdAt: Date
-}
 
 router.get('/', authenticated, async (req, res) => {
 	try {
@@ -35,16 +31,22 @@ router.post(
 	fileMemoryStorage.single('asset'),
 	async (req, res) => {
 		try {
-			const filename = await uploadAsset(req.file)
+			const assetProvider = new CloudStorageAssetProvider(
+				storage.bucket('asset-library')
+			)
+			const asset = new Asset(assetProvider, req.file)
 
-			const { insertedId } = await db
-				.collection<IAsset>('assets')
-				.insertOne({
-					filename,
-					createdAt: new Date(),
-				})
+			try {
+				asset.ensureValidity()
+			} catch {
+				logger.warn('Tried uploading asset with unsupported mimetype')
+				res.status(400).json({ err: 'Mimetype is unsupported' })
+				return
+			}
 
-			res.status(201).json({ id: insertedId })
+			await asset.save()
+
+			res.status(201).json({ id: 1 })
 		} catch (err) {
 			logger.error(`Error while uploading asset to GCP Storage: ${err}`)
 			res.status(500).json({ err: 'unexpected error occurred' })
