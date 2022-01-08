@@ -3,7 +3,6 @@ import db from '../config/database'
 import logger from '../config/winston'
 import storage from '../config/storage'
 import Asset, { IAsset } from '../assets/Asset'
-import { parseAssetUrl } from '../utils/assets'
 import authenticated from '../middlewares/authenticated'
 import fileMemoryStorage from '../middlewares/file-memory-storage'
 import CloudStorageAssetProvider from '../assets/providers/CloudStorageAssetProvider'
@@ -15,8 +14,8 @@ router.get('/', authenticated, async (req, res) => {
 		const files = await db.collection<IAsset>('assets').find().toArray()
 
 		const filesWithUrl = files.map(file => ({
+			// TODO: add asset url
 			...file,
-			url: parseAssetUrl(file.filename),
 		}))
 
 		res.status(200).json({ files: filesWithUrl })
