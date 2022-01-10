@@ -47,8 +47,8 @@ router.post(
 
 		try {
 			asset.ensureValidity()
-		} catch {
-			logger.warn('Tried uploading asset with unsupported mimetype')
+		} catch (err) {
+			logger.warn(err)
 			res.status(400).json({ err: 'Mimetype is unsupported' })
 			return
 		}
