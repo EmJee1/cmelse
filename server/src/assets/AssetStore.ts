@@ -9,6 +9,7 @@ export interface IAsset {
 	_id: ObjectId
 	filename: string
 	contentType: string
+	imageAlt?: string
 	createdAt: Date
 }
 
@@ -58,11 +59,12 @@ class AssetStore {
 	 * Save asset data to database
 	 * @returns {ObjectId} The database id
 	 */
-	public async saveToDb() {
+	public async saveToDb(other: Partial<IAsset> = {}) {
 		try {
 			const { insertedId } = await db
 				.collection<IAsset>('assets')
 				.insertOne({
+					...other,
 					filename: this.filename,
 					contentType: this.file.mimetype,
 					createdAt: new Date(),
@@ -77,6 +79,10 @@ class AssetStore {
 
 	get assetUrl() {
 		return this.assetProvider.getAssetUrl(this.filename)
+	}
+
+	get isImage() {
+		return this.file.mimetype.startsWith('image/')
 	}
 }
 

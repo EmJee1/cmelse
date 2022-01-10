@@ -54,8 +54,13 @@ router.post(
 		}
 
 		try {
+			const optionalBody: Partial<IAsset> = {}
+			if (req.body.imageAlt && asset.isImage) {
+				optionalBody.imageAlt = req.body.imageAlt
+			}
+
 			await asset.store()
-			const id = await asset.saveToDb()
+			const id = await asset.saveToDb(optionalBody)
 
 			res.status(201).json({ id, url: asset.assetUrl })
 		} catch (err) {
