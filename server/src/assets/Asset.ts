@@ -75,10 +75,6 @@ class Asset {
 		}
 	}
 
-	/**
-	 * Retrieve the asset url
-	 * @returns {string} url
-	 */
 	get assetUrl() {
 		return this.assetProvider.getAssetUrl(this.filename)
 	}
