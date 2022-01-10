@@ -2,10 +2,11 @@ import { Router } from 'express'
 import db from '../config/database'
 import logger from '../config/winston'
 import storage from '../config/storage'
-import Asset, { IAsset } from '../assets/Asset'
+import AssetStore, { IAsset } from '../assets/AssetStore'
 import authenticated from '../middlewares/authenticated'
 import fileMemoryStorage from '../middlewares/file-memory-storage'
 import CloudStorageAssetProvider from '../assets/providers/CloudStorageAssetProvider'
+import Asset from '../assets/Asset'
 
 const router = Router()
 
@@ -13,14 +14,19 @@ router.get('/', authenticated, async (req, res) => {
 	try {
 		const files = await db.collection<IAsset>('assets').find().toArray()
 
+		const assetProvider = new CloudStorageAssetProvider(
+			storage.bucket('asset-library')
+		)
+
 		const filesWithUrl = files.map(file => ({
-			// TODO: add asset url
+			url: new Asset(assetProvider, file).assetUrl,
 			...file,
 		}))
 
 		res.status(200).json({ files: filesWithUrl })
 	} catch (err) {
 		logger.error(`Error while retrieving asset list ${err}`)
+		res.status(500).json({ err: 'Could not fetch assets' })
 	}
 })
 
@@ -34,10 +40,10 @@ router.post(
 			return
 		}
 
-		const assetProvider = new CloudStorageAssetProvider(
-			storage.bucket('asset-library')
+		const asset = new AssetStore(
+			new CloudStorageAssetProvider(storage.bucket('asset-library')),
+			req.file
 		)
-		const asset = new Asset(assetProvider, req.file)
 
 		try {
 			asset.ensureValidity()
