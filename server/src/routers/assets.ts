@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import db from '../config/database'
 import logger from '../config/winston'
-import storage from '../config/storage'
+import { assetBucket } from '../config/storage'
 import AssetStore, { IAsset } from '../assets/AssetStore'
 import authenticated from '../middlewares/authenticated'
 import fileMemoryStorage from '../middlewares/file-memory-storage'
@@ -14,9 +14,7 @@ router.get('/', authenticated, async (req, res) => {
 	try {
 		const files = await db.collection<IAsset>('assets').find().toArray()
 
-		const assetProvider = new CloudStorageAssetProvider(
-			storage.bucket('asset-library')
-		)
+		const assetProvider = new CloudStorageAssetProvider(assetBucket)
 
 		const filesWithUrl = files.map(file => ({
 			url: new Asset(assetProvider, file).assetUrl,
@@ -41,7 +39,7 @@ router.post(
 		}
 
 		const asset = new AssetStore(
-			new CloudStorageAssetProvider(storage.bucket('asset-library')),
+			new CloudStorageAssetProvider(assetBucket),
 			req.file
 		)
 
