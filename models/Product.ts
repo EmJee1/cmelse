@@ -3,6 +3,7 @@ import Numeral from 'datatypes/Numeral'
 import Text from 'datatypes/Text'
 import BaseModel from './abstracts/BaseModel'
 import Toggle from 'datatypes/Toggle'
+import Enum from 'datatypes/Enum'
 
 export default class Product extends BaseModel {
 	constructor() {
@@ -26,6 +27,15 @@ export default class Product extends BaseModel {
 			displayTitle: 'Is featured',
 			validationSchema: Joi.boolean().required(),
 		})
+
+		const suggestedSeasonItems = ['spring', 'summer', 'fall', 'winter']
+		this.suggestedSeason = new Enum({
+			displayTitle: 'Suggested Season',
+			validationSchema: Joi.string()
+				.valid(...suggestedSeasonItems)
+				.required(),
+			items: suggestedSeasonItems,
+		})
 	}
 
 	private title: Text
@@ -35,4 +45,6 @@ export default class Product extends BaseModel {
 	private price: Numeral
 
 	private isFeatured: Toggle
+
+	private suggestedSeason: Enum
 }
