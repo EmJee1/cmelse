@@ -1,6 +1,7 @@
+import { v4 as uuid } from 'uuid'
 import slugify from 'slugify'
 
-const createDatabaseKeySlug = (string: string) =>
+export const createStrictSlug = (string: string) =>
 	slugify(string, {
 		lower: true,
 		strict: true,
@@ -8,4 +9,4 @@ const createDatabaseKeySlug = (string: string) =>
 		replacement: '_',
 	})
 
-export default createDatabaseKeySlug
+export const createFileSlug = () => uuid()

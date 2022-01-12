@@ -1,4 +1,4 @@
-import createDatabaseKeySlug from 'server/src/utils/create-slug'
+import { createStrictSlug } from 'server/src/utils/create-slug'
 import { IDatatypeOptions } from '../interfaces/interfaces'
 
 /**
@@ -13,5 +13,5 @@ export const parseOptions = <T extends IDatatypeOptions>(
 	({
 		...options,
 		databaseKey:
-			options.databaseKey ?? createDatabaseKeySlug(options.displayTitle),
+			options.databaseKey ?? createStrictSlug(options.displayTitle),
 	} as Required<T>)
