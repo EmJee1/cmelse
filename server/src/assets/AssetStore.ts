@@ -13,6 +13,7 @@ export interface IAsset {
 	createdAt: Date
 }
 
+// TODO: save and store files via a queue instead of a direct call
 /**
  * Asset class instantiated with a Multer file from a request body
  * Meant to be only instantiated with new files to store and insert assets
