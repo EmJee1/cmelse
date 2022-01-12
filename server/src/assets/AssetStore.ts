@@ -13,6 +13,11 @@ export interface IAsset {
 	createdAt: Date
 }
 
+/**
+ * Asset class instantiated with a Multer file from a request body
+ * Meant to be only instantiated with new files to store and insert assets
+ * To edit and receive data about existing assets, use the Asset class
+ */
 class AssetStore {
 	constructor(assetProvider: IAssetProvider, file: Express.Multer.File) {
 		this.assetProvider = assetProvider
