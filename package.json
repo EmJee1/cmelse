@@ -4,7 +4,8 @@
 	"description": "",
 	"scripts": {
 		"ci": "npm ci && npm run ci:server",
-		"ci:server": "cd server && npm run ci"
+		"ci:server": "cd server && npm run ci",
+		"setup": "npm i && cd client && npm i"
 	},
 	"keywords": [
 		"cms"
