@@ -1,8 +1,58 @@
 # cmelse
-CMS focussed on expandability, made for developers
 
-## Trello
-https://trello.com/b/aFDc3tHi/cmelse
+A headless cms for developers that want to focus on just the frontend. But not any old 
 
-## Contributions
+- [cmelse](#cmelse)
+  - [🗂️ Trello](#️-trello)
+  - [🧑‍🤝‍🧑 Contributions](#-contributions)
+  - [🖥️ Running the project locally](#️-running-the-project-locally)
+    - [💿 Requirements](#-requirements)
+      - [Node.js](#nodejs)
+      - [Node versions](#node-versions)
+      - [Package manager](#package-manager)
+    - [🧱 Base installation](#-base-installation)
+    - [💼 Front-end](#-front-end)
+    - [🧰 Back-end](#-back-end)
+
+## 🗂️ Trello
+
+<https://trello.com/b/aFDc3tHi/cmelse>
+
+## 🧑‍🤝‍🧑 Contributions
+
 Contributions are welcome, just create an issue or pull request and we will review it ASAP.
+
+## 🖥️ Running the project locally
+
+To set the project up, a few base steps are required, and based on what you want to do there may be additional configuration steps.
+
+### 💿 Requirements
+
+#### Node.js
+
+Since the project runs on JavaScsript, we need to install node.js, make sure to use the node version defined in the .nvmrc which is located in the root of the project. Read more about this in [node versions](#node-versions)
+
+#### Node versions
+
+In order to run multiple node versions in parallel, we suggest using the node version manager, or nvm for short.
+
+- [nvm for Linux & macOS](https://github.com/nvm-sh/nvm)
+- [nvm for Windows](https://github.com/coreybutler/nvm-windows)
+
+#### Package manager
+
+NPM is our preferred package manager, it comes installed with Node automatically so no additional installation is required.
+
+### 🧱 Base installation
+
+1. Start by cloning the repository from GitHub `git clone https://github.com/EmJee1/cmelse.git`
+2. Go to the cmelse directory and install the npm packages with the helper command `npm run setup`.
+
+### 💼 Front-end
+
+These are the steps on how to set up the frontend, however you almost always need the backend to retrieve data. If you want to work on the front-end, odds are you have to set up the [back-end](#-back-end) as well.
+
+1. Move into the client directory `cd client`
+2. Run the dev command to start the dev server `npm run dev`
+
+### 🧰 Back-end
