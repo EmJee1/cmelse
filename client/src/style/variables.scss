@@ -4,7 +4,12 @@ $purple: #7510f7;
 $black: #17141a;
 $gray-dark: #4e4e4e;
 $gray-light: #f4f4f4;
-$white: #ffffff;
+$white: #fff;
+
+$shadow-purple: 0px 3px 6px transparentize($purple, 0.84);
+$shadow-purple-hover: 0px 3px 6px transparentize($purple, 0.3);
 
 $big-radius: 41px;
 $small-radius: 7px;
+
+$transition-hover: ease-in-out 0.3s;

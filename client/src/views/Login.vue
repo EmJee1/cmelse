@@ -19,9 +19,7 @@
 				width="654px"
 			/>
 
-			<IconButton icon="bi bi-alarm">
-				Primary icon button
-			</IconButton>
+			<IconButton icon="bi bi-alarm">Primary icon button</IconButton>
 
 			<Button shape="round" value="Login" width="220px" />
 
