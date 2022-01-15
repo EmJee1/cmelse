@@ -56,6 +56,10 @@ const { default: text } = useSlots()
 		color: $gray-dark;
 		box-shadow: $shadow-gray-dark;
 		cursor: not-allowed;
+
+		&:hover {
+			box-shadow: $shadow-gray-dark;
+		}
 	}
 }
 </style>
