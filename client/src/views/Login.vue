@@ -19,14 +19,6 @@
 				width="654px"
 			/>
 
-			<IconButton icon="bi bi-alarm">Primary icon button</IconButton>
-			<IconButton icon="bi bi-alarm" error>
-				Primary icon button
-			</IconButton>
-			<IconButton icon="bi bi-alarm" disabled>
-				Primary icon button
-			</IconButton>
-
 			<Button shape="round" value="Login" width="220px" />
 
 			<div class="third-party-auth-wrapper">
