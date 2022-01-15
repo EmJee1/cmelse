@@ -16,9 +16,16 @@ const routes = [
 	},
 ]
 
+const publicRoutes = ['/login']
+
 const router = createRouter({
 	history: createWebHistory(),
 	routes,
+})
+
+router.beforeEach((to, from) => {
+	if (publicRoutes.includes(to.fullPath)) return true
+	else if (!localStorage.getItem('jwt')) return '/login'
 })
 
 export default router

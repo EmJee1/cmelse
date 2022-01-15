@@ -1,5 +1,6 @@
 <template>
 	<div>
+<<<<<<< Updated upstream
 		<img src="../assets/logo.svg" alt="logo" width="100" />
 		<nav>
 			<div
@@ -12,6 +13,9 @@
 				<i :class="item.icon"></i>
 			</div>
 		</nav>
+=======
+		<nav>nav</nav>
+>>>>>>> Stashed changes
 	</div>
 </template>
 
@@ -47,4 +51,10 @@ export default {
 }
 </script>
 
+<<<<<<< Updated upstream
 <style></style>
+=======
+<style lang="scss">
+@import '../assets/style.scss';
+</style>
+>>>>>>> Stashed changes
