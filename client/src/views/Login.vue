@@ -48,8 +48,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/style.scss';
-
 .wrapper {
 	background: url('../assets/login-background.png');
 	background-position: right;
@@ -67,7 +65,7 @@ export default {
 		position: absolute;
 		top: 100px;
 		left: 100px;
-		background-color: $light-grey;
+		background-color: $gray-light;
 		width: 777px;
 		height: 700px;
 
@@ -93,7 +91,7 @@ export default {
 				&:first-of-type {
 					position: absolute;
 					top: 468px;
-					background: $light-grey;
+					background: $gray-light;
 					padding: 0 12px;
 				}
 			}

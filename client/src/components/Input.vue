@@ -50,8 +50,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../assets/style.scss';
-
 input {
 	display: flex;
 	border: 2px solid white;

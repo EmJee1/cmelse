@@ -44,8 +44,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../assets/style.scss';
-
 .type-primary {
 	color: $purple;
 
@@ -54,10 +52,10 @@ export default {
 	}
 }
 .type-error {
-	color: $red;
+	color: $error;
 
 	&:hover {
-		box-shadow: 0px 3px 8px $red;
+		box-shadow: 0px 3px 8px $error;
 	}
 }
 
