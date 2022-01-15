@@ -19,6 +19,10 @@
 				width="654px"
 			/>
 
+			<IconButton icon="bi bi-alarm">
+				Primary icon button
+			</IconButton>
+
 			<Button shape="round" value="Login" width="220px" />
 
 			<div class="third-party-auth-wrapper">
@@ -40,10 +44,11 @@
 <script>
 import Input from '../components/Input.vue'
 import Button from '../components/Button.vue'
+import IconButton from '../components/IconButton.vue'
 
 export default {
 	name: 'login',
-	components: { Input, Button },
+	components: { Input, Button, IconButton },
 }
 </script>
 
