@@ -1,7 +1,7 @@
 <template>
 	<button class="icon-btn" :class="{ error, disabled }">
 		<i class="icon" :class="icon"></i>
-		<span class="text" v-if="slot">
+		<span class="text" v-if="text">
 			<slot />
 		</span>
 	</button>
@@ -16,7 +16,7 @@ defineProps<{
 	disabled?: boolean
 }>()
 
-const { default: slot } = useSlots()
+const { default: text } = useSlots()
 </script>
 
 <style lang="scss" scoped>
@@ -31,12 +31,12 @@ const { default: slot } = useSlots()
 	cursor: pointer;
 
 	.icon {
-		width: 22px;
-		height: 22px;
+		font-size: 16px;
 	}
 
 	.text {
 		margin-left: 10px;
+		font-size: 14px;
 	}
 
 	&:hover {
@@ -45,10 +45,16 @@ const { default: slot } = useSlots()
 
 	&.error {
 		color: $error;
+		box-shadow: $shadow-error;
+
+		&:hover {
+			box-shadow: $shadow-error-hover;
+		}
 	}
 
 	&.disabled {
 		color: $gray-dark;
+		box-shadow: $shadow-gray-dark;
 	}
 }
 </style>

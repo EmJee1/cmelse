@@ -8,6 +8,9 @@ $white: #fff;
 
 $shadow-purple: 0px 3px 6px transparentize($purple, 0.84);
 $shadow-purple-hover: 0px 3px 6px transparentize($purple, 0.3);
+$shadow-error: 0px 3px 6px transparentize($error, 0.84);
+$shadow-error-hover: 0px 3px 6px transparentize($error, 0.3);
+$shadow-gray-dark: 0px 3px 6px transparentize($gray-dark, 0.84);
 
 $big-radius: 41px;
 $small-radius: 7px;
