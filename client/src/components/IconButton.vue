@@ -55,6 +55,7 @@ const { default: text } = useSlots()
 	&.disabled {
 		color: $gray-dark;
 		box-shadow: $shadow-gray-dark;
+		cursor: not-allowed;
 	}
 }
 </style>
