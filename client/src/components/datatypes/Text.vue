@@ -18,8 +18,8 @@ input,
 textarea {
 	// 100% width minus the padding and border to prevent overflow
 	width: calc(100% - $padding-horizontal * 2 - $border-width * 2);
-	padding: 14px 20px;
-	border-color: transparent;
+	padding: 14px $padding-horizontal;
+	border: $border-width solid transparent;
 	border-radius: $small-radius;
 	box-shadow: $shadow-gray-dark;
 	outline-color: transparentize($purple, 0.25);
