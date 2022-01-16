@@ -30,20 +30,12 @@
 			value="Its claws and horns often break off."
 			multiline
 		/>
-		<p>Error</p>
-		<Text :validation-schema="Joi.string().required()" value="" />
 	</div>
 
 	<div class="item">
 		<h2>Datatype Numeral</h2>
-		<p>Default</p>
 		<Numeral
 			:value="5"
-			:validation-schema="Joi.number().required().integer()"
-		/>
-		<p>Error</p>
-		<Numeral
-			:value="0.15"
 			:validation-schema="Joi.number().required().integer()"
 		/>
 	</div>
