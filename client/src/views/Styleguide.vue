@@ -39,6 +39,11 @@
 			:validation-schema="Joi.number().required().integer()"
 		/>
 	</div>
+
+	<div class="item">
+		<h2>Datatype Toggle</h2>
+		<Toggle :value="true" />
+	</div>
 </template>
 
 <script lang="ts" setup>
@@ -46,6 +51,7 @@ import Joi from 'joi'
 import IconButton from '../components/IconButton.vue'
 import Text from '../components/datatypes/Text.vue'
 import Numeral from '../components/datatypes/Numeral.vue'
+import Toggle from '../components/datatypes/Toggle.vue'
 </script>
 
 <style lang="scss" scoped>
