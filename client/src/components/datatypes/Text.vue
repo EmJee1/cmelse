@@ -13,13 +13,12 @@
 			rows="5"
 		/>
 	</div>
-	<div class="error" v-if="error">
-		<i class="bi bi-x-octagon" />
-		{{ error }}
-	</div>
+	<ErrorText v-if="error">{{ error }}</ErrorText>
 </template>
 
 <script lang="ts" setup>
+import ErrorText from '../ErrorText.vue'
+
 defineProps<{
 	value: string
 	multiline?: boolean
@@ -76,13 +75,5 @@ textarea {
 		background-size: contain;
 		margin: 4px;
 	}
-}
-
-.error:not(input) {
-	color: $error;
-	padding-top: 0.4rem;
-	padding-left: 0.2rem;
-	display: flex;
-	gap: 0.4rem;
 }
 </style>
