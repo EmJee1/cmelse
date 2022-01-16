@@ -38,6 +38,7 @@ textarea {
 	border: $border-width solid transparent;
 	border-radius: $small-radius;
 	box-shadow: $shadow-gray-dark;
+	pointer-events: all;
 	outline: none;
 	resize: vertical;
 
