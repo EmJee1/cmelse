@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
+import Styleguide from '../views/Styleguide.vue'
 
 const routes = [
 	{
@@ -14,6 +15,11 @@ const routes = [
 		name: 'Login',
 		component: Login,
 	},
+	{
+		path: '/styleguide',
+		name: 'Styleguide',
+		component: Styleguide
+	}
 ]
 
 const publicRoutes = ['/login']
