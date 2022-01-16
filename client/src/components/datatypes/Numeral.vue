@@ -26,5 +26,3 @@ const validate = () => {
 	error.value = result.error?.toString()
 }
 </script>
-
-<style lang="scss" scoped></style>
