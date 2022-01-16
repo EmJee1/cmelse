@@ -26,11 +26,20 @@
 		<p>Error</p>
 		<Text value="" error="This field is required" />
 	</div>
+
+	<div class="item">
+		<h2>Datatype Numeral</h2>
+		<p>Default</p>
+		<Numeral :value="5" />
+		<p>Error</p>
+		<Numeral :value="0" error="This field is required" />
+	</div>
 </template>
 
 <script lang="ts" setup>
 import IconButton from '../components/IconButton.vue'
 import Text from '../components/datatypes/Text.vue'
+import Numeral from '../components/datatypes/Numeral.vue'
 </script>
 
 <style lang="scss" scoped>

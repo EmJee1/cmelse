@@ -3,3 +3,30 @@ body {
 	font-family: 'Dosis', sans-serif;
 	box-sizing: border-box;
 }
+
+.datatype-input {
+	$padding-horizontal: 20px;
+	$border-width: 2px;
+
+	width: calc(100% - $padding-horizontal * 2 - $border-width * 2);
+	padding: 14px $padding-horizontal;
+	border: $border-width solid transparent;
+	border-radius: $small-radius;
+	box-shadow: $shadow-gray-dark;
+	pointer-events: all;
+	outline: none;
+
+	&::placeholder {
+		color: $gray;
+	}
+
+	&:focus {
+		border-color: $purple;
+		box-shadow: $shadow-purple;
+	}
+
+	&.error {
+		border-color: $error;
+		box-shadow: $shadow-error;
+	}
+}
