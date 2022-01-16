@@ -11,10 +11,13 @@ defineProps<{
 </script>
 
 <style lang="scss" scoped>
+$padding-horizontal: 20px;
+$border-width: 2px;
+
 input,
 textarea {
-	width: 80%;
-	margin: 0 auto;
+	// 100% width minus the padding and border to prevent overflow
+	width: calc(100% - $padding-horizontal * 2 - $border-width * 2);
 	padding: 14px 20px;
 	border-color: transparent;
 	border-radius: $small-radius;
