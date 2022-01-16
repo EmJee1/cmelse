@@ -1,6 +1,6 @@
 <template>
 	<button class="icon-btn" :class="{ error }" :disabled="disabled">
-		<i class="icon" :class="icon"></i>
+		<i class="icon bi" :class="icon"></i>
 		<span class="text" v-if="text">
 			<slot />
 		</span>
