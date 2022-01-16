@@ -27,7 +27,7 @@ const { default: text } = useSlots()
 	border-color: transparent;
 	border-radius: $small-radius;
 	box-shadow: $shadow-purple;
-	transition: $transition-hover;
+	transition: $transition;
 	cursor: pointer;
 
 	.icon {
