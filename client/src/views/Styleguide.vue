@@ -23,6 +23,8 @@
 		<Text value="Its claws and horns often break off." />
 		<p>Multiline</p>
 		<Text value="Its claws and horns often break off." multiline />
+		<p>Error</p>
+		<Text value="" error="This field is required" />
 	</div>
 </template>
 

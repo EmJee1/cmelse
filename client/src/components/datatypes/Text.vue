@@ -1,12 +1,28 @@
 <template>
-	<input v-if="!multiline" v-model="value" />
-	<textarea v-else v-model="value" rows="5" />
+	<input
+		v-if="!multiline"
+		v-model="value"
+		:class="{ error }"
+		placeholder="Its claws and horns often break off."
+	/>
+	<textarea
+		v-else
+		v-model="value"
+		:class="{ error }"
+		placeholder="Its claws and horns often break off."
+		rows="5"
+	/>
+	<div class="error" v-if="error">
+		<i class="bi bi-x-octagon" />
+		{{ error }}
+	</div>
 </template>
 
 <script lang="ts" setup>
 defineProps<{
 	value: string
 	multiline?: boolean
+	error?: string
 }>()
 </script>
 
@@ -22,10 +38,32 @@ textarea {
 	border: $border-width solid transparent;
 	border-radius: $small-radius;
 	box-shadow: $shadow-gray-dark;
-	outline-color: transparentize($purple, 0.25);
+	outline: none;
+
+	&::placeholder {
+		color: $gray;
+	}
+
+	&:focus {
+		border-color: $purple;
+		box-shadow: $shadow-purple;
+	}
+
+	&.error {
+		border-color: $error;
+		box-shadow: $shadow-error;
+	}
 }
 
 textarea {
 	resize: vertical;
+}
+
+.error:not(input) {
+	color: $error;
+	padding-top: 0.4rem;
+	padding-left: 0.2rem;
+	display: flex;
+	gap: 0.4rem;
 }
 </style>
