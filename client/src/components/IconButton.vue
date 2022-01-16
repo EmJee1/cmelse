@@ -1,5 +1,5 @@
 <template>
-	<button class="icon-btn" :class="{ error, disabled }">
+	<button class="icon-btn" :class="{ error }" :disabled="disabled">
 		<i class="icon" :class="icon"></i>
 		<span class="text" v-if="text">
 			<slot />
@@ -52,7 +52,7 @@ const { default: text } = useSlots()
 		}
 	}
 
-	&.disabled {
+	&:disabled {
 		color: $gray-dark;
 		box-shadow: $shadow-gray-dark;
 		cursor: not-allowed;
