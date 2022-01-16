@@ -2,6 +2,7 @@
 	<input
 		type="number"
 		class="datatype-input"
+		@blur="validate"
 		:class="{ error }"
 		v-model.number="value"
 	/>
@@ -9,12 +10,21 @@
 </template>
 
 <script lang="ts" setup>
+import { ref } from 'vue'
+import { AnySchema } from 'joi'
 import ErrorText from '../ErrorText.vue'
 
-defineProps<{
+const props = defineProps<{
 	value: number
-	error?: string
+	validationSchema: AnySchema
 }>()
+
+const error = ref<string>()
+
+const validate = () => {
+	const result = props.validationSchema.validate(props.value)
+	error.value = result.error?.toString()
+}
 </script>
 
 <style lang="scss" scoped></style>

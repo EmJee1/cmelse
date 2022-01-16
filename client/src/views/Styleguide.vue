@@ -20,23 +20,37 @@
 	<div class="item">
 		<h2>Datatype Text</h2>
 		<p>Single line</p>
-		<Text value="Its claws and horns often break off." />
+		<Text
+			:validation-schema="Joi.string().required()"
+			value="Its claws and horns often break off."
+		/>
 		<p>Multiline</p>
-		<Text value="Its claws and horns often break off." multiline />
+		<Text
+			:validation-schema="Joi.string().required()"
+			value="Its claws and horns often break off."
+			multiline
+		/>
 		<p>Error</p>
-		<Text value="" error="This field is required" />
+		<Text :validation-schema="Joi.string().required()" value="" />
 	</div>
 
 	<div class="item">
 		<h2>Datatype Numeral</h2>
 		<p>Default</p>
-		<Numeral :value="5" />
+		<Numeral
+			:value="5"
+			:validation-schema="Joi.number().required().integer()"
+		/>
 		<p>Error</p>
-		<Numeral :value="0" error="This field is required" />
+		<Numeral
+			:value="0.15"
+			:validation-schema="Joi.number().required().integer()"
+		/>
 	</div>
 </template>
 
 <script lang="ts" setup>
+import Joi from 'joi'
 import IconButton from '../components/IconButton.vue'
 import Text from '../components/datatypes/Text.vue'
 import Numeral from '../components/datatypes/Numeral.vue'

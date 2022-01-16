@@ -2,6 +2,7 @@
 	<input
 		v-if="!multiline"
 		v-model="value"
+		@blur="validate"
 		class="datatype-input"
 		:class="{ error }"
 		placeholder="Its claws and horns often break off."
@@ -9,6 +10,7 @@
 	<div v-else class="textarea">
 		<textarea
 			v-model="value"
+			@blur="validate"
 			class="datatype-input"
 			:class="{ error }"
 			placeholder="Its claws and horns often break off."
@@ -19,13 +21,22 @@
 </template>
 
 <script lang="ts" setup>
+import { ref } from 'vue'
+import { AnySchema } from 'joi'
 import ErrorText from '../ErrorText.vue'
 
-defineProps<{
+const props = defineProps<{
 	value: string
+	validationSchema: AnySchema
 	multiline?: boolean
-	error?: string
 }>()
+
+const error = ref<string>()
+
+const validate = () => {
+	const result = props.validationSchema.validate(props.value)
+	error.value = result.error?.toString()
+}
 </script>
 
 <style lang="scss" scoped>
