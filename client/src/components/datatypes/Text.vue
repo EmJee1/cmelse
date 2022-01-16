@@ -5,13 +5,14 @@
 		:class="{ error }"
 		placeholder="Its claws and horns often break off."
 	/>
-	<textarea
-		v-else
-		v-model="value"
-		:class="{ error }"
-		placeholder="Its claws and horns often break off."
-		rows="5"
-	/>
+	<div v-else class="textarea">
+		<textarea
+			v-model="value"
+			:class="{ error }"
+			placeholder="Its claws and horns often break off."
+			rows="5"
+		/>
+	</div>
 	<div class="error" v-if="error">
 		<i class="bi bi-x-octagon" />
 		{{ error }}
@@ -39,6 +40,11 @@ textarea {
 	border-radius: $small-radius;
 	box-shadow: $shadow-gray-dark;
 	outline: none;
+	resize: vertical;
+
+	&::-webkit-resizer {
+		display: none;
+	}
 
 	&::placeholder {
 		color: $gray;
@@ -55,8 +61,21 @@ textarea {
 	}
 }
 
-textarea {
-	resize: vertical;
+.textarea {
+	position: relative;
+	pointer-events: none;
+
+	&::after {
+		content: '';
+		position: absolute;
+		right: 0;
+		bottom: 4px;
+		width: 12px;
+		height: 12px;
+		background: url('../../assets/icons/resize-textarea.svg');
+		background-size: contain;
+		margin: 4px;
+	}
 }
 
 .error:not(input) {
