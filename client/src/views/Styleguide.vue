@@ -47,7 +47,7 @@
 
 	<div class="item">
 		<h2>Datatype Enum</h2>
-		<Enum :items="['spring', 'summer', 'fall', 'winter']" :value="summer" />
+		<Enum :items="['spring', 'summer', 'fall', 'winter']" value="spring" />
 	</div>
 </template>
 
