@@ -30,7 +30,7 @@ $toggle-ball-padding: 3px;
 		background-color: #d1d1d1;
 
 		&::before {
-			transform: translateX(($toggle-width / 2));
+			transform: translateX($toggle-width - $toggle-height);
 		}
 	}
 
