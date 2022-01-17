@@ -13,7 +13,7 @@ body {
 	$padding-horizontal: 20px;
 	$border-width: 2px;
 
-	width: calc(100% - $padding-horizontal * 2 - $border-width * 2);
+	width: 100%;
 	padding: 14px $padding-horizontal;
 	border: $border-width solid transparent;
 	border-radius: $small-radius;
