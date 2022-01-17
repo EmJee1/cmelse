@@ -1,6 +1,6 @@
 <template>
 	<label class="toggle">
-		<input type="checkbox" />
+		<input class="visually-hidden" type="checkbox" />
 		<span class="slider" />
 	</label>
 </template>
@@ -26,17 +26,11 @@ $toggle-ball-padding: 3px;
 	border-radius: 99px;
 	box-shadow: $shadow-gray-dark;
 
-	input {
-		opacity: 0;
-		width: 0;
-		height: 0;
+	input:checked + .slider {
+		background-color: #d1d1d1;
 
-		&:checked + .slider {
-			background-color: #d1d1d1;
-
-			&::before {
-				transform: translateX(($toggle-width / 2));
-			}
+		&::before {
+			transform: translateX(($toggle-width / 2));
 		}
 	}
 
