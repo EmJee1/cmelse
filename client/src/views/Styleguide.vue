@@ -44,6 +44,11 @@
 		<h2>Datatype Toggle</h2>
 		<Toggle :value="true" />
 	</div>
+
+	<div class="item">
+		<h2>Datatype Enum</h2>
+		<Enum :items="['spring', 'summer', 'fall', 'winter']" :value="summer" />
+	</div>
 </template>
 
 <script lang="ts" setup>
@@ -52,6 +57,7 @@ import IconButton from '../components/IconButton.vue'
 import Text from '../components/datatypes/Text.vue'
 import Numeral from '../components/datatypes/Numeral.vue'
 import Toggle from '../components/datatypes/Toggle.vue'
+import Enum from '../components/datatypes/Enum.vue'
 </script>
 
 <style lang="scss" scoped>
