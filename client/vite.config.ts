@@ -5,6 +5,7 @@ import path from 'path'
 import fs from 'fs'
 
 const scssVariables = fs.readFileSync(path.join(__dirname, './src/style/variables.scss'), 'utf-8')
+const scssMixins = fs.readFileSync(path.join(__dirname, './src/style/mixins.scss'), 'utf-8')
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -12,8 +13,8 @@ export default defineConfig({
 	css: {
 		preprocessorOptions: {
 			scss: {
-				additionalData: scssVariables
-			}
-		}
-	}
+				additionalData: `${scssVariables}\n${scssMixins}`,
+			},
+		},
+	},
 })
