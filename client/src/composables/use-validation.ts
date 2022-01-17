@@ -6,7 +6,6 @@ const useValidation = (validationSchema: AnySchema) => {
 
 	const validate = (value: unknown) => {
 		const result = validationSchema.validate(value)
-		console.log(result.error)
 		error.value = result.error?.toString()
 	}
 
