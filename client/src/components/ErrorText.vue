@@ -1,5 +1,5 @@
 <template>
-	<div class="error">
+	<div class="error" role="alert">
 		<i class="bi bi-x-octagon" />
 		<slot />
 	</div>
