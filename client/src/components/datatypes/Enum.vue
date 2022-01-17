@@ -1,17 +1,7 @@
 <template>
 	<div class="enum">
-		<label
-			class="item"
-			:class="{ selected: item === value }"
-			v-for="item in items"
-			:key="item"
-		>
-			<input
-				class="visually-hidden"
-				type="radio"
-				:value="item"
-				v-model="value"
-			/>
+		<label class="item" :class="{ selected: item === value }" v-for="item in items" :key="item">
+			<input class="visually-hidden" type="radio" :value="item" v-model="value" />
 			<span>{{ item }}</span>
 		</label>
 	</div>
@@ -22,6 +12,8 @@ const props = defineProps<{
 	value: string
 	items: string[]
 }>()
+
+console.log(props.items)
 </script>
 
 <style lang="scss" scoped>

@@ -5,9 +5,7 @@
 			v-model="value"
 			:type="type"
 			:placeholder="placeholder"
-			:style="`border-radius: ${
-				border_radius == 'big' ? '42px' : '10px'
-			};`"
+			:style="`border-radius: ${border_radius == 'big' ? '42px' : '10px'};`"
 		/>
 	</div>
 	<div v-show="error" class="error">{{ error }}</div>

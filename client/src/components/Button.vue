@@ -1,18 +1,9 @@
 <template>
 	<div>
-		<button
-			class="round-button"
-			v-if="shape == 'round'"
-			:style="`width: ${width};`"
-		>
+		<button class="round-button" v-if="shape == 'round'" :style="`width: ${width};`">
 			{{ value }}
 		</button>
-		<button
-			v-else
-			class="icon-button"
-			:class="`type-${type}`"
-			:style="`width: ${width};`"
-		>
+		<button v-else class="icon-button" :class="`type-${type}`" :style="`width: ${width};`">
 			<i :class="`bi bi-${type == 'error' ? 'trash2' : 'save'}`"></i>
 			<div v-show="value" class="button-text">{{ value }}</div>
 		</button>

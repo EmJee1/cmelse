@@ -5,9 +5,7 @@
 		<div class="collection">
 			<IconButton icon="bi-save">Primary icon button</IconButton>
 			<IconButton icon="bi-trash2" error> Error icon button </IconButton>
-			<IconButton icon="bi-x-octagon" disabled>
-				Disabled icon button
-			</IconButton>
+			<IconButton icon="bi-x-octagon" disabled> Disabled icon button </IconButton>
 		</div>
 		<p>Without text</p>
 		<div class="collection">
@@ -34,10 +32,7 @@
 
 	<div class="item">
 		<h2>Datatype Numeral</h2>
-		<Numeral
-			:value="5"
-			:validation-schema="Joi.number().required().integer()"
-		/>
+		<Numeral :value="5" :validation-schema="Joi.number().required().integer()" />
 	</div>
 
 	<div class="item">
