@@ -12,6 +12,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { AnySchema } from 'joi'
+import useValidation from '../../composables/use-validation'
 import ErrorText from '../ErrorText.vue'
 
 const props = defineProps<{
@@ -19,10 +20,5 @@ const props = defineProps<{
 	validationSchema: AnySchema
 }>()
 
-const error = ref<string>()
-
-const validate = () => {
-	const result = props.validationSchema.validate(props.value)
-	error.value = result.error?.toString()
-}
+const { error, validate } = useValidation(props.validationSchema)
 </script>
