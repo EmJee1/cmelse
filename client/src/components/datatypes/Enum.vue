@@ -28,6 +28,7 @@ const props = defineProps<{
 .enum {
 	background-color: $white;
 	border-radius: $small-radius;
+	box-shadow: $shadow-gray-dark;
 	padding: 8px 10px;
 	display: inline-flex;
 	gap: 10px;
@@ -36,7 +37,8 @@ const props = defineProps<{
 		background-color: $gray-light;
 		padding: 14px 24px;
 		position: relative;
-		transition: background-color $transition;
+		transition: $transition;
+		transition-property: background-color, box-shadow;
 		cursor: pointer;
 
 		&:first-child {
@@ -46,6 +48,10 @@ const props = defineProps<{
 		&:last-child {
 			border-top-right-radius: $small-radius;
 			border-bottom-right-radius: $small-radius;
+		}
+
+		&:hover {
+			box-shadow: inset $shadow-gray-dark;
 		}
 
 		&.selected {
