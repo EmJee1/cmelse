@@ -48,8 +48,8 @@ $toggle-ball-padding: 3px;
 		&::before {
 			content: '';
 			position: absolute;
-			width: $toggle-height;
-			height: $toggle-height;
+			width: $toggle-height - $toggle-ball-padding * 2;
+			height: $toggle-height - $toggle-ball-padding * 2;
 			background-color: $black;
 			transition: transform $transition;
 			border-radius: 99px;
