@@ -44,15 +44,28 @@
 		<h2>Datatype Enum</h2>
 		<Enum :items="['spring', 'summer', 'fall', 'winter']" value="spring" />
 	</div>
+
+	<div class="item">
+		<h2>Modal</h2>
+		<button @click="toggleModal">Toggle modal</button>
+		<Modal v-if="modalVisible" @close="closeModal" />
+	</div>
 </template>
 
 <script lang="ts" setup>
 import Joi from 'joi'
+import { ref } from 'vue'
 import IconButton from '../components/IconButton.vue'
 import Text from '../components/datatypes/Text.vue'
 import Numeral from '../components/datatypes/Numeral.vue'
 import Toggle from '../components/datatypes/Toggle.vue'
 import Enum from '../components/datatypes/Enum.vue'
+import Modal from '../components/Modal.vue'
+
+const modalVisible = ref(false)
+
+const closeModal = () => (modalVisible.value = false)
+const toggleModal = () => (modalVisible.value = !modalVisible.value)
 </script>
 
 <style lang="scss" scoped>
