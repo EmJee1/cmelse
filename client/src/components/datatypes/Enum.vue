@@ -8,12 +8,10 @@
 </template>
 
 <script lang="ts" setup>
-const props = defineProps<{
+defineProps<{
 	value: string
 	items: string[]
 }>()
-
-console.log(props.items)
 </script>
 
 <style lang="scss" scoped>
