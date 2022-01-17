@@ -15,25 +15,13 @@
 			<span>{{ item }}</span>
 		</label>
 	</div>
-	<ErrorText v-if="error">{{ error }}</ErrorText>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { AnySchema } from 'joi'
-
 const props = defineProps<{
 	value: string
 	items: string[]
-	validationSchema: AnySchema
 }>()
-
-const error = ref<string>()
-
-const validate = () => {
-	const result = props.validationSchema.validate(props.value)
-	error.value = result.error?.toString()
-}
 </script>
 
 <style lang="scss" scoped>
