@@ -1,10 +1,10 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 
 import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Styleguide from '../views/Styleguide.vue'
 
-const routes = [
+const routes: RouteRecordRaw[] = [
 	{
 		path: '/',
 		name: 'Home',
@@ -18,8 +18,8 @@ const routes = [
 	{
 		path: '/styleguide',
 		name: 'Styleguide',
-		component: Styleguide
-	}
+		component: Styleguide,
+	},
 ]
 
 const publicRoutes = ['/login']
