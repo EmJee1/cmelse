@@ -2,7 +2,7 @@
 	<input
 		v-if="!multiline"
 		v-model="value"
-		@blur="validate"
+		@blur="onBlur"
 		class="datatype-input"
 		:class="{ error }"
 		placeholder="Its claws and horns often break off."
@@ -10,7 +10,7 @@
 	<div v-else class="textarea">
 		<textarea
 			v-model="value"
-			@blur="validate"
+			@blur="onBlur"
 			class="datatype-input"
 			:class="{ error }"
 			placeholder="Its claws and horns often break off."
@@ -32,7 +32,7 @@ const props = defineProps<{
 	multiline?: boolean
 }>()
 
-const { error, validate } = useValidation(props.validationSchema)
+const { error, onBlur } = useValidation(props.validationSchema)
 </script>
 
 <style lang="scss" scoped>

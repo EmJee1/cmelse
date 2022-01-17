@@ -2,7 +2,7 @@
 	<input
 		type="number"
 		class="datatype-input"
-		@blur="validate"
+		@blur="onBlur"
 		:class="{ error }"
 		v-model.number="value"
 	/>
@@ -20,5 +20,5 @@ const props = defineProps<{
 	validationSchema: AnySchema
 }>()
 
-const { error, validate } = useValidation(props.validationSchema)
+const { error, onBlur } = useValidation(props.validationSchema)
 </script>
