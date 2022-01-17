@@ -10,12 +10,9 @@ body {
 }
 
 .datatype-input {
-	$padding-horizontal: 20px;
-	$border-width: 2px;
-
 	width: 100%;
-	padding: 14px $padding-horizontal;
-	border: $border-width solid transparent;
+	padding: 14px 20px;
+	border: 2px solid transparent;
 	border-radius: $small-radius;
 	box-shadow: $shadow-gray-dark;
 	background-color: $white;
