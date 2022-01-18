@@ -9,3 +9,15 @@ $html-font-size: 16px;
 @function rem($pxValue) {
 	@return #{math.div(stripUnit($pxValue), stripUnit($html-font-size))}rem;
 }
+
+@mixin heading-1 {
+	font-weight: 500;
+	font-size: rem(36px);
+	line-height: 1.2;
+}
+
+@mixin heading-2 {
+	font-weight: 700;
+	font-size: rem(26px);
+	line-height: 1.2;
+}
