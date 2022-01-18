@@ -48,7 +48,18 @@
 	<div class="item">
 		<h2>Modal</h2>
 		<button @click="toggleModal">Toggle modal</button>
-		<Modal v-if="modalVisible" @close="closeModal" />
+		<Modal v-if="modalVisible" @close="closeModal" title="Products" subtitle="Add a product">
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum harum fugit
+				temporibus eligendi in. Esse labore sint aliquam facilis id maiores natus ducimus,
+				perspiciatis repellat nisi ipsum fugiat!
+			</p>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum harum fugit
+				temporibus eligendi in. Esse labore sint aliquam facilis id maiores natus ducimus,
+				perspiciatis repellat nisi ipsum fugiat!
+			</p>
+		</Modal>
 	</div>
 </template>
 
