@@ -1,0 +1,27 @@
+// colors
+$error: #ff0000;
+$error-light: #feadad;
+$purple: #7510f7;
+$black: #17141a;
+$gray-dark: #4e4e4e;
+$gray: #989898;
+$gray-light: #f4f4f4;
+$white: #fff;
+
+// shadows
+$shadow-purple: 0px 3px 6px transparentize($purple, 0.84);
+$shadow-purple-hover: 0px 3px 6px transparentize($purple, 0.3);
+$shadow-error: 0px 3px 6px transparentize($error, 0.84);
+$shadow-error-hover: 0px 3px 6px transparentize($error, 0.3);
+$shadow-gray-dark: 0px 3px 6px transparentize($gray-dark, 0.84);
+
+// border radiusses
+$big-radius: 41px;
+$small-radius: 7px;
+
+// transitions
+$transition: ease-in-out 0.3s;
+
+// z-indexes
+$z-modal-backdrop: 10;
+$z-modal: 11;

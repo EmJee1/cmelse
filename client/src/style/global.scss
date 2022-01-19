@@ -1,0 +1,49 @@
+body {
+	margin: 0;
+	font-family: 'Dosis', sans-serif;
+}
+
+*,
+*:before,
+*:after {
+	box-sizing: border-box;
+}
+
+.datatype-input {
+	width: 100%;
+	padding: 14px 20px;
+	border: 2px solid transparent;
+	border-radius: $small-radius;
+	box-shadow: $shadow-gray-dark;
+	background-color: $white;
+	pointer-events: all;
+	outline: none;
+
+	&::placeholder {
+		color: $gray;
+	}
+
+	&:focus {
+		border-color: $purple;
+		box-shadow: $shadow-purple;
+	}
+
+	&.error {
+		border-color: $error;
+		box-shadow: $shadow-error;
+	}
+}
+
+.visually-hidden {
+	opacity: 0;
+	width: 0;
+	height: 0;
+	pointer-events: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.no-scroll {
+	overflow: hidden;
+}
