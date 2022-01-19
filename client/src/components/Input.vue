@@ -2,7 +2,7 @@
 	<div :style="`width: ${width};`" class="input-wrapper">
 		<input
 			:name="name"
-			v-model="value"
+			:value="value"
 			:type="type"
 			:placeholder="placeholder"
 			:style="`border-radius: ${border_radius == 'big' ? '42px' : '10px'};`"
