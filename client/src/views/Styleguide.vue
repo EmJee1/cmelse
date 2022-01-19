@@ -18,10 +18,8 @@
 	<div class="item">
 		<h2>Datatype Text</h2>
 		<p>Single line</p>
-		<Text
-			:validation-schema="Joi.string().required()"
-			value="Its claws and horns often break off."
-		/>
+		<p>{{ datatypeTextValue }}</p>
+		<Text :validation-schema="Joi.string().required()" v-model="datatypeTextValue" />
 		<p>Multiline</p>
 		<Text
 			:validation-schema="Joi.string().required()"
@@ -72,6 +70,8 @@ import Numeral from '../components/datatypes/Numeral.vue'
 import Toggle from '../components/datatypes/Toggle.vue'
 import Enum from '../components/datatypes/Enum.vue'
 import Modal from '../components/Modal.vue'
+
+const datatypeTextValue = ref('')
 
 const modalVisible = ref(false)
 

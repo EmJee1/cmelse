@@ -1,16 +1,18 @@
 <template>
 	<input
 		v-if="!multiline"
-		v-model="value"
+		:value="modelValue"
 		@blur="onBlur"
+		@input="onInput"
 		class="datatype-input"
 		:class="{ error }"
 		placeholder="Its claws and horns often break off."
 	/>
 	<div v-else class="textarea">
 		<textarea
-			v-model="value"
+			:value="modelValue"
 			@blur="onBlur"
+			@input="onInput"
 			class="datatype-input"
 			:class="{ error }"
 			placeholder="Its claws and horns often break off."
@@ -25,13 +27,21 @@ import { AnySchema } from 'joi'
 import useValidation from '../../composables/use-validation'
 import ErrorText from '../ErrorText.vue'
 
+const emit = defineEmits<{
+	(e: 'update:modelValue', value: string): void
+}>()
+
 const props = defineProps<{
-	value: string
+	modelValue: string
 	validationSchema: AnySchema
 	multiline?: boolean
 }>()
 
 const { error, onBlur } = useValidation(props.validationSchema)
+
+const onInput = (e: Event) => {
+	emit('update:modelValue', (e.target as HTMLInputElement).value)
+}
 </script>
 
 <style lang="scss" scoped>
