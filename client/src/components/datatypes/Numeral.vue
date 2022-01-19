@@ -27,11 +27,9 @@ const props = defineProps<{
 
 const { error, onBlur } = useValidation(props.validationSchema)
 
-const joiValidationMethod = Joi.number().required()
-
 const onInput = (e: Event) => {
 	const rawValue = (e.target as HTMLInputElement).value
-	const { error: validationError } = joiValidationMethod.validate(rawValue)
+	const { error: validationError } = Joi.number().required().validate(rawValue)
 
 	if (validationError) {
 		error.value = validationError.message
