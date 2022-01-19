@@ -1,6 +1,6 @@
 # cmelse
 
-A headless cms for developers that want to focus on just the frontend. But not any old 
+A headless cms for developers that want to focus on just the frontend.
 
 - [cmelse](#cmelse)
   - [🗂️ Trello](#️-trello)
@@ -10,6 +10,7 @@ A headless cms for developers that want to focus on just the frontend. But not a
       - [Node.js](#nodejs)
       - [Node versions](#node-versions)
       - [Package manager](#package-manager)
+      - [Postman (optional)](#postman-optional)
     - [🧱 Base installation](#-base-installation)
     - [💼 Front-end](#-front-end)
     - [🧰 Back-end](#-back-end)
@@ -43,6 +44,12 @@ In order to run multiple node versions in parallel, we suggest using the node ve
 
 NPM is our preferred package manager, it comes installed with Node automatically so no additional installation is required.
 
+#### Postman (optional)
+
+We use a Postman workspace to try out API requests, it is a collection of requests so it also gives a nice overview of all available endpoints. Contact the repository owner (EmJee1) if you want to join the Postman workspace.
+
+- [postman](https://www.postman.com/downloads)
+
 ### 🧱 Base installation
 
 1. Start by cloning the repository from GitHub `git clone https://github.com/EmJee1/cmelse.git`
@@ -56,3 +63,5 @@ These are the steps on how to set up the frontend, however you almost always nee
 2. Run the dev command to start the dev server `npm run dev`
 
 ### 🧰 Back-end
+
+Coming soon...
