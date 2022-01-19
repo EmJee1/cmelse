@@ -51,7 +51,7 @@
 	<div class="item">
 		<h2>Modal</h2>
 		<button @click="toggleModal">Toggle modal</button>
-		<Modal v-if="modalVisible" @close="closeModal" title="Products" subtitle="Add a product">
+		<Modal v-if="modalVisible" @close="toggleModal" title="Products" subtitle="Add a product">
 			<p>
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum harum fugit
 				temporibus eligendi in. Esse labore sint aliquam facilis id maiores natus ducimus,
@@ -82,8 +82,9 @@ const datatypeNumberValue = ref(1)
 
 const modalVisible = ref(false)
 
-const closeModal = () => (modalVisible.value = false)
-const toggleModal = () => (modalVisible.value = !modalVisible.value)
+const toggleModal = () => {
+	modalVisible.value = !modalVisible.value
+}
 </script>
 
 <style lang="scss" scoped>
