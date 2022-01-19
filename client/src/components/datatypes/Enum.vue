@@ -1,17 +1,30 @@
 <template>
 	<div class="enum">
-		<label class="item" :class="{ selected: item === value }" v-for="item in items" :key="item">
-			<input class="visually-hidden" type="radio" :value="item" v-model="value" />
+		<label
+			class="item"
+			:class="{ selected: item === modelValue }"
+			v-for="item in items"
+			:key="item"
+		>
+			<input class="visually-hidden" type="radio" :value="item" @input="onInput" />
 			<span>{{ item }}</span>
 		</label>
 	</div>
 </template>
 
 <script lang="ts" setup>
+const emit = defineEmits<{
+	(e: 'update:modelValue', value: string): void
+}>()
+
 defineProps<{
-	value: string
+	modelValue: string
 	items: string[]
 }>()
+
+const onInput = (e: Event) => {
+	emit('update:modelValue', (e.target as HTMLInputElement).value)
+}
 </script>
 
 <style lang="scss" scoped>

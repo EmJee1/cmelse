@@ -45,7 +45,8 @@
 
 	<div class="item">
 		<h2>Datatype Enum</h2>
-		<Enum :items="['spring', 'summer', 'fall', 'winter']" value="spring" />
+		<p>Saved value: {{ datatypeEnumValue }}</p>
+		<Enum :items="['spring', 'summer', 'fall', 'winter']" v-model="datatypeEnumValue" />
 	</div>
 
 	<div class="item">
@@ -79,6 +80,7 @@ import Modal from '../components/Modal.vue'
 const datatypeTextValue = ref('')
 const datatypeTextMultilineValue = ref('')
 const datatypeNumberValue = ref(1)
+const datatypeEnumValue = ref('spring')
 
 const modalVisible = ref(false)
 
