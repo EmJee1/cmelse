@@ -18,8 +18,10 @@
 	<div class="item">
 		<h2>Datatype Text</h2>
 		<p>Single line</p>
+		<small>Saved value: {{ datatypeTextValue }}</small>
 		<Text :validation-schema="Joi.string().required()" v-model="datatypeTextValue" />
 		<p>Multiline</p>
+		<small>Saved value: {{ datatypeTextMultilineValue }}</small>
 		<Text
 			:validation-schema="Joi.string().required()"
 			v-model="datatypeTextMultilineValue"
@@ -29,6 +31,7 @@
 
 	<div class="item">
 		<h2>Datatype Numeral</h2>
+		<small>Saved value: {{ datatypeNumberValue }}</small>
 		<Numeral
 			:validation-schema="Joi.number().required().integer()"
 			v-model="datatypeNumberValue"
@@ -75,7 +78,7 @@ import Modal from '../components/Modal.vue'
 
 const datatypeTextValue = ref('')
 const datatypeTextMultilineValue = ref('')
-const datatypeNumberValue = ref('')
+const datatypeNumberValue = ref(1)
 
 const modalVisible = ref(false)
 
