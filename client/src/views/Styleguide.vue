@@ -38,7 +38,7 @@
 	<div class="item">
 		<h2>Datatype Toggle</h2>
 		<p class="text-with-code">
-			Use this with <code>v-model.number=""</code> to prevent Vue warnings
+			Use this with <code>v-model.boolean=""</code> to prevent Vue warnings
 		</p>
 		<Toggle v-model.boolean="datatypeToggleValue" />
 	</div>
