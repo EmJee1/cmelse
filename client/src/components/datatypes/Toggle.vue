@@ -1,14 +1,22 @@
 <template>
 	<label class="toggle">
-		<input class="visually-hidden" type="checkbox" />
+		<input class="visually-hidden" type="checkbox" @input="onInput" :checked="modelValue" />
 		<span class="slider" />
 	</label>
 </template>
 
 <script lang="ts" setup>
-defineProps<{
-	value: boolean
+const emit = defineEmits<{
+	(e: 'update:modelValue', value: boolean): void
 }>()
+
+defineProps<{
+	modelValue: boolean
+}>()
+
+const onInput = (e: Event) => {
+	emit('update:modelValue', (e.target as HTMLInputElement).checked)
+}
 </script>
 
 <style lang="scss" scoped>

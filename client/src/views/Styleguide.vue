@@ -18,10 +18,8 @@
 	<div class="item">
 		<h2>Datatype Text</h2>
 		<p>Single line</p>
-		<small>Saved value: {{ datatypeTextValue }}</small>
 		<Text :validation-schema="Joi.string().required()" v-model="datatypeTextValue" />
 		<p>Multiline</p>
-		<small>Saved value: {{ datatypeTextMultilineValue }}</small>
 		<Text
 			:validation-schema="Joi.string().required()"
 			v-model="datatypeTextMultilineValue"
@@ -31,7 +29,6 @@
 
 	<div class="item">
 		<h2>Datatype Numeral</h2>
-		<small>Saved value: {{ datatypeNumberValue }}</small>
 		<Numeral
 			:validation-schema="Joi.number().required().integer()"
 			v-model="datatypeNumberValue"
@@ -40,12 +37,14 @@
 
 	<div class="item">
 		<h2>Datatype Toggle</h2>
-		<Toggle :value="true" />
+		<p class="text-with-code">
+			Use this with <code>v-model.number=""</code> to prevent Vue warnings
+		</p>
+		<Toggle v-model.boolean="datatypeToggleValue" />
 	</div>
 
 	<div class="item">
 		<h2>Datatype Enum</h2>
-		<p>Saved value: {{ datatypeEnumValue }}</p>
 		<Enum :items="['spring', 'summer', 'fall', 'winter']" v-model="datatypeEnumValue" />
 	</div>
 
@@ -80,6 +79,7 @@ import Modal from '../components/Modal.vue'
 const datatypeTextValue = ref('')
 const datatypeTextMultilineValue = ref('')
 const datatypeNumberValue = ref(1)
+const datatypeToggleValue = ref(false)
 const datatypeEnumValue = ref('spring')
 
 const modalVisible = ref(false)
@@ -109,6 +109,18 @@ $styleguide-item-bg: #ebebeb;
 
 	> *:not(:last-child) {
 		margin-right: 1rem;
+	}
+}
+
+.text-with-code {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+
+	code {
+		background-color: $gray-light;
+		padding: 2px 4px;
+		border-radius: $small-radius;
 	}
 }
 </style>
