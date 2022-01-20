@@ -6,7 +6,13 @@
 			v-for="item in items"
 			:key="item"
 		>
-			<input class="visually-hidden" type="radio" :value="item" @input="onInput" />
+			<input
+				class="visually-hidden"
+				:name="name"
+				type="radio"
+				:value="item"
+				@input="onInput"
+			/>
 			<span>{{ item }}</span>
 		</label>
 	</div>
@@ -19,6 +25,7 @@ const emit = defineEmits<{
 
 defineProps<{
 	modelValue: string
+	name: string
 	items: string[]
 }>()
 

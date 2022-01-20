@@ -42,7 +42,11 @@
 
 	<div class="item">
 		<h2>Datatype Enum</h2>
-		<Enum :items="['spring', 'summer', 'fall', 'winter']" v-model="datatypeEnumValue" />
+		<Enum
+			name="suggestedSeason"
+			:items="['spring', 'summer', 'fall', 'winter']"
+			v-model="datatypeEnumValue"
+		/>
 	</div>
 
 	<div class="item">
