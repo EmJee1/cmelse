@@ -24,6 +24,7 @@ import models from 'models'
 </script>
 
 <style lang="scss" scoped>
+$navbar-padding-left: 30px;
 .navbar {
 	position: fixed;
 	display: block;
@@ -31,8 +32,7 @@ import models from 'models'
 	left: 0;
 	bottom: 0;
 	background-color: $black;
-	color: $white;
-	padding: 30px 12px 30px 30px;
+	padding: 30px 12px 30px $navbar-padding-left;
 	width: 180px;
 
 	&_item,
@@ -55,10 +55,7 @@ import models from 'models'
 	&_subitem {
 		font-size: rem(14px);
 		position: relative;
-		transition: $transition;
-		transition-property: background-color;
 		padding: 5px 14px 5px 0;
-		border-radius: 0 80px 80px 0;
 		margin-bottom: 0;
 		gap: 14px;
 
@@ -70,17 +67,18 @@ import models from 'models'
 		&::before {
 			transition: $transition;
 			transition-property: background-color;
+			border-radius: 0 80px 80px 0;
 			content: '';
 			position: absolute;
 			top: 0;
-			left: -100%;
+			left: -#{$navbar-padding-left};
+			right: 0;
 			height: 100%;
-			width: 100%;
+			width: calc(100% + $navbar-padding-left);
+			z-index: -1;
 		}
 
 		&:hover {
-			background-color: transparentize($purple, 0.6);
-
 			&::before {
 				background-color: transparentize($purple, 0.6);
 			}
