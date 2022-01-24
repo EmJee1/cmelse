@@ -1,50 +1,36 @@
 <template>
-	<div>
-		<img src="../assets/logo.svg" alt="logo" width="100" />
+	<div class="navbar">
 		<nav>
-			<div
-				class="item"
-				v-for="(item, index) in items"
-				:key="index"
-				@click="$router.push(item.link)"
-			>
-				<h3>{{ item.name }}</h3>
-				<i :class="item.icon"></i>
-			</div>
+			<router-link to="/" class="navbar_item">
+				<i class="bi bi-house" />
+				Home
+			</router-link>
+			<router-link to="/models" class="navbar_item">
+				<i class="bi bi-collection"></i>
+				Models
+			</router-link>
 		</nav>
 	</div>
 </template>
 
-<script>
-export default {
-	name: 'navbar',
-	data() {
-		return {
-			items: [
-				{
-					name: 'Dashboard',
-					link: '/',
-					icon: 'fas fa-home',
-				},
-				{
-					name: 'Models',
-					link: '/models',
-					icon: 'fas fa-draw-polygon',
-				},
-				{
-					name: 'Templates',
-					link: '/templates',
-					icon: 'fas fa-file-alt',
-				},
-				{
-					name: 'Options',
-					link: '/options',
-					icon: 'fas fa-cog',
-				},
-			],
-		}
-	},
-}
-</script>
+<style lang="scss" scoped>
+.navbar {
+	position: fixed;
+	display: block;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	background-color: $black;
+	color: $white;
+	padding: 30px 45px 30px 30px;
 
-<style></style>
+	&_item {
+		color: $white;
+		text-decoration: none;
+		font-weight: 500;
+		font-size: rem(16px);
+		display: flex;
+		gap: 8px;
+	}
+}
+</style>
