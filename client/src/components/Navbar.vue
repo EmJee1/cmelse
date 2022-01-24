@@ -4,10 +4,10 @@
 			<i class="bi bi-house" />
 			Home
 		</router-link>
-		<router-link to="/models" class="navbar_item">
+		<p to="/models" class="navbar_item">
 			<i class="bi bi-collection" />
 			Models
-		</router-link>
+		</p>
 		<ul class="navbar_subitems">
 			<li v-for="model in models">
 				<router-link :to="`/models/${model.cmsMetadata.collection}`" class="navbar_subitem">
@@ -25,6 +25,8 @@ import models from 'models'
 
 <style lang="scss" scoped>
 $navbar-padding-left: 30px;
+$navbar-width: 180px;
+
 .navbar {
 	position: fixed;
 	display: block;
@@ -33,7 +35,7 @@ $navbar-padding-left: 30px;
 	bottom: 0;
 	background-color: $black;
 	padding: 30px 12px 30px $navbar-padding-left;
-	width: 180px;
+	width: $navbar-width;
 
 	&_item,
 	&_subitem {
@@ -65,23 +67,27 @@ $navbar-padding-left: 30px;
 		}
 
 		&::before {
-			transition: $transition;
-			transition-property: background-color;
-			border-radius: 0 80px 80px 0;
 			content: '';
+			transition: $transition;
+			transition-property: transform, background-color;
+			border-radius: 0 80px 80px 0;
 			position: absolute;
 			top: 0;
-			left: -#{$navbar-padding-left};
-			right: 0;
 			height: 100%;
+			left: -#{$navbar-padding-left};
 			width: calc(100% + $navbar-padding-left);
+			background-color: transparentize($purple, 0.6);
+			transform: translateX(-#{$navbar-width});
 			z-index: -1;
 		}
 
-		&:hover {
-			&::before {
-				background-color: transparentize($purple, 0.6);
-			}
+		&:hover::before {
+			transform: translateX(0);
+		}
+
+		&.router-link-active::before {
+			transform: translateX(0);
+			background-color: $purple;
 		}
 	}
 }
