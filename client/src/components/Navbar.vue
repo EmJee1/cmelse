@@ -35,7 +35,7 @@ $navbar-width: 180px;
 	bottom: 0;
 	background-color: $black;
 	padding: 30px 12px 30px $navbar-padding-left;
-	width: $navbar-width;
+	width: 100%;
 
 	&_item,
 	&_subitem {
@@ -77,7 +77,7 @@ $navbar-width: 180px;
 			left: -#{$navbar-padding-left};
 			width: calc(100% + $navbar-padding-left);
 			background-color: transparentize($purple, 0.6);
-			transform: translateX(-#{$navbar-width});
+			transform: translateX(-100%);
 			z-index: -1;
 		}
 
@@ -88,6 +88,14 @@ $navbar-width: 180px;
 		&.router-link-active::before {
 			transform: translateX(0);
 			background-color: $purple;
+		}
+	}
+
+	@media ($mq-tablet) {
+		width: $navbar-width;
+
+		&_subitem::before {
+			transform: translateX(-#{$navbar-width});
 		}
 	}
 }
