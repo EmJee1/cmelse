@@ -9,23 +9,19 @@
 			Models
 		</router-link>
 		<ul class="navbar_subitems">
-			<li>
-				<router-link to="/models/products" class="navbar_subitem">
+			<li v-for="model in models">
+				<router-link :to="`/models/${model.cmsMetadata.collection}`" class="navbar_subitem">
 					<i class="bi bi-triangle-fill" />
-					Products
-				</router-link>
-			</li>
-			<li>
-				<router-link to="/models/products" class="navbar_subitem">
-					<i class="bi bi-triangle-fill" />
-					Products
+					{{ model.cmsMetadata.title }}
 				</router-link>
 			</li>
 		</ul>
 	</nav>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import models from 'models'
+</script>
 
 <style lang="scss" scoped>
 .navbar {
