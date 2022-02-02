@@ -34,3 +34,5 @@ $mq-desktop: 'min-width: #{$site-width-desktop}';
 $mq-max-desktop: 'max-width: #{$site-width-desktop - 1px}';
 $mq-tablet: 'min-width: #{$site-width-tablet}';
 $mq-max-tablet: 'max-width: #{$site-width-tablet - 1px}';
+
+$navbar-width: 180px;

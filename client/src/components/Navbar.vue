@@ -1,5 +1,5 @@
 <template>
-	<nav class="navbar">
+	<nav class="navbar" :class="{ navbar_collapsed: !expanded }">
 		<router-link to="/" class="navbar_item">
 			<i class="bi bi-house" />
 			Home
@@ -17,15 +17,19 @@
 			</li>
 		</ul>
 	</nav>
+	<NavbarToggle v-model="expanded" />
 </template>
 
 <script lang="ts" setup>
+import { ref } from 'vue'
 import models from 'models'
+import NavbarToggle from './NavbarToggle.vue'
+
+const expanded = ref(false)
 </script>
 
 <style lang="scss" scoped>
 $navbar-padding-left: 30px;
-$navbar-width: 180px;
 
 .navbar {
 	position: fixed;
@@ -35,6 +39,7 @@ $navbar-width: 180px;
 	bottom: 0;
 	background-color: $black;
 	padding: 30px 12px 30px $navbar-padding-left;
+	transition: transform $transition;
 	width: 100%;
 
 	&_item,
@@ -75,7 +80,7 @@ $navbar-width: 180px;
 			top: 0;
 			height: 100%;
 			left: -#{$navbar-padding-left};
-			width: calc(100% + $navbar-padding-left);
+			width: calc(100% + #{$navbar-padding-left});
 			background-color: transparentize($purple, 0.6);
 			transform: translateX(-100%);
 			z-index: -1;
@@ -88,6 +93,12 @@ $navbar-width: 180px;
 		&.router-link-active::before {
 			transform: translateX(0);
 			background-color: $purple;
+		}
+	}
+
+	@media ($mq-max-tablet) {
+		&_collapsed {
+			transform: translateX(-100%);
 		}
 	}
 
