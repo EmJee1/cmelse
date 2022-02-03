@@ -2,7 +2,6 @@ import { ObjectId } from 'mongodb'
 import { Router } from 'express'
 import models from 'models'
 import db from '../config/database'
-import timestamps from '../utils/timestamps'
 import validateBodyModel from '../middlewares/validate-body-model'
 import authenticated from '../middlewares/authenticated'
 
@@ -10,10 +9,7 @@ const router = Router()
 
 models.forEach(model => {
 	router.get(model.cmsMetadata.endpoint, async (req, res) => {
-		const data = await db
-			.collection(model.cmsMetadata.collection)
-			.find()
-			.toArray()
+		const data = await db.collection(model.cmsMetadata.collection).find().toArray()
 
 		res.json({ data })
 	})
@@ -26,7 +22,8 @@ models.forEach(model => {
 			try {
 				await db.collection(model.cmsMetadata.collection).insertOne({
 					...req.body,
-					...timestamps(),
+					createdAt: new Date(),
+					updatedAt: new Date(),
 				})
 
 				res.sendStatus(204)
@@ -50,7 +47,7 @@ models.forEach(model => {
 					.collection(model.cmsMetadata.collection)
 					.updateOne(
 						{ _id: modelToUpdate },
-						{ $set: { ...req.body, ...timestamps(false) } }
+						{ $set: { ...req.body, updatedAt: new Date() } }
 					)
 			} catch (err) {
 				res.status(500).json({ err: 'Update error' })
