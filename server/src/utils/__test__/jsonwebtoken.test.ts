@@ -1,16 +1,16 @@
-import { ObjectID } from 'mongodb'
+import { ObjectId } from 'mongodb'
 import { signJwt, verifyJwt } from '../jsonwebtoken'
 
 describe('Sign json webtoken', () => {
 	test('Expect token to be defined', () => {
-		const mockId = new ObjectID(ObjectID.generate())
+		const mockId = new ObjectId(ObjectId.generate())
 		expect(signJwt(mockId)).toBeDefined()
 	})
 })
 
 describe('Verify json webtoken', () => {
 	test('Expect valid token to pass', () => {
-		const jwt = signJwt(new ObjectID(ObjectID.generate()))
+		const jwt = signJwt(new ObjectId(ObjectId.generate()))
 		const mockFn = () => verifyJwt(jwt)
 		expect(mockFn).not.toThrow(Error)
 	})
