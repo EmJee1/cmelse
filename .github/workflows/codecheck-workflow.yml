@@ -9,6 +9,9 @@ jobs:
     build:
         runs-on: ubuntu-latest
 
+        env:
+            JSON_WEBTOKEN_SECRET: ${{ env.JSON_WEBTOKEN_SECRET }}
+
         steps:
             - uses: actions/checkout@v2
             - uses: actions/setup-node@v1
