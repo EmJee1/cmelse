@@ -5,7 +5,7 @@ import getModelProperties from '../utils/get-model-properties'
 
 /**
  * Express middleware to validate a json request body by Joi validation set in the model.
- * @param {Model} Model - Model parameter to check against body
+ * @param {Model} model - Model parameter to check against body
  * @param {boolean} emptyValueIsValid - Validate empty items as true
  */
 const validateBodyModel = (model: Model, emptyValueIsValid?: boolean) => {
