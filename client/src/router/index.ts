@@ -20,6 +20,10 @@ const routes: RouteRecordRaw[] = [
 		name: 'Styleguide',
 		component: Styleguide,
 	},
+	{
+		path: '/models/:model',
+		component: Home,
+	},
 ]
 
 const publicRoutes = ['/login']
