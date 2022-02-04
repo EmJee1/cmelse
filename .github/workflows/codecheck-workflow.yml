@@ -4,13 +4,13 @@ on:
     push:
         branches:
             - '**'
+            
+env:
+    JSON_WEBTOKEN_SECRET: ${{ secrets.JSON_WEBTOKEN_SECRET }}
 
 jobs:
     build:
         runs-on: ubuntu-latest
-
-        env:
-            JSON_WEBTOKEN_SECRET: ${{ env.JSON_WEBTOKEN_SECRET }}
 
         steps:
             - uses: actions/checkout@v2
