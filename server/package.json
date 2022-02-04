@@ -2,7 +2,7 @@
 	"name": "server",
 	"main": "./dist/app.js",
 	"scripts": {
-		"ci": "npm run lint && tsc",
+		"ci": "npm run lint && npm run test && tsc",
 		"start": "cross-env NODE_ENV=production tsc && node ./dist/app.js",
 		"start:dev": "cross-env NODE_ENV=development nodemon --exec npx ts-node ./src/app.ts",
 		"lint": "eslint ./src/ --ext .ts",
