@@ -1,5 +1,5 @@
 declare namespace Express {
 	export interface Request {
-		user: import('models/interfaces/user').default
+		user: () => Promise<import('models/interfaces/user').default>
 	}
 }

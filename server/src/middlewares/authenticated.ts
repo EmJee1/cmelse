@@ -7,11 +7,7 @@ import { verifyJwt } from '../utils/jsonwebtoken'
  * Express middleware to ensure the request has a valid token in the header.
  * Populates the user property on the request object with the user by id from the token
  */
-const authenticated = async (
-	req: Request,
-	res: Response,
-	next: NextFunction
-) => {
+const authenticated = async (req: Request, res: Response, next: NextFunction) => {
 	if (!req.headers.authorization) {
 		res.status(401).json({ err: 'Authentication token is required' })
 		return
@@ -26,7 +22,7 @@ const authenticated = async (
 
 	try {
 		const userId = verifyJwt(token)
-		req.user = await db.collection('users').findOne<IUser>({ _id: userId })
+		req.user = () => db.collection('users').findOne<IUser>({ _id: userId })
 	} catch (err) {
 		res.status(401).json({ err: 'The token is not valid' })
 		return
