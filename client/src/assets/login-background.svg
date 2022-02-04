@@ -1,26 +1,39 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1995.196" height="2673.024" viewBox="0 0 1995.196 2673.024">
-  <rect id="Rectangle_33" data-name="Rectangle 33" width="1920" height="1080" transform="translate(0 979.724)" fill="#17141a"/>
-  <g id="Group_26" data-name="Group 26" transform="translate(0 1248.26)">
-    <g id="Group_15" data-name="Group 15" transform="matrix(-0.602, 0.799, -0.799, -0.602, 2513.076, -46.858)">
-      <g id="Group_12" data-name="Group 12" transform="translate(-404 75)">
-        <g id="Group_10" data-name="Group 10" transform="translate(34)">
-          <rect id="Rectangle_15" data-name="Rectangle 15" width="1006.312" height="189.16" rx="94.58" transform="matrix(0.799, -0.602, 0.602, 0.799, 805.074, 245.604)" fill="#fff"/>
-          <rect id="Rectangle_16" data-name="Rectangle 16" width="788.297" height="189.16" rx="94.58" transform="matrix(0.799, -0.602, 0.602, 0.799, 1200.381, 421.264)" fill="#fff"/>
-          <rect id="Rectangle_17" data-name="Rectangle 17" width="682.652" height="261.516" transform="translate(1192.851 123.884) rotate(-36)" fill="#fff"/>
-          <rect id="Rectangle_19" data-name="Rectangle 19" width="1006.312" height="189.16" rx="94.58" transform="matrix(0.799, -0.602, 0.602, 0.799, 805.074, 245.604)" fill="#fff"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1995.196" height="2673.024">
+    <path fill="#17141a" d="M0 979.724h1920v1080H0z"/>
+    <g>
+        <g>
+            <g fill="#fff">
+                <g transform="scale(-1) rotate(-53 -2200.053 2252.046)">
+                    <rect width="1006.312" height="189.16" rx="94.58"
+                          transform="rotate(-37 769.288 -1079.963)"/>
+                    <rect width="788.297" height="189.16" rx="94.58"
+                          transform="rotate(-37 1229.283 -1582.725)"/>
+                    <path
+                            d="m1192.851 123.884 552.277-401.253 153.715 211.571-552.277 401.253z"/>
+                    <rect width="1006.312" height="189.16" rx="94.58"
+                          transform="rotate(-37 769.288 -1079.963)"/>
+                </g>
+                <g transform="scale(-1) rotate(-53 -2221.563 1761.944)">
+                    <rect width="1006.312" height="189.16" rx="94.58"
+                          transform="rotate(-37 769.288 -1079.963)"/>
+                    <rect width="788.297" height="189.16" rx="94.58"
+                          transform="rotate(-37 1229.283 -1582.725)"/>
+                    <path d="m1199.661 137.452 578.916-436.18 158.637 210.55-578.916 436.18z"/>
+                    <rect width="1006.312" height="189.16" rx="94.58"
+                          transform="rotate(-37 769.288 -1079.963)"/>
+                </g>
+            </g>
         </g>
-        <g id="Group_11" data-name="Group 11" transform="translate(434 178)">
-          <rect id="Rectangle_15-2" data-name="Rectangle 15" width="1006.312" height="189.16" rx="94.58" transform="matrix(0.799, -0.602, 0.602, 0.799, 805.074, 245.604)" fill="#fff"/>
-          <rect id="Rectangle_16-2" data-name="Rectangle 16" width="788.297" height="189.16" rx="94.58" transform="matrix(0.799, -0.602, 0.602, 0.799, 1200.381, 421.264)" fill="#fff"/>
-          <rect id="Rectangle_17-2" data-name="Rectangle 17" width="724.551" height="263.516" transform="matrix(0.799, -0.602, 0.602, 0.799, 1199.661, 137.452)" fill="#fff"/>
-          <rect id="Rectangle_19-2" data-name="Rectangle 19" width="1006.312" height="189.16" rx="94.58" transform="matrix(0.799, -0.602, 0.602, 0.799, 805.074, 245.604)" fill="#fff"/>
-        </g>
-      </g>
     </g>
-  </g>
-  <rect id="Rectangle_34" data-name="Rectangle 34" width="311.074" height="189.2" rx="94.6" transform="translate(1423.581 1723.262) rotate(90)" fill="#17141a"/>
-  <rect id="Rectangle_36" data-name="Rectangle 36" width="311.074" height="190.2" rx="95.1" transform="translate(1806.581 1519.724) rotate(90)" fill="#17141a"/>
-  <rect id="Rectangle_37" data-name="Rectangle 37" width="155.885" height="1249" rx="77.942" transform="translate(1633.538 121.959)" fill="rgba(255,255,255,0.05)"/>
-  <path id="Path_11" data-name="Path 11" d="M342.942,0c189.4,0,342.942,158.967,342.942,355.064v1249.32c0,196.1-153.541,355.064-342.942,355.064S0,1800.48,0,1604.383V355.064C0,158.967,153.541,0,342.942,0Z" transform="translate(195.558)" fill="rgba(255,255,255,0.05)"/>
-  <rect id="Rectangle_38" data-name="Rectangle 38" width="155.885" height="1251.599" rx="77.942" transform="translate(1234.38 331.36)" fill="rgba(255,255,255,0.05)"/>
+    <rect width="311.074" height="189.2" rx="94.6" transform="rotate(90 -149.84 1573.422)"
+          fill="#17141a"/>
+    <rect width="311.074" height="190.2" rx="95.1" transform="rotate(90 143.428 1663.152)"
+          fill="#17141a"/>
+    <rect width="155.885" height="1249" rx="77.942" transform="translate(1633.538 121.959)"
+          fill="rgba(255,255,255,0.05)"/>
+    <path
+            d="M538.5 0c189.4 0 342.942 158.967 342.942 355.064v1249.32c0 196.1-153.541 355.064-342.942 355.064s-342.942-158.968-342.942-355.065V355.064C195.558 158.967 349.099 0 538.5 0Z"
+            fill="rgba(255,255,255,0.05)"/>
+    <rect width="155.885" height="1251.599" rx="77.942" transform="translate(1234.38 331.36)"
+          fill="rgba(255,255,255,0.05)"/>
 </svg>
