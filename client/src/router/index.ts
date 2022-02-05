@@ -14,6 +14,9 @@ const routes: RouteRecordRaw[] = [
 		path: '/login',
 		name: 'Login',
 		component: Login,
+		meta: {
+			backgroundDark: true,
+		},
 	},
 	{
 		path: '/styleguide',
@@ -43,6 +46,11 @@ router.beforeEach((to, _, next) => {
 	}
 
 	return next()
+})
+
+router.beforeResolve(to => {
+	const bodyTag = document.querySelector('body') as HTMLBodyElement
+	bodyTag.style.backgroundColor = to.meta.backgroundDark ? '#17141a' : '#fff'
 })
 
 export default router
