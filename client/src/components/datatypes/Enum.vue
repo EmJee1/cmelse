@@ -19,9 +19,7 @@
 </template>
 
 <script lang="ts" setup>
-const emit = defineEmits<{
-	(e: 'update:modelValue', value: string): void
-}>()
+const emit = defineEmits(['update:modelValue'])
 
 defineProps<{
 	modelValue: string

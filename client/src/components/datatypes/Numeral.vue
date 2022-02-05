@@ -16,9 +16,7 @@ import Joi, { AnySchema } from 'joi'
 import useValidation from '../../composables/use-validation'
 import ErrorText from '../ErrorText.vue'
 
-const emit = defineEmits<{
-	(e: 'update:modelValue', value: number): void
-}>()
+const emit = defineEmits(['update:modelValue'])
 
 const props = defineProps<{
 	modelValue: number
