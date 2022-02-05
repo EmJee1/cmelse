@@ -29,6 +29,6 @@ module.exports = {
 	},
 	plugins: ['@typescript-eslint'],
 	rules: {
-		...prettierSharedConfig.rules.shared,
+		...prettierSharedConfig,
 	},
 }
