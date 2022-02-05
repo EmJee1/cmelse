@@ -1,105 +1,53 @@
 <template>
-	<div class="wrapper">
-		<div class="login-wrapper">
-			<h1>Brouwerij Hertog Jan</h1>
-
-			<Input
-				:value="username"
-				type="text"
-				placeholder="username or email"
-				border_radius="big"
-				width="654px"
-			/>
-
-			<Input
-				:value="password"
-				type="password"
-				placeholder="password"
-				border_radius="big"
-				width="654px"
-			/>
-
-			<Button shape="round" value="Login" width="220px" />
-
-			<div class="third-party-auth-wrapper">
-				<hr />
-
-				<h4>Or</h4>
-				<h4>sign in with a authentication provider</h4>
-
-				<img
-					title="service currently unavaileble"
-					src="../assets\authProvidersIcons.png"
-					alt="icons"
+	<div class="login-page">
+		<main class="login-page_card">
+			<!-- Get CMS company name from configuration file -->
+			<h2 class="heading-2 login-page_brand">Brouwerij Hertog Jan</h2>
+			<Form @submit.prevent="onSubmit">
+				<Input
+					v-model="identifier"
+					placeholder="someone@example.com"
+					:label="{ id: 'identifier', text: 'username or email' }"
 				/>
-			</div>
-		</div>
+				<Input
+					v-model="password"
+					type="password"
+					placeholder="password"
+					:label="{ id: 'password', text: 'Password' }"
+				/>
+				<input type="submit" value="Log in" />
+			</Form>
+		</main>
 	</div>
 </template>
 
-<script>
+<script lang="ts" setup>
+import { ref } from 'vue'
 import Input from '../components/Input.vue'
-import Button from '../components/Button.vue'
+import Form from '../components/Form.vue'
 
-export default {
-	name: 'login',
-	components: { Input, Button },
+const identifier = ref('')
+const password = ref('')
+
+const onSubmit = () => {
+	console.log('Submitted with values')
+	console.log('Identifier:', identifier.value)
+	console.log('Password:', password.value)
 }
 </script>
 
 <style lang="scss" scoped>
-.wrapper {
-	background: url('../assets/login-background.png');
-	background-position: right;
-	background-size: cover;
-	background-repeat: no-repeat;
-	width: 100vw;
-	height: 100vh;
-
-	.login-wrapper {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: space-around;
-		border-radius: $big-radius;
-		position: absolute;
-		top: 100px;
-		left: 100px;
+.login-page {
+	&_card {
+		display: inline-block;
 		background-color: $gray-light;
-		width: 777px;
-		height: 700px;
+		border-radius: $big-radius;
+		padding: 50px 60px;
+	}
 
-		h1 {
-			margin: 0;
-		}
-
-		.third-party-auth-wrapper {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			height: 200px;
-
-			hr {
-				width: 654px;
-			}
-
-			h4 {
-				margin: 0;
-				font: normal normal 300 20px Dosis;
-				color: #17141a65;
-
-				&:first-of-type {
-					position: absolute;
-					top: 468px;
-					background: $gray-light;
-					padding: 0 12px;
-				}
-			}
-
-			img {
-				margin: 35px 0 0 0;
-			}
-		}
+	&_brand {
+		text-align: center;
+		font-weight: 400;
 	}
 }
 </style>
