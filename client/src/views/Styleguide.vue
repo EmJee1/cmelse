@@ -18,37 +18,41 @@
 	<div class="item">
 		<h2>Datatype Text</h2>
 		<p>Single line</p>
-		<Text
-			:validation-schema="Joi.string().required()"
-			value="Its claws and horns often break off."
-		/>
+		<Text :validation-schema="Joi.string().required()" v-model="datatypeTextValue" />
 		<p>Multiline</p>
 		<Text
 			:validation-schema="Joi.string().required()"
-			value="Its claws and horns often break off."
+			v-model="datatypeTextMultilineValue"
 			multiline
 		/>
 	</div>
 
 	<div class="item">
 		<h2>Datatype Numeral</h2>
-		<Numeral :value="5" :validation-schema="Joi.number().required().integer()" />
+		<Numeral
+			:validation-schema="Joi.number().required().integer()"
+			v-model="datatypeNumberValue"
+		/>
 	</div>
 
 	<div class="item">
 		<h2>Datatype Toggle</h2>
-		<Toggle :value="true" />
+		<Toggle v-model="datatypeToggleValue" />
 	</div>
 
 	<div class="item">
 		<h2>Datatype Enum</h2>
-		<Enum :items="['spring', 'summer', 'fall', 'winter']" value="spring" />
+		<Enum
+			name="suggestedSeason"
+			:items="['spring', 'summer', 'fall', 'winter']"
+			v-model="datatypeEnumValue"
+		/>
 	</div>
 
 	<div class="item">
 		<h2>Modal</h2>
 		<button @click="toggleModal">Toggle modal</button>
-		<Modal v-if="modalVisible" @close="closeModal" title="Products" subtitle="Add a product">
+		<Modal v-if="modalVisible" @close="toggleModal" title="Products" subtitle="Add a product">
 			<p>
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum harum fugit
 				temporibus eligendi in. Esse labore sint aliquam facilis id maiores natus ducimus,
@@ -73,10 +77,17 @@ import Toggle from '../components/datatypes/Toggle.vue'
 import Enum from '../components/datatypes/Enum.vue'
 import Modal from '../components/Modal.vue'
 
+const datatypeTextValue = ref('')
+const datatypeTextMultilineValue = ref('')
+const datatypeNumberValue = ref(1)
+const datatypeToggleValue = ref(false)
+const datatypeEnumValue = ref('spring')
+
 const modalVisible = ref(false)
 
-const closeModal = () => (modalVisible.value = false)
-const toggleModal = () => (modalVisible.value = !modalVisible.value)
+const toggleModal = () => {
+	modalVisible.value = !modalVisible.value
+}
 </script>
 
 <style lang="scss" scoped>
@@ -99,6 +110,18 @@ $styleguide-item-bg: #ebebeb;
 
 	> *:not(:last-child) {
 		margin-right: 1rem;
+	}
+}
+
+.text-with-code {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+
+	code {
+		background-color: $gray-light;
+		padding: 2px 4px;
+		border-radius: $small-radius;
 	}
 }
 </style>

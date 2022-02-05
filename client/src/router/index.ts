@@ -33,9 +33,16 @@ const router = createRouter({
 	routes,
 })
 
-router.beforeEach((to, from) => {
-	if (publicRoutes.includes(to.fullPath)) return true
-	else if (!localStorage.getItem('jwt')) return '/login'
+router.beforeEach((to, _, next) => {
+	if (publicRoutes.includes(to.fullPath)) {
+		return next()
+	}
+
+	if (!localStorage.getItem('jwt')) {
+		return next({ name: 'Login' })
+	}
+
+	return next()
 })
 
 export default router

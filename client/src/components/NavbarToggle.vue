@@ -5,15 +5,13 @@
 </template>
 
 <script lang="ts" setup>
-const emit = defineEmits<{
-	(e: 'update:modelValue', value: boolean): void
-}>()
+const emit = defineEmits(['update:modelValue'])
 
 const props = defineProps<{
 	modelValue: boolean
 }>()
 
-const onToggle = (e: Event) => {
+const onToggle = () => {
 	emit('update:modelValue', !props.modelValue)
 }
 </script>

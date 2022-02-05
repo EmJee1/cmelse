@@ -9,7 +9,7 @@
 			Models
 		</p>
 		<ul class="navbar_subitems">
-			<li v-for="model in models">
+			<li v-for="model in models" :key="model.cmsMetadata.collection">
 				<router-link :to="`/models/${model.cmsMetadata.collection}`" class="navbar_subitem">
 					<i class="bi bi-triangle-fill" />
 					{{ model.cmsMetadata.title }}

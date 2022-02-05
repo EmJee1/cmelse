@@ -40,11 +40,10 @@
 <script>
 import Input from '../components/Input.vue'
 import Button from '../components/Button.vue'
-import Text from '../components/datatypes/Text.vue'
 
 export default {
 	name: 'login',
-	components: { Input, Button, Text },
+	components: { Input, Button },
 }
 </script>
 
