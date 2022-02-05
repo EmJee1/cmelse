@@ -1,13 +1,15 @@
 <template>
-	<label v-if="label" :for="label?.id">{{ label.text }}</label>
-	<input
-		:value="modelValue"
-		@input="onInput"
-		class="datatype-input"
-		:placeholder="placeholder"
-		:id="label?.id"
-		:type="type"
-	/>
+	<div class="form_input">
+		<label v-if="label" :for="label?.id">{{ label.text }}</label>
+		<input
+			:value="modelValue"
+			@input="onInput"
+			class="datatype-input"
+			:placeholder="placeholder"
+			:id="label?.id"
+			:type="type"
+		/>
+	</div>
 </template>
 
 <script lang="ts" setup>
