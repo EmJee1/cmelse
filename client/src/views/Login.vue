@@ -29,11 +29,7 @@ import Form from '../components/Form.vue'
 const identifier = ref('')
 const password = ref('')
 
-const onSubmit = () => {
-	console.log('Submitted with values')
-	console.log('Identifier:', identifier.value)
-	console.log('Password:', password.value)
-}
+const onSubmit = () => {}
 </script>
 
 <style lang="scss" scoped>
