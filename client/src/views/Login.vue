@@ -25,6 +25,7 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
+import axios from 'axios'
 import Input from '../components/Input.vue'
 import Form from '../components/Form.vue'
 import ButtonPrimary from '../components/ButtonPrimary.vue'
@@ -32,7 +33,18 @@ import ButtonPrimary from '../components/ButtonPrimary.vue'
 const identifier = ref('')
 const password = ref('')
 
-const onSubmit = () => {}
+const onSubmit = async () => {
+	try {
+		const { data } = await axios.post('/authentication/login', {
+			identifier: identifier.value,
+			password: password.value
+		})
+		// TODO: store logged in user
+		// TODO: redirect to dashboard
+	} catch (e) {
+		// TODO: show error message
+	}
+}
 </script>
 
 <style lang="scss" scoped>
