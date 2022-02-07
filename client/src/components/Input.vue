@@ -2,12 +2,13 @@
 	<div class="form_input">
 		<label v-if="label" :for="label?.id">{{ label.text }}</label>
 		<input
+			:autocomplete="autocomplete"
+			class="datatype-input"
+			:id="label?.id"
+			:placeholder="placeholder"
+			:type="type"
 			:value="modelValue"
 			@input="onInput"
-			class="datatype-input"
-			:placeholder="placeholder"
-			:id="label?.id"
-			:type="type"
 		/>
 	</div>
 </template>
@@ -22,8 +23,9 @@ export interface Label {
 
 defineProps<{
 	modelValue: string
-	placeholder?: string
+	autocomplete?: string
 	label?: Label
+	placeholder?: string
 	type?: string
 }>()
 

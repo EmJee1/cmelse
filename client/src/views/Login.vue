@@ -6,16 +6,18 @@
 			<Form @submit.prevent="onSubmit">
 				<Input
 					v-model="identifier"
-					placeholder="someone@example.com"
+					autocomplete="username"
 					:label="{ id: 'identifier', text: 'username or email' }"
+					placeholder="someone@example.com"
 				/>
 				<Input
 					v-model="password"
-					type="password"
-					placeholder="password"
+					autocomplete="current-password"
 					:label="{ id: 'password', text: 'Password' }"
+					placeholder="password"
+					type="password"
 				/>
-				<input type="submit" value="Log in" />
+				<input class="form_submit" type="submit" value="Log in" />
 			</Form>
 		</main>
 	</div>
