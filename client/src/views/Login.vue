@@ -27,7 +27,7 @@
 import { ref } from 'vue'
 import Input from '../components/Input.vue'
 import Form from '../components/Form.vue'
-import ButtonPrimary from "../components/ButtonPrimary.vue";
+import ButtonPrimary from '../components/ButtonPrimary.vue'
 
 const identifier = ref('')
 const password = ref('')
