@@ -17,7 +17,7 @@
 					placeholder="password"
 					type="password"
 				/>
-				<input class="form_submit" type="submit" value="Log in" />
+				<PrimaryButton class="form_submit" element="button" type="submit">Log in</PrimaryButton>
 			</Form>
 		</main>
 	</div>
@@ -27,6 +27,7 @@
 import { ref } from 'vue'
 import Input from '../components/Input.vue'
 import Form from '../components/Form.vue'
+import PrimaryButton from "../components/PrimaryButton.vue";
 
 const identifier = ref('')
 const password = ref('')
