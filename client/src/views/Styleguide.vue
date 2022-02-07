@@ -3,15 +3,15 @@
 		<h2>Icon button</h2>
 		<p>With text</p>
 		<div class="collection">
-			<IconButton icon="bi-save">Primary icon button</IconButton>
-			<IconButton icon="bi-trash2" error> Error icon button </IconButton>
-			<IconButton icon="bi-x-octagon" disabled> Disabled icon button </IconButton>
+			<ButtonIcon icon="bi-save">Primary icon button</ButtonIcon>
+			<ButtonIcon icon="bi-trash2" error> Error icon button </ButtonIcon>
+			<ButtonIcon icon="bi-x-octagon" disabled> Disabled icon button </ButtonIcon>
 		</div>
 		<p>Without text</p>
 		<div class="collection">
-			<IconButton icon="bi-save" aria-label="save" />
-			<IconButton icon="bi-trash2" aria-label="error" error />
-			<IconButton icon="bi-x-octagon" aria-label="disabled" disabled />
+			<ButtonIcon icon="bi-save" aria-label="save" />
+			<ButtonIcon icon="bi-trash2" aria-label="error" error />
+			<ButtonIcon icon="bi-x-octagon" aria-label="disabled" disabled />
 		</div>
 	</div>
 
@@ -70,7 +70,7 @@
 <script lang="ts" setup>
 import Joi from 'joi'
 import { ref } from 'vue'
-import IconButton from '../components/IconButton.vue'
+import ButtonIcon from '../components/ButtonIcon.vue'
 import Text from '../components/datatypes/Text.vue'
 import Numeral from '../components/datatypes/Numeral.vue'
 import Toggle from '../components/datatypes/Toggle.vue'
