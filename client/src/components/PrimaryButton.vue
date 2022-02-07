@@ -1,15 +1,12 @@
 <template>
-	<button v-if="element === 'button'" class="primary-button">
+	<component :is="element" class="primary-button">
 		<slot/>
-	</button>
-	<a v-else-if="element === 'link'" class="primary-button">
-		<slot/>
-	</a>
+	</component>
 </template>
 
 <script lang="ts" setup>
 defineProps<{
-	element: 'link' | 'button'
+	element: 'a' | 'button'
 }>()
 </script>
 
