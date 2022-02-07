@@ -7,7 +7,7 @@ axios.interceptors.request.use((config: AxiosRequestConfig) => {
 	}
 
 	// TODO: add base-url to environment variable
-	config.baseURL = 'localhost:3001'
+	config.baseURL = 'http://localhost:3001'
 	return config
 })
 
