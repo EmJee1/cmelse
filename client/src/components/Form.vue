@@ -5,12 +5,15 @@
 </template>
 
 <style lang="scss" scoped>
-:deep(.form_input),
-:deep(.form_submit) {
-	margin-top: 10px;
+:deep(.form_input) {
+	margin-top: 22px;
 
 	&:first-of-type:not(.form_submit) {
 		margin-top: 0;
 	}
+}
+
+:deep(.form_submit) {
+	margin-top: 50px;
 }
 </style>
