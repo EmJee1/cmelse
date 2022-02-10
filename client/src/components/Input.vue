@@ -1,6 +1,6 @@
 <template>
 	<div class="form_input">
-		<label v-if="label" :for="label?.id">{{ label.text }}</label>
+		<label v-if="label" class="form_label" :for="label?.id">{{ label.text }}</label>
 		<input
 			:autocomplete="autocomplete"
 			class="datatype-input"
@@ -33,5 +33,3 @@ const onInput = (e: Event) => {
 	emit('update:modelValue', (e.target as HTMLInputElement).value)
 }
 </script>
-
-<style lang="scss" scoped></style>

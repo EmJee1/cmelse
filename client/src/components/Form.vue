@@ -16,4 +16,12 @@
 :deep(.form_submit) {
 	margin-top: 50px;
 }
+
+:deep(.form_label) {
+	display: block;
+	margin-bottom: 6px;
+	font-size: rem(14px);
+	font-weight: 600;
+	color: $gray-dark;
+}
 </style>
