@@ -26,7 +26,7 @@ $transition: ease-in-out 0.3s;
 $z-modal-backdrop: 10;
 $z-modal: 11;
 
-/* Mediaqueries */
+// Mediaqueries
 $site-width-desktop: 978px;
 $site-width-tablet: 768px;
 
@@ -35,4 +35,5 @@ $mq-max-desktop: 'max-width: #{$site-width-desktop - 1px}';
 $mq-tablet: 'min-width: #{$site-width-tablet}';
 $mq-max-tablet: 'max-width: #{$site-width-tablet - 1px}';
 
+// misc
 $navbar-width: 180px;
