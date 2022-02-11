@@ -11,14 +11,6 @@ const routes: RouteRecordRaw[] = [
 		component: Home,
 	},
 	{
-		path: '/login',
-		name: 'Login',
-		component: Login,
-		meta: {
-			backgroundDark: true,
-		},
-	},
-	{
 		path: '/styleguide',
 		name: 'Styleguide',
 		component: Styleguide,
@@ -29,28 +21,9 @@ const routes: RouteRecordRaw[] = [
 	},
 ]
 
-const publicRoutes = ['/login']
-
 const router = createRouter({
 	history: createWebHistory(),
 	routes,
-})
-
-router.beforeEach((to, _, next) => {
-	if (publicRoutes.includes(to.fullPath)) {
-		return next()
-	}
-
-	if (!localStorage.getItem('jwt')) {
-		return next({ name: 'Login' })
-	}
-
-	return next()
-})
-
-router.beforeResolve(to => {
-	const bodyTag = document.querySelector('body') as HTMLBodyElement
-	bodyTag.style.backgroundColor = to.meta.backgroundDark ? '#17141a' : '#fff'
 })
 
 export default router
