@@ -7,7 +7,7 @@
 				<Input
 					v-model="identifier"
 					autocomplete="username"
-					:label="{ id: 'identifier', text: 'username or email' }"
+					:label="{ id: 'identifier', text: 'Username or email' }"
 					placeholder="someone@example.com"
 				/>
 				<Input
