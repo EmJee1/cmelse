@@ -13,7 +13,7 @@ defineProps<{
 <style lang="scss" scoped>
 .primary-btn {
 	display: block;
-	padding: 12px 40px;
+	padding: $button-spacing 40px;
 	background: $purple;
 	color: $white;
 	border-radius: $big-radius;
