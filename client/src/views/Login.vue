@@ -29,8 +29,9 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
 import axios from 'axios'
+import loggedInUser from '../stores/user-store'
 import Input from '../components/Input.vue'
 import Form from '../components/Form.vue'
 import ButtonPrimary from '../components/ButtonPrimary.vue'
@@ -39,14 +40,21 @@ import ButtonLink from '../components/ButtonLink.vue'
 const identifier = ref('')
 const password = ref('')
 
+onMounted(() => {
+	document.querySelector('body')!.style.backgroundColor = '#17141a'
+})
+
+onBeforeUnmount(() => {
+	document.querySelector('body')!.style.backgroundColor = '#fff'
+})
+
 const onSubmit = async () => {
 	try {
 		const { data } = await axios.post('/authentication/login', {
 			identifier: identifier.value,
 			password: password.value,
 		})
-		// TODO: store logged in user
-		// TODO: redirect to dashboard
+		loggedInUser.value = data
 	} catch (e) {
 		// TODO: show error message
 	}
