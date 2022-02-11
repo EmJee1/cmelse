@@ -12,6 +12,8 @@ const validateBodyModel = (model: Model, emptyValueIsValid?: boolean) => {
 	const modelProperties = getModelProperties(model)
 
 	return (req: Request, res: Response, next: NextFunction) => {
+		let errorMessage = null
+
 		const requestValid = modelProperties.every(property => {
 			const item = req.body[property]
 			const datatype = model[property] as IDatatype
@@ -27,11 +29,24 @@ const validateBodyModel = (model: Model, emptyValueIsValid?: boolean) => {
 			// e.g. "5" > 5 if expected type is number
 			req.body[property] = result.value
 
-			return !result.error
+			if (result.error) {
+				errorMessage = result.error.message
+				return false
+			}
+
+			return true
+		}) && Object.keys(req.body).every(key => {
+			const valid = modelProperties.includes(key)
+
+			if (!valid) {
+				errorMessage = `${key} is not an allowed value`
+			}
+
+			return valid
 		})
 
 		if (!requestValid) {
-			res.json({ err: 'Invalid request data' }).status(400)
+			res.json({ err: errorMessage }).status(400)
 			return
 		}
 
