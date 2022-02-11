@@ -1,6 +1,6 @@
 <template>
-	<component :is="element" class="primary-button">
-		<slot/>
+	<component :is="element" class="primary-btn">
+		<slot />
 	</component>
 </template>
 
@@ -11,7 +11,7 @@ defineProps<{
 </script>
 
 <style lang="scss" scoped>
-.primary-button {
+.primary-btn {
 	display: block;
 	padding: 12px 40px;
 	background: $purple;
