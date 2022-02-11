@@ -1,7 +1,7 @@
 <template>
 	<div class="login-page">
 		<main class="login-page_card">
-			<!-- Get CMS company name from configuration file -->
+			<!-- TODO: Get CMS company name from configuration file -->
 			<h2 class="login-page_brand">Brouwerij Hertog Jan</h2>
 			<Form @submit.prevent="onSubmit">
 				<Input
@@ -50,22 +50,32 @@ const onSubmit = async () => {
 <style lang="scss" scoped>
 .login-page {
 	&_card {
-		display: inline-block;
+		max-width: 90%;
+		margin: 50px auto auto;
 		background-color: $gray-light;
 		border-radius: $big-radius;
-		padding: 50px 62px;
+		padding: 30px 26px;
+
+		@media ($mq-tablet) {
+			padding: 50px;
+			max-width: 600px;
+			margin: 100px;
+		}
 	}
 
 	&_brand {
 		text-align: center;
 		font-weight: 400;
-		font-size: rem(42px);
-		padding: 0 40px;
+		font-size: rem(28px);
 		margin: 0;
+
+		@media ($mq-tablet) {
+			font-size: rem(42px);
+		}
 	}
 
 	:deep(.form) {
-		margin-top: 50px;
+		@include content-spacing-top;
 	}
 }
 </style>
