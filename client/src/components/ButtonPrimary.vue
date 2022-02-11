@@ -18,6 +18,9 @@ defineProps<{
 	color: $white;
 	border-radius: $big-radius;
 	border: 1px transparent;
+	font-size: rem(14px);
+	font-weight: 600;
 	cursor: pointer;
+	text-transform: uppercase;
 }
 </style>
