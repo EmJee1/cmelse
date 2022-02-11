@@ -17,7 +17,12 @@
 					placeholder="password"
 					type="password"
 				/>
-				<ButtonPrimary class="form_submit" element="button" type="submit">Log in</ButtonPrimary>
+				<div class="form_actions">
+					<ButtonPrimary element="button" type="submit">Log in</ButtonPrimary>
+					<ButtonLink element="router-link" to="/forgot-password">
+						Forgot password
+					</ButtonLink>
+				</div>
 			</Form>
 		</main>
 	</div>
@@ -29,6 +34,7 @@ import axios from 'axios'
 import Input from '../components/Input.vue'
 import Form from '../components/Form.vue'
 import ButtonPrimary from '../components/ButtonPrimary.vue'
+import ButtonLink from '../components/ButtonLink.vue'
 
 const identifier = ref('')
 const password = ref('')
