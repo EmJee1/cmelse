@@ -64,7 +64,7 @@ router.post('/login', validateBodySchema(login), async (req, res) => {
 	// check if a user is found, if we skip this check the passwordvalid will fail with a 500 status
 	// this would inform bad actors that that identifier is not registered
 	if (!user) {
-		res.status(401).json({ msg: 'Login credentials invalid' })
+		res.status(401).json({ err: 'Login credentials invalid' })
 		return
 	}
 
@@ -77,7 +77,7 @@ router.post('/login', validateBodySchema(login), async (req, res) => {
 	}
 
 	if (!passwordValid) {
-		res.status(401).json({ msg: 'Login credentials invalid' })
+		res.status(401).json({ err: 'Login credentials invalid' })
 		return
 	}
 
