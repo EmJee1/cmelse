@@ -43,7 +43,7 @@ const onSubmit = async () => {
 	try {
 		const { data } = await axios.post('/authentication/login', {
 			identifier: identifier.value,
-			password: password.value
+			password: password.value,
 		})
 		// TODO: store logged in user
 		// TODO: redirect to dashboard
