@@ -15,9 +15,7 @@ router.post('/register', validateBodySchema(register), async (req, res) => {
 
 	let queryResult
 	try {
-		queryResult = await db
-			.collection('users')
-			.findOne({ $or: [{ username }, { email }] })
+		queryResult = await db.collection('users').findOne({ $or: [{ username }, { email }] })
 	} catch (err) {
 		res.sendStatus(500)
 		return
@@ -38,9 +36,7 @@ router.post('/register', validateBodySchema(register), async (req, res) => {
 		const salt = await genSalt(Number(BCRYPT_SALT_ROUNDS))
 		const hash = await genHash(password, salt)
 
-		insertResult = await db
-			.collection('users')
-			.insertOne({ ...req.body, password: hash })
+		insertResult = await db.collection('users').insertOne({ ...req.body, password: hash })
 	} catch (err) {
 		res.sendStatus(500)
 		return
@@ -87,7 +83,7 @@ router.post('/login', validateBodySchema(login), async (req, res) => {
 
 	const token = signJwt(user._id)
 
-	res.json({ token }).status(200)
+	res.json({ token, username: user.username, email: user.email }).status(200)
 })
 
 export default router
