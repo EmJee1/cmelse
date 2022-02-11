@@ -4,6 +4,7 @@
 			<!-- TODO: Get CMS company name from configuration file -->
 			<h2 class="login-page_brand">Brouwerij Hertog Jan</h2>
 			<Form @submit.prevent="onSubmit">
+				<Notice v-if="error" type="error">{{ error }}</Notice>
 				<Input
 					v-model="identifier"
 					autocomplete="username"
@@ -33,13 +34,15 @@
 
 <script lang="ts" setup>
 import { onBeforeUnmount, onMounted, ref } from 'vue'
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 import loggedInUser from '../stores/user-store'
 import Input from '../components/Input.vue'
 import Form from '../components/Form.vue'
 import ButtonPrimary from '../components/ButtonPrimary.vue'
 import ButtonLink from '../components/ButtonLink.vue'
+import Notice from '../components/Notice.vue'
 
+const error = ref<string>()
 const identifier = ref('')
 const password = ref('')
 
@@ -51,16 +54,18 @@ onBeforeUnmount(() => {
 	document.querySelector('body')!.style.backgroundColor = '#fff'
 })
 
-const onSubmit = async () => {
-	try {
-		const { data } = await axios.post('/authentication/login', {
+const onSubmit = () => {
+	axios
+		.post('/authentication/login', {
 			identifier: identifier.value,
 			password: password.value,
 		})
-		loggedInUser.value = data
-	} catch (e) {
-		// TODO: show error message
-	}
+		.then(({ data }) => {
+			loggedInUser.value = data
+		})
+		.catch((err: AxiosError) => {
+			error.value = err.response?.data.err
+		})
 }
 </script>
 
