@@ -13,8 +13,10 @@
 	}
 }
 
-:deep(.form_submit) {
+:deep(.form_actions) {
 	@include content-spacing-top;
+	display: flex;
+	justify-content: space-between;
 }
 
 :deep(.form_label) {
