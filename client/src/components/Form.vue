@@ -14,7 +14,7 @@
 }
 
 :deep(.form_submit) {
-	margin-top: 50px;
+	@include content-spacing-top;
 }
 
 :deep(.form_label) {
