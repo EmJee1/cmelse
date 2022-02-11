@@ -25,6 +25,9 @@
 				</div>
 			</Form>
 		</main>
+		<div class="login-page_copyright">
+			<h4 class="login-page_copyright-title">cmelse &copy;</h4>
+		</div>
 	</div>
 </template>
 
@@ -90,6 +93,19 @@ const onSubmit = async () => {
 
 	:deep(.form) {
 		@include content-spacing-top;
+	}
+
+	&_copyright {
+		position: fixed;
+		bottom: 0;
+		right: 0;
+
+		&-title {
+			margin-bottom: 10px;
+			margin-right: 20px;
+			font-size: 6vw;
+			color: $white;
+		}
 	}
 }
 </style>
