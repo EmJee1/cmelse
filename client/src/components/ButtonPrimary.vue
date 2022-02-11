@@ -19,7 +19,7 @@ defineProps<{
 	border-radius: $big-radius;
 	border: 1px transparent;
 	font-size: rem(14px);
-	font-weight: 600;
+	font-weight: 500;
 	cursor: pointer;
 	text-transform: uppercase;
 }
