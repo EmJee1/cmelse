@@ -27,7 +27,7 @@ router.post('/register', validateBodySchema(register), async (req, res) => {
 				? 'A user with that username already exists'
 				: 'A user with that email already exists'
 
-		res.json({ msg }).status(409)
+		res.status(409).json({ msg })
 		return
 	}
 
@@ -44,7 +44,7 @@ router.post('/register', validateBodySchema(register), async (req, res) => {
 
 	const token = signJwt(insertResult.insertedId)
 
-	res.json({ token }).status(201)
+	res.status(201).json({ token })
 })
 
 router.post('/login', validateBodySchema(login), async (req, res) => {
@@ -83,7 +83,7 @@ router.post('/login', validateBodySchema(login), async (req, res) => {
 
 	const token = signJwt(user._id)
 
-	res.json({ token, username: user.username, email: user.email }).status(200)
+	res.status(200).json({ token, username: user.username, email: user.email })
 })
 
 export default router

@@ -12,7 +12,7 @@ const validateBodySchema =
 
 			if (error) throw new Error(error.message)
 		} catch (err) {
-			res.json({ err: 'Invalid request data' }).status(400)
+			res.status(400).json({ err: 'Invalid request data' })
 			return
 		}
 

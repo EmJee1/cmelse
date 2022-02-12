@@ -31,7 +31,7 @@ const validateBodyModel = (model: Model, emptyValueIsValid?: boolean) => {
 		})
 
 		if (!requestValid) {
-			res.json({ err: 'Invalid request data' }).status(400)
+			res.status(400).json({ err: 'Invalid request data' })
 			return
 		}
 

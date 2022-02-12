@@ -11,7 +11,7 @@ models.forEach(model => {
 	router.get(model.cmsMetadata.endpoint, async (req, res) => {
 		const data = await db.collection(model.cmsMetadata.collection).find().toArray()
 
-		res.json({ data })
+		res.status(200).json({ data })
 	})
 
 	router.post(
