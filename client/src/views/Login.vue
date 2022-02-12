@@ -1,4 +1,5 @@
 <template>
+	<LoginShapesWhite class="login-page_white-shapes" />
 	<div class="login-page">
 		<main class="login-page_card">
 			<!-- TODO: Get CMS company name from configuration file -->
@@ -41,6 +42,7 @@ import Form from '../components/Form.vue'
 import ButtonPrimary from '../components/ButtonPrimary.vue'
 import ButtonLink from '../components/ButtonLink.vue'
 import Notice from '../components/Notice.vue'
+import LoginShapesWhite from '../assets/icons/login-shapes-white.svg'
 
 const error = ref<string>()
 const identifier = ref('')
@@ -77,6 +79,7 @@ const onSubmit = () => {
 		background-color: $gray-light;
 		border-radius: $big-radius;
 		padding: 30px 26px;
+		box-shadow: $shadow;
 
 		@media ($mq-tablet) {
 			padding: 50px;
@@ -109,8 +112,16 @@ const onSubmit = () => {
 			margin-bottom: 10px;
 			margin-right: 20px;
 			font-size: 6vw;
-			color: $white;
+			color: $black;
 		}
+	}
+
+	&_white-shapes {
+		position: fixed;
+		bottom: 0;
+		right: 0;
+		z-index: -1;
+		max-height: 50%;
 	}
 }
 </style>
