@@ -9,7 +9,6 @@ const router = Router()
 
 const { BCRYPT_SALT_ROUNDS } = process.env
 
-// TODO: validate body
 router.post('/register', validateBodySchema(register), async (req, res) => {
 	const { username, email, password } = req.body
 
@@ -17,17 +16,17 @@ router.post('/register', validateBodySchema(register), async (req, res) => {
 	try {
 		queryResult = await db.collection('users').findOne({ $or: [{ username }, { email }] })
 	} catch (err) {
-		res.sendStatus(500)
+		res.status(500).error('global.unexpectedServerError')
 		return
 	}
 
 	if (queryResult) {
 		const msg =
 			username === queryResult.username
-				? 'A user with that username already exists'
-				: 'A user with that email already exists'
+				? 'authentication.register.usernameAlreadyExists'
+				: 'authentication.register.emailAlreadyExists'
 
-		res.status(409).json({ msg })
+		res.status(409).error(msg)
 		return
 	}
 
@@ -38,7 +37,7 @@ router.post('/register', validateBodySchema(register), async (req, res) => {
 
 		insertResult = await db.collection('users').insertOne({ ...req.body, password: hash })
 	} catch (err) {
-		res.sendStatus(500)
+		res.status(500).error('global.unexpectedServerError')
 		return
 	}
 
@@ -57,14 +56,12 @@ router.post('/login', validateBodySchema(login), async (req, res) => {
 			.collection('users')
 			.findOne({ $or: [{ username: identifier }, { email: identifier }] })
 	} catch (err) {
-		res.sendStatus(500)
+		res.status(500).error('global.unexpectedServerError')
 		return
 	}
 
-	// check if a user is found, if we skip this check the passwordvalid will fail with a 500 status
-	// this would inform bad actors that that identifier is not registered
 	if (!user) {
-		res.status(401).json({ err: 'Login credentials invalid' })
+		res.status(401).error('authentication.login.incorrectIdentifier')
 		return
 	}
 
@@ -72,12 +69,12 @@ router.post('/login', validateBodySchema(login), async (req, res) => {
 	try {
 		passwordValid = await compare(password, user?.password)
 	} catch (err) {
-		res.sendStatus(500)
+		res.status(500).error('global.unexpectedServerError')
 		return
 	}
 
 	if (!passwordValid) {
-		res.status(401).json({ err: 'Login credentials invalid' })
+		res.status(401).error('authentication.login.incorrectPassword')
 		return
 	}
 

@@ -1,6 +1,6 @@
 <template>
 	<div class="notice" :class="{ error: type === 'error' }">
-		<i v-if="type === 'errror'" class="bi bi-exclamation-triangle" />
+		<i v-if="type === 'error'" class="bi bi-exclamation-triangle" />
 		<slot />
 	</div>
 </template>
