@@ -1,6 +1,12 @@
 import LocaleMessages from '../i18n/locale'
 import logger from '../config/winston'
 
+/**
+ * Returns a message in the requested locale
+ * @param locales - a dictionary with the keys as locale and value as their responses
+ * @param locale - the expected locale
+ * @param message - A key-denoted string representing the path to the message
+ */
 const getLocalizedMessage = (locales: { [key: string]: LocaleMessages }, locale: string, message: string) => {
 	if (!locales[locale]) {
 		logger.warn(`Localization locale ${locale} is not supported`)
