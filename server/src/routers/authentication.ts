@@ -60,8 +60,6 @@ router.post('/login', validateBodySchema(login), async (req, res) => {
 		return
 	}
 
-	// check if a user is found, if we skip this check the passwordvalid will fail with a 500 status
-	// this would inform bad actors that that identifier is not registered
 	if (!user) {
 		res.status(401).error('authentication.login.incorrectIdentifier')
 		return
