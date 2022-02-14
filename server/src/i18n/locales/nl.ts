@@ -10,14 +10,14 @@ const localeNl: LocaleMessages = {
         }
     },
     models: {
-        insertError: 'Er ging iets fout bij het toevoegen, probeer het opnieuw',
-        updateError: 'Er ging iets fout bij het aanpassen, probeer het opnieuw',
-        deleteError: 'Er ging iets fout bij het verwijderen, probeer het opnieuw'
+        insertError: 'Er ging iets fout bij het toevoegen, probeer het alsjeblieft opnieuw',
+        updateError: 'Er ging iets fout bij het aanpassen, probeer het alsjeblieft opnieuw',
+        deleteError: 'Er ging iets fout bij het verwijderen, probeer het alsjeblieft opnieuw'
     },
     assets: {
-        retrieveListError: 'Er ging iets fout bij het ophalen van de asset lijst, probeer het opnieuw',
+        retrieveListError: 'Er ging iets fout bij het ophalen van de asset lijst, probeer het alsjeblieft opnieuw',
         uploadNoValidAssetInBody: 'Er is geen geldige asset gestuurd',
         uploadUnsupportedMimetype: 'De gestuurde asset heeft geen ondersteund mimetype',
-        uploadError: 'Er ging iets fout bij het opslaan van de asset, probeer het opnieuw'
+        uploadError: 'Er ging iets fout bij het opslaan van de asset, probeer het alsjeblieft opnieuw'
     }
 }
