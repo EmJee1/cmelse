@@ -16,7 +16,7 @@ router.post('/register', validateBodySchema(register), async (req, res) => {
 	try {
 		queryResult = await db.collection('users').findOne({ $or: [{ username }, { email }] })
 	} catch (err) {
-		res.sendStatus(500)
+		res.status(500).error('global.unexpectedServerError')
 		return
 	}
 
@@ -37,7 +37,7 @@ router.post('/register', validateBodySchema(register), async (req, res) => {
 
 		insertResult = await db.collection('users').insertOne({ ...req.body, password: hash })
 	} catch (err) {
-		res.sendStatus(500)
+		res.status(500).error('global.unexpectedServerError')
 		return
 	}
 
@@ -56,7 +56,7 @@ router.post('/login', validateBodySchema(login), async (req, res) => {
 			.collection('users')
 			.findOne({ $or: [{ username: identifier }, { email: identifier }] })
 	} catch (err) {
-		res.sendStatus(500)
+		res.status(500).error('global.unexpectedServerError')
 		return
 	}
 
@@ -69,7 +69,7 @@ router.post('/login', validateBodySchema(login), async (req, res) => {
 	try {
 		passwordValid = await compare(password, user?.password)
 	} catch (err) {
-		res.sendStatus(500)
+		res.status(500).error('global.unexpectedServerError')
 		return
 	}
 

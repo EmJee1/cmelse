@@ -23,6 +23,9 @@ const localeEn: LocaleMessages = {
 		uploadUnsupportedMimetype: 'The received asset is not of a supported mimetype',
 		uploadError: 'Something went wrong while uploading the asset, please try again',
 	},
+	global: {
+		unexpectedServerError: 'Something went wrong, please try again',
+	},
 }
 
 export default localeEn

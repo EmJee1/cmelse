@@ -20,6 +20,9 @@ type LocaleMessages = {
 		uploadUnsupportedMimetype: string
 		uploadError: string
 	}
+	global: {
+		unexpectedServerError: string
+	}
 }
 
 export default LocaleMessages
