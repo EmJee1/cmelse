@@ -8,7 +8,14 @@ const { FALLBACK_LOCALE } = process.env
  * in that header it uses the environment variable 'FALLBACK_LOCALE'.
  */
 const setLocale = async (req: Request, res: Response, next: NextFunction) => {
-	req.locale = req.headers['accept-language'] || FALLBACK_LOCALE
+	let locale = req.headers['accept-language'] || FALLBACK_LOCALE
+
+	if (locale.includes('-')) {
+		[locale] = locale.split('-')
+	}
+
+	req.locale = locale
+
 	next()
 }
 
