@@ -28,44 +28,36 @@ router.get('/', authenticated, async (req, res) => {
 	}
 })
 
-router.post(
-	'/upload',
-	authenticated,
-	fileMemoryStorage.single('asset'),
-	async (req, res) => {
-		if (!req.file) {
-			res.status(400).json({ err: 'No asset was sent' })
-			return
-		}
-
-		const asset = new AssetStore(
-			new CloudStorageAssetProvider(assetBucket),
-			req.file
-		)
-
-		try {
-			asset.ensureValidity()
-		} catch (err) {
-			logger.warn(err)
-			res.status(400).json({ err: 'Mimetype is unsupported' })
-			return
-		}
-
-		try {
-			const optionalBody: Partial<IAsset> = {}
-			if (req.body.imageAlt && asset.isImage) {
-				optionalBody.imageAlt = req.body.imageAlt
-			}
-
-			await asset.store()
-			const id = await asset.saveToDb(optionalBody)
-
-			res.status(201).json({ id, url: asset.assetUrl })
-		} catch (err) {
-			logger.error(`Error while uploading asset: ${err}`)
-			res.status(500).json({ err: 'unexpected error occurred' })
-		}
+router.post('/upload', authenticated, fileMemoryStorage.single('asset'), async (req, res) => {
+	if (!req.file) {
+		res.status(400).json({ err: 'No asset was sent' })
+		return
 	}
-)
+
+	const asset = new AssetStore(new CloudStorageAssetProvider(assetBucket), req.file)
+
+	try {
+		asset.ensureValidity()
+	} catch (err) {
+		logger.warn(err)
+		res.status(400).json({ err: 'Mimetype is unsupported' })
+		return
+	}
+
+	try {
+		const optionalBody: Partial<IAsset> = {}
+		if (req.body.imageAlt && asset.isImage) {
+			optionalBody.imageAlt = req.body.imageAlt
+		}
+
+		await asset.store()
+		const id = await asset.saveToDb(optionalBody)
+
+		res.status(201).json({ id, url: asset.assetUrl })
+	} catch (err) {
+		logger.error(`Error while uploading asset: ${err}`)
+		res.status(500).json({ err: 'unexpected error occurred' })
+	}
+})
 
 export default router

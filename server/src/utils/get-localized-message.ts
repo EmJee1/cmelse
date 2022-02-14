@@ -7,7 +7,11 @@ import logger from '../config/winston'
  * @param locale - the expected locale
  * @param message - A key-denoted string representing the path to the message
  */
-const getLocalizedMessage = (locales: { [key: string]: LocaleMessages }, locale: string, message: string) => {
+const getLocalizedMessage = (
+	locales: { [key: string]: LocaleMessages },
+	locale: string,
+	message: string
+) => {
 	if (!locales[locale]) {
 		logger.warn(`Localization locale ${locale} is not supported`)
 		throw new Error(`Unknown locale ${locale}`)
@@ -17,11 +21,14 @@ const getLocalizedMessage = (locales: { [key: string]: LocaleMessages }, locale:
 	const messageParts = message.split('.')
 	const localizedMessage: string = messageParts.reduce((object, key) => {
 		// TODO: figure out why typescript is complaining here
+		/* eslint-disable-next-line */
 		// @ts-ignore
 		const part = object[key]
 
 		if (!part) {
-			logger.warn(`Localization object key ${key} does not exist on locale; full path: ${message}`)
+			logger.warn(
+				`Localization object key ${key} does not exist on locale; full path: ${message}`
+			)
 			throw new Error(`Object key ${key} does not exist on locale`)
 		}
 
