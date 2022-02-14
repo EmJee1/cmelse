@@ -9,7 +9,6 @@ const router = Router()
 
 const { BCRYPT_SALT_ROUNDS } = process.env
 
-// TODO: validate body
 router.post('/register', validateBodySchema(register), async (req, res) => {
 	const { username, email, password } = req.body
 
