@@ -10,10 +10,8 @@ type LocaleMessages = {
 		}
 	}
 	assets: {
-		retrieveListError: string
 		uploadNoValidAssetInBody: string
 		uploadUnsupportedMimetype: string
-		uploadError: string
 	}
 	global: {
 		unexpectedServerError: string

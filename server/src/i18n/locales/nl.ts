@@ -12,15 +12,11 @@ const localeNl: LocaleMessages = {
 		},
 	},
 	assets: {
-		retrieveListError:
-			'Er ging iets fout bij het ophalen van de asset lijst, probeer het alsjeblieft opnieuw',
 		uploadNoValidAssetInBody: 'Er is geen geldige asset gestuurd',
 		uploadUnsupportedMimetype: 'De gestuurde asset heeft geen ondersteund mimetype',
-		uploadError:
-			'Er ging iets fout bij het opslaan van de asset, probeer het alsjeblieft opnieuw',
 	},
 	global: {
-		unexpectedServerError: 'Something went wrong, please try again',
+		unexpectedServerError: 'Er ging iets fout, probeer het alsjeblieft opnieuw',
 	},
 }
 

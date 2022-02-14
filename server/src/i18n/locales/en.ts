@@ -12,11 +12,8 @@ const localeEn: LocaleMessages = {
 		},
 	},
 	assets: {
-		retrieveListError:
-			'Something went wrong while retrieving the list of assets, please try again',
 		uploadNoValidAssetInBody: 'Did not receive a valid asset to upload',
 		uploadUnsupportedMimetype: 'The received asset is not of a supported mimetype',
-		uploadError: 'Something went wrong while uploading the asset, please try again',
 	},
 	global: {
 		unexpectedServerError: 'Something went wrong, please try again',

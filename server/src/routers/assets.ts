@@ -24,13 +24,13 @@ router.get('/', authenticated, async (req, res) => {
 		res.status(200).json({ files: filesWithUrl })
 	} catch (err) {
 		logger.error(`Error while retrieving asset list ${err}`)
-		res.status(500).json({ err: 'Could not fetch assets' })
+		res.status(500).error('global.unexpectedServerError')
 	}
 })
 
 router.post('/upload', authenticated, fileMemoryStorage.single('asset'), async (req, res) => {
 	if (!req.file) {
-		res.status(400).json({ err: 'No asset was sent' })
+		res.status(400).error('assets.uploadNoValidAssetInBody')
 		return
 	}
 
@@ -40,7 +40,7 @@ router.post('/upload', authenticated, fileMemoryStorage.single('asset'), async (
 		asset.ensureValidity()
 	} catch (err) {
 		logger.warn(err)
-		res.status(400).json({ err: 'Mimetype is unsupported' })
+		res.status(400).error('assets.uploadUnsupportedMimetype')
 		return
 	}
 
@@ -56,7 +56,7 @@ router.post('/upload', authenticated, fileMemoryStorage.single('asset'), async (
 		res.status(201).json({ id, url: asset.assetUrl })
 	} catch (err) {
 		logger.error(`Error while uploading asset: ${err}`)
-		res.status(500).json({ err: 'unexpected error occurred' })
+		res.status(500).error('global.unexpectedServerError')
 	}
 })
 
