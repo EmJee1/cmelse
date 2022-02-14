@@ -16,7 +16,7 @@
 				</router-link>
 			</li>
 		</ul>
-		<button class="navbar_item" @click='logOut'>
+		<button class="navbar_item" @click="logOut">
 			<i class="bi bi-box-arrow-right" />
 			Log out
 		</button>
