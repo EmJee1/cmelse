@@ -21,3 +21,5 @@ const localeEn: LocaleMessages = {
         uploadError: 'Something went wrong while uploading the asset, please try again'
     }
 }
+
+export default localeEn

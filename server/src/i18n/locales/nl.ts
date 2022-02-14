@@ -21,3 +21,5 @@ const localeNl: LocaleMessages = {
         uploadError: 'Er ging iets fout bij het opslaan van de asset, probeer het alsjeblieft opnieuw'
     }
 }
+
+export default localeNl
