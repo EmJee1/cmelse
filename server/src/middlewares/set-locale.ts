@@ -8,6 +8,7 @@ const { FALLBACK_LOCALE } = process.env
  */
 const setLocale = async (req: Request, res: Response, next: NextFunction) => {
     req.locale = req.headers['accept-language'] || FALLBACK_LOCALE
+    next()
 }
 
 export default setLocale
