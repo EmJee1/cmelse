@@ -11,11 +11,6 @@ const localeEn: LocaleMessages = {
 			incorrectPassword: 'The supplied password is not valid',
 		},
 	},
-	models: {
-		insertError: 'Something went wrong while inserting, please try again',
-		updateError: 'Something went wrong while updating, please try again',
-		deleteError: 'Something went wrong while deleting, please try again',
-	},
 	assets: {
 		retrieveListError:
 			'Something went wrong while retrieving the list of assets, please try again',

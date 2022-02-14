@@ -9,11 +9,6 @@ type LocaleMessages = {
 			incorrectPassword: string
 		}
 	}
-	models: {
-		insertError: string
-		updateError: string
-		deleteError: string
-	}
 	assets: {
 		retrieveListError: string
 		uploadNoValidAssetInBody: string

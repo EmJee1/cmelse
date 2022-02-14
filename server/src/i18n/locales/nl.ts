@@ -11,11 +11,6 @@ const localeNl: LocaleMessages = {
 			incorrectPassword: 'Het ingevulde wachtwoord is niet juist',
 		},
 	},
-	models: {
-		insertError: 'Er ging iets fout bij het toevoegen, probeer het alsjeblieft opnieuw',
-		updateError: 'Er ging iets fout bij het aanpassen, probeer het alsjeblieft opnieuw',
-		deleteError: 'Er ging iets fout bij het verwijderen, probeer het alsjeblieft opnieuw',
-	},
 	assets: {
 		retrieveListError:
 			'Er ging iets fout bij het ophalen van de asset lijst, probeer het alsjeblieft opnieuw',
