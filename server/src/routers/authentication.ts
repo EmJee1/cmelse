@@ -24,10 +24,10 @@ router.post('/register', validateBodySchema(register), async (req, res) => {
 	if (queryResult) {
 		const msg =
 			username === queryResult.username
-				? 'A user with that username already exists'
-				: 'A user with that email already exists'
+				? 'authentication.register.usernameAlreadyExists'
+				: 'authentication.register.emailAlreadyExists'
 
-		res.status(409).json({ msg })
+		res.status(409).error(msg)
 		return
 	}
 
@@ -64,7 +64,7 @@ router.post('/login', validateBodySchema(login), async (req, res) => {
 	// check if a user is found, if we skip this check the passwordvalid will fail with a 500 status
 	// this would inform bad actors that that identifier is not registered
 	if (!user) {
-		res.status(401).json({ err: 'Login credentials invalid' })
+		res.status(401).error('authentication.login.incorrectIdentifier')
 		return
 	}
 
@@ -77,7 +77,7 @@ router.post('/login', validateBodySchema(login), async (req, res) => {
 	}
 
 	if (!passwordValid) {
-		res.status(401).json({ err: 'Login credentials invalid' })
+		res.status(401).error('authentication.login.incorrectPassword')
 		return
 	}
 
