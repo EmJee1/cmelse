@@ -3,6 +3,7 @@ import cors from 'cors'
 import logger from './winston'
 import morgan from './morgan'
 import setLocale from '../middlewares/set-locale'
+import setResponseMethods from "../middlewares/set-response-methods";
 
 const { CMS_PORT } = process.env
 
@@ -13,6 +14,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(cors())
 app.use(morgan)
 app.use(setLocale)
+app.use(setResponseMethods)
 
 app.listen(CMS_PORT, () => {
 	logger.info('Express ready and listening')
