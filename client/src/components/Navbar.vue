@@ -16,6 +16,10 @@
 				</router-link>
 			</li>
 		</ul>
+		<button class="navbar_item" @click='logOut'>
+			<i class="bi bi-box-arrow-right" />
+			Log out
+		</button>
 	</nav>
 	<NavbarToggle v-model="expanded" />
 </template>
@@ -24,8 +28,14 @@
 import { ref } from 'vue'
 import models from 'models'
 import NavbarToggle from './NavbarToggle.vue'
+import userStore from '../stores/user-store'
 
 const expanded = ref(false)
+
+const logOut = () => {
+	userStore.value = undefined
+	localStorage.removeItem('token')
+}
 </script>
 
 <style lang="scss" scoped>
@@ -46,12 +56,15 @@ $navbar-padding-left: 30px;
 	&_subitem {
 		color: $white;
 		text-decoration: none;
+		border-color: transparent;
+		background: transparent;
 		font-weight: 500;
 		font-size: rem(16px);
 		line-height: 1.4;
 		display: flex;
 		gap: 8px;
 		margin-bottom: 12px;
+		cursor: pointer;
 	}
 
 	&_subitems {
