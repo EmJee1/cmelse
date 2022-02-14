@@ -1,9 +1,11 @@
 import { Router } from 'express'
 import { genSalt, hash as genHash, compare } from 'bcrypt'
 import validateBodySchema from '../middlewares/validate-body-schema'
+import authenticated from '../middlewares/authenticated'
 import { login, register } from '../validation/authentication'
 import { signJwt } from '../utils/jsonwebtoken'
 import db from '../config/database'
+import logger from '../config/winston'
 
 const router = Router()
 
@@ -81,6 +83,17 @@ router.post('/login', validateBodySchema(login), async (req, res) => {
 	const token = signJwt(user._id)
 
 	res.status(200).json({ token, username: user.username, email: user.email })
+})
+
+router.get('/profile', authenticated, async (req, res) => {
+	try {
+		const user = await req.user()
+		const token = signJwt(user._id)
+		res.status(200).json({ token, username: user.username, email: user.email })
+	} catch (err) {
+		logger.error(`Error while fetching profile: ${err}`)
+		res.status(500).error('global.unexpectedServerError')
+	}
 })
 
 export default router
