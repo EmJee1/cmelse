@@ -21,3 +21,5 @@ type LocaleMessages = {
         uploadError: string
     }
 }
+
+export default LocaleMessages

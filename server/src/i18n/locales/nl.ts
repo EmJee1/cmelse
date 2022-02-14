@@ -1,3 +1,5 @@
+import LocaleMessages from "../locale";
+
 const localeNl: LocaleMessages = {
     authentication: {
         register: {
