@@ -29,6 +29,7 @@ module.exports = {
 		...prettierSharedConfig,
 		'vue/multi-word-component-names': 'off',
 		'vue/no-multiple-template-root': 'off',
-		'object-curly-newline': 'off'
+		'object-curly-newline': 'off',
+		'no-unused-vars': ['error', { 'varsIgnorePattern': 'valid' }]
 	},
 }
