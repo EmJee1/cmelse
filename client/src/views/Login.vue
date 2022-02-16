@@ -60,6 +60,8 @@ onBeforeUnmount(() => {
 })
 
 const onSubmit = () => {
+	error.value = undefined
+
 	axios
 		.post('/authentication/login', {
 			identifier: identifier.value,
