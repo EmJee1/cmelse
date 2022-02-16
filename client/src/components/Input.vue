@@ -22,7 +22,7 @@ import ErrorText from './ErrorText.vue'
 
 const emit = defineEmits(['update:modelValue'])
 
-export interface Label {
+interface Label {
 	text: string
 	id: string
 }
@@ -36,9 +36,10 @@ const props = defineProps<{
 	type?: string
 }>()
 
-const { error, onBlur } = useValidation(props.validationSchema)
+const { error, valid, onBlur, onInput: validationOnInput } = useValidation(props.validationSchema)
 
-const onInput = (e: Event) => {
+const onInput = (e: InputEvent) => {
 	emit('update:modelValue', (e.target as HTMLInputElement).value)
+	validationOnInput(e)
 }
 </script>
