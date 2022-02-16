@@ -9,11 +9,17 @@
 			:type="type"
 			:value="modelValue"
 			@input="onInput"
+			@blur="onBlur"
 		/>
+		<ErrorText v-if="error">{{ error }}</ErrorText>
 	</div>
 </template>
 
 <script lang="ts" setup>
+import { AnySchema } from 'joi'
+import useValidation from '../composables/use-validation'
+import ErrorText from './ErrorText.vue'
+
 const emit = defineEmits(['update:modelValue'])
 
 export interface Label {
@@ -21,13 +27,16 @@ export interface Label {
 	id: string
 }
 
-defineProps<{
+const props = defineProps<{
 	modelValue: string
+	validationSchema: AnySchema
 	autocomplete?: string
 	label?: Label
 	placeholder?: string
 	type?: string
 }>()
+
+const { error, onBlur } = useValidation(props.validationSchema)
 
 const onInput = (e: Event) => {
 	emit('update:modelValue', (e.target as HTMLInputElement).value)
