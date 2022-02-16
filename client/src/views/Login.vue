@@ -11,6 +11,7 @@
 					autocomplete="username"
 					:label="{ id: 'identifier', text: 'Username or email' }"
 					placeholder="someone@example.com"
+					:validation-schema="Joi.string().required()"
 				/>
 				<Input
 					v-model="password"
@@ -18,6 +19,7 @@
 					:label="{ id: 'password', text: 'Password' }"
 					placeholder="password"
 					type="password"
+					:validation-schema="Joi.string().required()"
 				/>
 				<div class="form_actions">
 					<ButtonPrimary element="button" type="submit">Log in</ButtonPrimary>
@@ -36,6 +38,7 @@
 <script lang="ts" setup>
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import axios, { AxiosError } from 'axios'
+import Joi from 'joi'
 import loggedInUser from '../stores/user-store'
 import Input from '../components/Input.vue'
 import Form from '../components/Form.vue'
