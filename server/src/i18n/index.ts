@@ -6,4 +6,6 @@ const i18n = {
 	nl: localeNl,
 }
 
+export const supportedLocales = Object.keys(i18n)
+
 export default i18n
