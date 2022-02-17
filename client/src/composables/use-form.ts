@@ -6,8 +6,8 @@ type FormInputs = Ref<InstanceType<typeof Input> | undefined>
 const useForm = (formInputs: FormInputs[]) => {
 	const error = ref<string>()
 
-	const validateForm = (): boolean => {
-		return formInputs.every(input => {
+	const validateForm = (): boolean =>
+		formInputs.every(input => {
 			// if we have no input (empty ref)
 			// don't hang on validation error but let the server handle it
 			if (!input.value) {
@@ -22,7 +22,6 @@ const useForm = (formInputs: FormInputs[]) => {
 
 			return true
 		})
-	}
 
 	return { validateForm, error }
 }
