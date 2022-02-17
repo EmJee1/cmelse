@@ -4,7 +4,7 @@
 		class="datatype-input"
 		placeholder="195"
 		:value="modelValue"
-		@blur="onBlur"
+		@blur="validate"
 		@input="onInput"
 		:class="{ error }"
 	/>
@@ -23,7 +23,7 @@ const props = defineProps<{
 	validationSchema: AnySchema
 }>()
 
-const { error, onBlur } = useValidation(props.validationSchema)
+const { error, validate } = useValidation(props.validationSchema)
 
 const onInput = (e: Event) => {
 	const rawValue = (e.target as HTMLInputElement).value

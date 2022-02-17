@@ -2,7 +2,7 @@
 	<input
 		v-if="!multiline"
 		:value="modelValue"
-		@blur="onBlur"
+		@blur="validate"
 		@input="onInput"
 		class="datatype-input"
 		:class="{ error }"
@@ -11,7 +11,7 @@
 	<div v-else class="textarea">
 		<textarea
 			:value="modelValue"
-			@blur="onBlur"
+			@blur="validate"
 			@input="onInput"
 			class="datatype-input"
 			:class="{ error }"
@@ -35,7 +35,7 @@ const props = defineProps<{
 	multiline?: boolean
 }>()
 
-const { error, onBlur } = useValidation(props.validationSchema)
+const { error, validate } = useValidation(props.validationSchema)
 
 const onInput = (e: Event) => {
 	emit('update:modelValue', (e.target as HTMLInputElement).value)

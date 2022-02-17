@@ -5,7 +5,7 @@ const useValidation = (validationSchema: AnySchema) => {
 	const valid = ref(false)
 	const error = ref<string>()
 
-	const onBlur = (e: FocusEvent) => {
+	const validate = (e: FocusEvent) => {
 		const result = validationSchema.validate((e.target as HTMLInputElement).value)
 		error.value = result.error?.message
 	}
@@ -15,7 +15,7 @@ const useValidation = (validationSchema: AnySchema) => {
 		valid.value = !result.error
 	}
 
-	return { error, valid, onBlur, onInput }
+	return { error, valid, validate, onInput }
 }
 
 export default useValidation

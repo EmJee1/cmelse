@@ -9,7 +9,7 @@
 			:type="type"
 			:value="modelValue"
 			@input="onInput"
-			@blur="onBlur"
+			@blur="validate"
 		/>
 		<ErrorText v-if="error">{{ error }}</ErrorText>
 	</div>
@@ -36,7 +36,7 @@ const props = defineProps<{
 	type?: string
 }>()
 
-const { error, valid, onBlur, onInput: validationOnInput } = useValidation(props.validationSchema)
+const { error, valid, validate, onInput: validationOnInput } = useValidation(props.validationSchema)
 
 const onInput = (e: InputEvent) => {
 	emit('update:modelValue', (e.target as HTMLInputElement).value)
