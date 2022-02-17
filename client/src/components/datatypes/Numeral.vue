@@ -4,7 +4,7 @@
 		class="datatype-input"
 		placeholder="195"
 		:value="modelValue"
-		@blur="validate"
+		@blur="onBlur"
 		@input="onInput"
 		:class="{ error }"
 	/>
@@ -23,9 +23,16 @@ const props = defineProps<{
 	validationSchema: AnySchema
 }>()
 
-const { error, validate } = useValidation(props.validationSchema)
+const {
+	error,
+	valid,
+	validate,
+	onBlur,
+	onInput: validationOnInput,
+} = useValidation(props.validationSchema)
 
-const onInput = (e: Event) => {
+const onInput = (e: InputEvent) => {
+	validationOnInput(e)
 	const rawValue = (e.target as HTMLInputElement).value
 	const { error: validationError } = Joi.number().required().validate(rawValue)
 
@@ -38,4 +45,6 @@ const onInput = (e: Event) => {
 
 	emit('update:modelValue', Number(rawValue))
 }
+
+defineExpose({ valid, validate })
 </script>
