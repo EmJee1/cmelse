@@ -8,6 +8,7 @@
 				<Notice v-if="error" type="error">{{ error }}</Notice>
 				<Input
 					v-model="identifier"
+					ref="identifierInput"
 					autocomplete="username"
 					:label="{ id: 'identifier', text: 'Username or email' }"
 					placeholder="someone@example.com"
@@ -15,6 +16,7 @@
 				/>
 				<Input
 					v-model="password"
+					ref="passwordInput"
 					autocomplete="current-password"
 					:label="{ id: 'password', text: 'Password' }"
 					placeholder="password"
@@ -39,6 +41,7 @@
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import axios, { AxiosError } from 'axios'
 import Joi from 'joi'
+import useForm from '../composables/use-form'
 import loggedInUser from '../stores/user-store'
 import Input from '../components/Input.vue'
 import Form from '../components/Form.vue'
@@ -47,9 +50,13 @@ import ButtonLink from '../components/ButtonLink.vue'
 import Notice from '../components/Notice.vue'
 import LoginShapesWhite from '../assets/icons/login-shapes-white.svg'
 
-const error = ref<string>()
 const identifier = ref('')
 const password = ref('')
+
+const identifierInput = ref<InstanceType<typeof Input>>()
+const passwordInput = ref<InstanceType<typeof Input>>()
+
+const { validateForm, error } = useForm([identifierInput, passwordInput])
 
 onMounted(() => {
 	document.querySelector('body')!.style.backgroundColor = '#17141a'
@@ -61,6 +68,11 @@ onBeforeUnmount(() => {
 
 const onSubmit = () => {
 	error.value = undefined
+
+	if (!validateForm()) {
+		error.value = 'Please review all fields'
+		return
+	}
 
 	axios
 		.post('/authentication/login', {
