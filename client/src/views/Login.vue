@@ -56,7 +56,7 @@ const password = ref('')
 const identifierInput = ref<InstanceType<typeof Input>>()
 const passwordInput = ref<InstanceType<typeof Input>>()
 
-const { validateForm, error } = useForm([identifierInput, passwordInput])
+const { formValidate, error } = useForm([identifierInput, passwordInput])
 
 onMounted(() => {
 	document.querySelector('body')!.style.backgroundColor = '#17141a'
@@ -69,7 +69,7 @@ onBeforeUnmount(() => {
 const onSubmit = () => {
 	error.value = undefined
 
-	if (!validateForm()) {
+	if (!formValidate()) {
 		error.value = 'Please review all fields'
 		return
 	}
