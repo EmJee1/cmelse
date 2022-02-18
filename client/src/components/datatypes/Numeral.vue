@@ -13,6 +13,7 @@
 
 <script lang="ts" setup>
 import Joi, { AnySchema } from 'joi'
+import { IInput } from '../../component-type-declarations/Input'
 import useValidation from '../../composables/use-validation'
 import ErrorText from '../ErrorText.vue'
 
@@ -46,5 +47,5 @@ const onInput = (e: Event) => {
 	emit('update:modelValue', Number(rawValue))
 }
 
-defineExpose({ valid, validate })
+defineExpose<IInput>({ valid, validate })
 </script>

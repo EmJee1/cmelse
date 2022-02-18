@@ -24,6 +24,7 @@
 
 <script lang="ts" setup>
 import { AnySchema } from 'joi'
+import { IInput } from '../../component-type-declarations/Input'
 import useValidation from '../../composables/use-validation'
 import ErrorText from '../ErrorText.vue'
 
@@ -48,7 +49,7 @@ const onInput = (e: Event) => {
 	emit('update:modelValue', (e.target as HTMLInputElement).value)
 }
 
-defineExpose({ valid, validate })
+defineExpose<IInput>({ valid, validate })
 </script>
 
 <style lang="scss" scoped>
