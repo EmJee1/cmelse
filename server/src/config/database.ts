@@ -3,7 +3,7 @@ import logger from './winston'
 
 const { MONGODB_CONNECTION_STRING } = process.env
 
-const client = new MongoClient(MONGODB_CONNECTION_STRING)
+const client = new MongoClient(MONGODB_CONNECTION_STRING, { retryWrites: true, w: 'majority' })
 
 client
 	.connect()
