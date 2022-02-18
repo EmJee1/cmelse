@@ -139,6 +139,10 @@ const onSubmit = () => {
 		right: 0;
 		z-index: -1;
 		max-height: 50%;
+
+		@media ($mq-tablet) {
+			max-height: none;
+		}
 	}
 }
 </style>
