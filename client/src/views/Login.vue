@@ -42,13 +42,15 @@ import { onBeforeUnmount, onMounted, ref } from 'vue'
 import axios, { AxiosError } from 'axios'
 import Joi from 'joi'
 import useForm from '../composables/use-form'
-import loggedInUser from '../stores/user-store'
+import useAuthentication from '../composables/use-authentication'
 import Input from '../components/Input.vue'
 import Form from '../components/Form.vue'
 import ButtonPrimary from '../components/ButtonPrimary.vue'
 import ButtonLink from '../components/ButtonLink.vue'
 import Notice from '../components/Notice.vue'
 import LoginShapesWhite from '../assets/icons/login-shapes-white.svg'
+
+const { login } = useAuthentication()
 
 const identifier = ref('')
 const password = ref('')
@@ -79,9 +81,7 @@ const onSubmit = () => {
 			identifier: identifier.value,
 			password: password.value,
 		})
-		.then(({ data }) => {
-			loggedInUser.value = data
-		})
+		.then(({ data }) => login({ username: data.username, email: data.username }))
 		.catch((err: AxiosError) => {
 			error.value = err.response?.data.err
 		})

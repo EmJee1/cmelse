@@ -16,7 +16,7 @@
 				</router-link>
 			</li>
 		</ul>
-		<button class="navbar_item" @click="logOut">
+		<button class="navbar_item" @click="logout">
 			<i class="bi bi-box-arrow-right" />
 			Log out
 		</button>
@@ -28,14 +28,11 @@
 import { ref } from 'vue'
 import models from 'models'
 import NavbarToggle from './NavbarToggle.vue'
-import userStore from '../stores/user-store'
+import useAuthentication from '../composables/use-authentication'
+
+const { logout } = useAuthentication()
 
 const expanded = ref(false)
-
-const logOut = () => {
-	userStore.value = undefined
-	localStorage.removeItem('token')
-}
 </script>
 
 <style lang="scss" scoped>

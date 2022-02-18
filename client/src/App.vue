@@ -1,8 +1,8 @@
 <template>
 	<Loader v-if="loading" fullscreen />
 	<template v-else>
-		<Navbar v-if="loggedInUser" />
-		<Login v-if="!loggedInUser" />
+		<Navbar v-if="user" />
+		<Login v-if="!user" />
 		<div v-else class="app">
 			<router-view />
 		</div>
@@ -12,10 +12,12 @@
 <script lang="ts" setup>
 import axios from 'axios'
 import { onMounted, ref } from 'vue'
-import loggedInUser from './stores/user-store'
+import useAuthentication from './composables/use-authentication'
 import Login from './views/Login.vue'
 import Navbar from './components/Navbar.vue'
 import Loader from './components/Loader.vue'
+
+const { login, logout, user } = useAuthentication()
 
 const loading = ref(false)
 
@@ -25,12 +27,8 @@ onMounted(() => {
 
 		axios
 			.get('/authentication/profile')
-			.then(({ data }) => {
-				loggedInUser.value = data
-			})
-			.catch(() => {
-				localStorage.removeItem('token')
-			})
+			.then(({ data }) => login({ username: data.username, email: data.email }))
+			.catch(() => logout())
 			.finally(() => {
 				loading.value = false
 			})
