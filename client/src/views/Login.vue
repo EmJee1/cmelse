@@ -59,11 +59,11 @@ const passwordInput = ref<InstanceType<typeof Input>>()
 const { formValidate, error } = useForm([identifierInput, passwordInput])
 
 onMounted(() => {
-	document.querySelector('body')!.style.backgroundColor = '#17141a'
+	document.body.style.backgroundColor = '#17141a'
 })
 
 onBeforeUnmount(() => {
-	document.querySelector('body')!.style.backgroundColor = '#fff'
+	document.body.style.backgroundColor = '#fff'
 })
 
 const onSubmit = () => {
