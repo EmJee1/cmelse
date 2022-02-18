@@ -14,6 +14,11 @@ A headless cms for developers that want to focus on just the frontend.
     - [🧱 Base installation](#-base-installation)
     - [💼 Front-end](#-front-end)
     - [🧰 Back-end](#-back-end)
+      - [MongoDB](#mongodb)
+        - [Docker](#docker)
+        - [Local installation](#local-installation)
+      - [Environment variables](#environment-variables)
+      - [Node](#node)
 
 ## 🗂️ Trello
 
@@ -69,15 +74,34 @@ The back-end is a Node server with MongoDB database.
 #### MongoDB
 
 To run mongodb, you have 2 options:
+
 1. Use the provided docker-compose file (**recommended**)
 2. Install MongoDB as an application on your system
 
 ##### Docker
 
-First, make sure [docker desktop](https://www.docker.com/products/docker-desktop) is installed on your system.
-Then, in the root directory of the project, run the command `docker compose up -d` in your favorite terminal, this will start the MongoDB container.
+1. Make sure [docker desktop](https://www.docker.com/products/docker-desktop) is installed on your system.
+2. In the root directory of the project, run the command `docker compose up -d` in your favorite terminal, this will start the MongoDB container.
 You are done now!
 
 ##### Local installation
 
 To install it locally on your system, follow [the official documentation](https://docs.mongodb.com/guides/server/install/).
+
+#### Environment variables
+
+Copy the `.env.example` and paste the contents in a `.env` file.
+Change the variables according to your configuration needs
+
+| **Variable**               | **Description**                                    | **Default**                         |
+|--------------------------- |--------------------------------------------------- |------------------------------------ |
+| CMS_PORT                   | Port that express listens on for requests          | 3001                                |
+| MONGODB_CONNECTION_STRING  | String with connection info for MongoDB            | "mongodb://127.0.0.1:27017/cmelse"  |
+| FALLBACK_LOCALE            | This is used if a unsupported locale is requested  | "en"                                |
+| BCRYPT_SALT_ROUNDS         | Salt rounds that bcrypt uses for hashing           | 10                                  |
+| JSON_WEBTOKEN_SECRET       | The json webtoken secret used for hashing          | ""                                  |
+
+#### Node
+
+1. Go into the server directory
+2. Run `npm run start:dev`
