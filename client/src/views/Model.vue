@@ -86,6 +86,7 @@ const tableItems = computed(() => {
 
 table {
 	width: 100%;
+	border-collapse: collapse;
 }
 
 thead {
@@ -93,15 +94,26 @@ thead {
 }
 
 tbody tr {
-	background: $gray-light;
 	font-weight: 400;
 	font-size: rem(14px);
-	border-radius: $big-radius;
+
+	td {
+		background-color: $gray-light;
+	}
+
+	td:first-child {
+		border-radius: 90px 0 0 90px;
+	}
+
+	td:last-child {
+		border-radius: 0 90px 90px 0;
+	}
 }
 
 th {
 	font-weight: 600;
 	font-size: rem(16px);
+	padding-bottom: 10px;
 }
 
 td {
