@@ -11,5 +11,6 @@
 	background: $white;
 	box-shadow: $shadow;
 	border-radius: $big-radius;
+	padding: 26px 12px;
 }
 </style>

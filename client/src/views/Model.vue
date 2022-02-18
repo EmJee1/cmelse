@@ -16,12 +16,16 @@
 							<th v-for="item in tableItems" :key="item">
 								{{ model[item].options.displayTitle }}
 							</th>
+							<th>Created at</th>
 						</tr>
 					</thead>
 					<tbody v-if="rows.length">
 						<tr v-for="(row, index) in rows" :key="index">
 							<td v-for="item in tableItems" :key="item">
 								{{ row[item] }}
+							</td>
+							<td>
+								{{ new Date(row.createdAt).toLocaleString() }}
 							</td>
 						</tr>
 					</tbody>
@@ -62,7 +66,6 @@ onMounted(() => {
 		.get(`/models${model.value.cmsMetadata.endpoint}`)
 		.then(({ data }) => {
 			rows.value = data.data
-			console.log(rows.value)
 		})
 		.catch(err => console.error(err))
 })
@@ -72,8 +75,41 @@ const tableItems = computed(() => {
 		return null
 	}
 
-	return getModelProperties(model.value)
+	return getModelProperties(model.value).slice(0, 3)
 })
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+:deep(.card) {
+	max-width: 100%;
+}
+
+table {
+	width: 100%;
+}
+
+thead {
+	margin-bottom: 20px;
+}
+
+tbody tr {
+	background: $gray-light;
+	font-weight: 400;
+	font-size: rem(14px);
+	border-radius: $big-radius;
+}
+
+th {
+	font-weight: 600;
+	font-size: rem(16px);
+}
+
+td {
+	text-align: center;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	max-width: 20rem;
+	padding: 15px 8px;
+}
+</style>
