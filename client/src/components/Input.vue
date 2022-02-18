@@ -17,7 +17,6 @@
 
 <script lang="ts" setup>
 import { AnySchema } from 'joi'
-import { IInput } from '../component-type-declarations/Input'
 import useValidation from '../composables/use-validation'
 import ErrorText from './ErrorText.vue'
 
@@ -37,18 +36,12 @@ const props = defineProps<{
 	type?: string
 }>()
 
-const {
-	error,
-	valid,
-	validate,
-	onBlur,
-	onInput: validationOnInput,
-} = useValidation(props.validationSchema)
+const { error, valid, onBlur, onInput: validationOnInput } = useValidation(props.validationSchema)
 
 const onInput = (e: Event) => {
 	validationOnInput(e as InputEvent)
 	emit('update:modelValue', (e.target as HTMLInputElement).value)
 }
 
-defineExpose<IInput>({ valid, validate })
+defineExpose({ valid })
 </script>

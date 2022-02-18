@@ -13,7 +13,6 @@
 
 <script lang="ts" setup>
 import Joi, { AnySchema } from 'joi'
-import { IInput } from '../../component-type-declarations/Input'
 import useValidation from '../../composables/use-validation'
 import ErrorText from '../ErrorText.vue'
 
@@ -24,13 +23,7 @@ const props = defineProps<{
 	validationSchema: AnySchema
 }>()
 
-const {
-	error,
-	valid,
-	validate,
-	onBlur,
-	onInput: validationOnInput,
-} = useValidation(props.validationSchema)
+const { error, valid, onBlur, onInput: validationOnInput } = useValidation(props.validationSchema)
 
 const onInput = (e: Event) => {
 	validationOnInput(e as InputEvent)
@@ -47,5 +40,5 @@ const onInput = (e: Event) => {
 	emit('update:modelValue', Number(rawValue))
 }
 
-defineExpose<IInput>({ valid, validate })
+defineExpose({ valid })
 </script>

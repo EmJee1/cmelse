@@ -14,13 +14,7 @@ const useForm = (formInputs: FormInputs[]) => {
 				return true
 			}
 
-			if (!input.value.valid) {
-				// validate function will show validation error on the first field with a validation error
-				input.value.validate?.()
-				return false
-			}
-
-			return true
+			return input.value.valid
 		})
 
 	return { formValidate, error }
