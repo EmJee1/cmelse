@@ -44,9 +44,9 @@ const {
 	onInput: validationOnInput,
 } = useValidation(props.validationSchema)
 
-const onInput = (e: InputEvent) => {
+const onInput = (e: Event) => {
+	validationOnInput(e as InputEvent)
 	emit('update:modelValue', (e.target as HTMLInputElement).value)
-	validationOnInput(e)
 }
 
 defineExpose({ valid, validate })

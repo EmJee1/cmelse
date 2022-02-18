@@ -31,8 +31,8 @@ const {
 	onInput: validationOnInput,
 } = useValidation(props.validationSchema)
 
-const onInput = (e: InputEvent) => {
-	validationOnInput(e)
+const onInput = (e: Event) => {
+	validationOnInput(e as InputEvent)
 	const rawValue = (e.target as HTMLInputElement).value
 	const { error: validationError } = Joi.number().required().validate(rawValue)
 

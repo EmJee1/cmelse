@@ -2,7 +2,7 @@
 	<input
 		v-if="!multiline"
 		:value="modelValue"
-		@blur="validate"
+		@blur="onBlur"
 		@input="onInput"
 		class="datatype-input"
 		:class="{ error }"
@@ -43,8 +43,8 @@ const {
 	onInput: validationOnInput,
 } = useValidation(props.validationSchema)
 
-const onInput = (e: Event) => {
-	validationOnInput(e as InputEvent)
+const onInput = (e: InputEvent) => {
+	validationOnInput(e)
 	emit('update:modelValue', (e.target as HTMLInputElement).value)
 }
 
