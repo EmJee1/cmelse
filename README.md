@@ -19,6 +19,7 @@ A headless cms for developers that want to focus on just the frontend.
         - [Local installation](#local-installation)
       - [Environment variables](#environment-variables)
       - [Node](#node)
+  - [🤖 GitHub Actions](#-github-actions)
 
 ## 🗂️ Trello
 
@@ -105,3 +106,11 @@ Change the variables according to your configuration needs
 
 1. Go into the server directory (`cd server`)
 2. Run `npm run start:dev`
+
+## 🤖 GitHub Actions
+
+We use [GitHub actions](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions) to run automated checks on code-quality, consistency and automated tests. The checks we run are:
+
+1. Automated unit tests for the server (with Jest).
+2. ESLint on both the server and client projects.
+3. Build (with type-checking) the server and client
