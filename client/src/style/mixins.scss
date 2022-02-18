@@ -1,0 +1,41 @@
+@use 'sass:math';
+
+$html-font-size: 16px;
+
+@function stripUnit($value) {
+	@return math.div($value, ($value * 0 + 1));
+}
+
+@function rem($pxValue) {
+	@return #{math.div(stripUnit($pxValue), stripUnit($html-font-size))}rem;
+}
+
+@mixin content-spacing-bottom {
+	margin-bottom: $content-spacing-mobile;
+
+	@media ($mq-tablet) {
+		margin-bottom: $content-spacing-desktop;
+	}
+}
+
+@mixin content-spacing-top {
+	margin-top: $content-spacing-mobile;
+
+	@media ($mq-tablet) {
+		margin-top: $content-spacing-desktop;
+	}
+}
+
+@mixin heading-1 {
+	font-weight: 500;
+	font-size: rem(36px);
+	line-height: 1.2;
+	margin: 0;
+}
+
+@mixin heading-2 {
+	font-weight: 700;
+	font-size: rem(26px);
+	line-height: 1.2;
+	margin: 0;
+}

@@ -6,9 +6,8 @@ const stream: StreamOptions = {
 	write: message => logger.http(message.slice(0, -2)),
 }
 
-const morganMiddleware = morgan(
-	':method :url :status :res[content-length] - :response-time ms',
-	{ stream }
-)
+const morganMiddleware = morgan(':method :url :status :res[content-length] - :response-time ms', {
+	stream,
+})
 
 export default morganMiddleware

@@ -4,6 +4,9 @@ on:
     push:
         branches:
             - '**'
+            
+env:
+    JSON_WEBTOKEN_SECRET: ${{ secrets.JSON_WEBTOKEN_SECRET }}
 
 jobs:
     build:
@@ -14,4 +17,6 @@ jobs:
             - uses: actions/setup-node@v1
               with:
                   node-version: 16.13.1
-            - run: npm run ci
+            - run: npm ci
+            - run: npm run ci:server
+            - run: npm run ci:client

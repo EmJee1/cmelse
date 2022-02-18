@@ -28,12 +28,7 @@ class AssetStore {
 
 	// TODO: add support for more than just images (text, audio etc.)
 	// list of mimetypes: https://docs.w3cub.com/http/basics_of_http/mime_types/complete_list_of_mime_types
-	private readonly allowedMimetypes = [
-		'image/jpeg',
-		'image/png',
-		'image/svg+xml',
-		'image/webp',
-	]
+	private readonly allowedMimetypes = ['image/jpeg', 'image/png', 'image/svg+xml', 'image/webp']
 
 	private assetProvider: IAssetProvider
 
@@ -67,14 +62,12 @@ class AssetStore {
 	 */
 	public async saveToDb(other: Partial<IAsset> = {}) {
 		try {
-			const { insertedId } = await db
-				.collection<IAsset>('assets')
-				.insertOne({
-					...other,
-					filename: this.filename,
-					contentType: this.file.mimetype,
-					createdAt: new Date(),
-				})
+			const { insertedId } = await db.collection<IAsset>('assets').insertOne({
+				...other,
+				filename: this.filename,
+				contentType: this.file.mimetype,
+				createdAt: new Date(),
+			})
 
 			return insertedId
 		} catch (err) {

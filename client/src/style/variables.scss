@@ -1,0 +1,45 @@
+// colors
+$error: #ff0000;
+$error-light: #f6e5e5;
+$purple: #7510f7;
+$black: #17141a;
+$gray-dark: #4e4e4e;
+$gray: #989898;
+$gray-light: #f4f4f4;
+$white: #fff;
+
+// shadows
+$shadow: 0px 3px 6px $black;
+$shadow-purple: 0px 3px 6px transparentize($purple, 0.84);
+$shadow-purple-hover: 0px 3px 6px transparentize($purple, 0.3);
+$shadow-error: 0px 3px 6px transparentize($error, 0.84);
+$shadow-error-hover: 0px 3px 6px transparentize($error, 0.3);
+$shadow-gray-dark: 0px 3px 6px transparentize($gray-dark, 0.84);
+
+// border radiusses
+$big-radius: 41px;
+$small-radius: 7px;
+
+// transitions
+$transition: ease-in-out 0.3s;
+
+// z-indexes
+$z-modal-backdrop: 10;
+$z-modal: 11;
+
+// Mediaqueries
+$site-width-desktop: 978px;
+$site-width-tablet: 768px;
+
+$mq-desktop: 'min-width: #{$site-width-desktop}';
+$mq-max-desktop: 'max-width: #{$site-width-desktop - 1px}';
+$mq-tablet: 'min-width: #{$site-width-tablet}';
+$mq-max-tablet: 'max-width: #{$site-width-tablet - 1px}';
+
+// misc
+$navbar-width: 180px;
+
+// spacings
+$content-spacing-mobile: 30px;
+$content-spacing-desktop: 50px;
+$btn-spacing-y: 12px;

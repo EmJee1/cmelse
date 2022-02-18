@@ -3,9 +3,8 @@
 	"version": "1.0.0",
 	"description": "",
 	"scripts": {
-		"ci": "npm ci && npm run ci:server",
 		"ci:server": "cd server && npm run ci",
-		"setup": "npm i && cd client && npm i"
+		"ci:client": "cd client && npm run ci"
 	},
 	"keywords": [
 		"cms"

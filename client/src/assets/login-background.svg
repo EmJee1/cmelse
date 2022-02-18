@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1995.196" height="2673.024">
+    <path fill="#17141a" d="M0 979.724h1920v1080H0z"/>
+    <g>
+        <g>
+            <g fill="#fff">
+                <g transform="scale(-1) rotate(-53 -2200.053 2252.046)">
+                    <rect width="1006.312" height="189.16" rx="94.58"
+                          transform="rotate(-37 769.288 -1079.963)"/>
+                    <rect width="788.297" height="189.16" rx="94.58"
+                          transform="rotate(-37 1229.283 -1582.725)"/>
+                    <path
+                            d="m1192.851 123.884 552.277-401.253 153.715 211.571-552.277 401.253z"/>
+                    <rect width="1006.312" height="189.16" rx="94.58"
+                          transform="rotate(-37 769.288 -1079.963)"/>
+                </g>
+                <g transform="scale(-1) rotate(-53 -2221.563 1761.944)">
+                    <rect width="1006.312" height="189.16" rx="94.58"
+                          transform="rotate(-37 769.288 -1079.963)"/>
+                    <rect width="788.297" height="189.16" rx="94.58"
+                          transform="rotate(-37 1229.283 -1582.725)"/>
+                    <path d="m1199.661 137.452 578.916-436.18 158.637 210.55-578.916 436.18z"/>
+                    <rect width="1006.312" height="189.16" rx="94.58"
+                          transform="rotate(-37 769.288 -1079.963)"/>
+                </g>
+            </g>
+        </g>
+    </g>
+    <rect width="311.074" height="189.2" rx="94.6" transform="rotate(90 -149.84 1573.422)"
+          fill="#17141a"/>
+    <rect width="311.074" height="190.2" rx="95.1" transform="rotate(90 143.428 1663.152)"
+          fill="#17141a"/>
+    <rect width="155.885" height="1249" rx="77.942" transform="translate(1633.538 121.959)"
+          fill="rgba(255,255,255,0.05)"/>
+    <path
+            d="M538.5 0c189.4 0 342.942 158.967 342.942 355.064v1249.32c0 196.1-153.541 355.064-342.942 355.064s-342.942-158.968-342.942-355.065V355.064C195.558 158.967 349.099 0 538.5 0Z"
+            fill="rgba(255,255,255,0.05)"/>
+    <rect width="155.885" height="1251.599" rx="77.942" transform="translate(1234.38 331.36)"
+          fill="rgba(255,255,255,0.05)"/>
+</svg>
