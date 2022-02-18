@@ -90,7 +90,7 @@ To install it locally on your system, follow [the official documentation](https:
 
 #### Environment variables
 
-Copy the `.env.example` and paste the contents in a `.env` file.
+Copy the `server/.env.example` and paste the contents in a `server/.env` file.
 Change the variables according to your configuration needs
 
 | **Variable**               | **Description**                                    | **Default**                         |
@@ -103,5 +103,5 @@ Change the variables according to your configuration needs
 
 #### Node
 
-1. Go into the server directory
+1. Go into the server directory (`cd server`)
 2. Run `npm run start:dev`
