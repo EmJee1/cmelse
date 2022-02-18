@@ -43,8 +43,8 @@ const {
 	onInput: validationOnInput,
 } = useValidation(props.validationSchema)
 
-const onInput = (e: InputEvent) => {
-	validationOnInput(e)
+const onInput = (e: Event) => {
+	validationOnInput(e as InputEvent)
 	emit('update:modelValue', (e.target as HTMLInputElement).value)
 }
 
