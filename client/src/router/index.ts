@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 
 import Home from '../views/Home.vue'
+import Model from '../views/Model.vue'
 import Styleguide from '../views/Styleguide.vue'
 
 const routes: RouteRecordRaw[] = [
@@ -16,7 +17,7 @@ const routes: RouteRecordRaw[] = [
 	},
 	{
 		path: '/models/:model',
-		component: Home,
+		component: Model,
 	},
 ]
 
