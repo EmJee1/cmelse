@@ -14,6 +14,9 @@ const useForm = (formInputs: FormInputs[]) => {
 				return true
 			}
 
+			// TODO: fix exposed component variables not picked up by typescript
+			// https://github.com/vuejs/core/issues/4397
+			// @ts-ignore
 			return input.value.valid
 		})
 
