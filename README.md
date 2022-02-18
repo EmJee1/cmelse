@@ -64,4 +64,20 @@ These are the steps on how to set up the frontend, however you almost always nee
 
 ### 🧰 Back-end
 
-Coming soon...
+The back-end is a Node server with MongoDB database.
+
+#### MongoDB
+
+To run mongodb, you have 2 options:
+1. Use the provided docker-compose file (**recommended**)
+2. Install MongoDB as an application on your system
+
+##### Docker
+
+First, make sure [docker desktop](https://www.docker.com/products/docker-desktop) is installed on your system.
+Then, in the root directory of the project, run the command `docker compose up -d` in your favorite terminal, this will start the MongoDB container.
+You are done now!
+
+##### Local installation
+
+To install it locally on your system, follow [the official documentation](https://docs.mongodb.com/guides/server/install/).
