@@ -1,35 +1,34 @@
 import { Router } from 'express'
 import { genSalt, hash as genHash, compare } from 'bcrypt'
 import validateBodySchema from '../middlewares/validate-body-schema'
+import authenticated from '../middlewares/authenticated'
 import { login, register } from '../validation/authentication'
 import { signJwt } from '../utils/jsonwebtoken'
 import db from '../config/database'
+import logger from '../config/winston'
 
 const router = Router()
 
 const { BCRYPT_SALT_ROUNDS } = process.env
 
-// TODO: validate body
 router.post('/register', validateBodySchema(register), async (req, res) => {
 	const { username, email, password } = req.body
 
 	let queryResult
 	try {
-		queryResult = await db
-			.collection('users')
-			.findOne({ $or: [{ username }, { email }] })
+		queryResult = await db.collection('users').findOne({ $or: [{ username }, { email }] })
 	} catch (err) {
-		res.sendStatus(500)
+		res.status(500).error('global.unexpectedServerError')
 		return
 	}
 
 	if (queryResult) {
 		const msg =
 			username === queryResult.username
-				? 'A user with that username already exists'
-				: 'A user with that email already exists'
+				? 'authentication.register.usernameAlreadyExists'
+				: 'authentication.register.emailAlreadyExists'
 
-		res.json({ msg }).status(409)
+		res.status(409).error(msg)
 		return
 	}
 
@@ -38,17 +37,15 @@ router.post('/register', validateBodySchema(register), async (req, res) => {
 		const salt = await genSalt(Number(BCRYPT_SALT_ROUNDS))
 		const hash = await genHash(password, salt)
 
-		insertResult = await db
-			.collection('users')
-			.insertOne({ ...req.body, password: hash })
+		insertResult = await db.collection('users').insertOne({ ...req.body, password: hash })
 	} catch (err) {
-		res.sendStatus(500)
+		res.status(500).error('global.unexpectedServerError')
 		return
 	}
 
 	const token = signJwt(insertResult.insertedId)
 
-	res.json({ token }).status(201)
+	res.status(201).json({ token })
 })
 
 router.post('/login', validateBodySchema(login), async (req, res) => {
@@ -61,14 +58,12 @@ router.post('/login', validateBodySchema(login), async (req, res) => {
 			.collection('users')
 			.findOne({ $or: [{ username: identifier }, { email: identifier }] })
 	} catch (err) {
-		res.sendStatus(500)
+		res.status(500).error('global.unexpectedServerError')
 		return
 	}
 
-	// check if a user is found, if we skip this check the passwordvalid will fail with a 500 status
-	// this would inform bad actors that that identifier is not registered
 	if (!user) {
-		res.status(401).json({ msg: 'Login credentials invalid' })
+		res.status(401).error('authentication.login.incorrectIdentifier')
 		return
 	}
 
@@ -76,18 +71,29 @@ router.post('/login', validateBodySchema(login), async (req, res) => {
 	try {
 		passwordValid = await compare(password, user?.password)
 	} catch (err) {
-		res.sendStatus(500)
+		res.status(500).error('global.unexpectedServerError')
 		return
 	}
 
 	if (!passwordValid) {
-		res.status(401).json({ msg: 'Login credentials invalid' })
+		res.status(401).error('authentication.login.incorrectPassword')
 		return
 	}
 
 	const token = signJwt(user._id)
 
-	res.json({ token }).status(200)
+	res.status(200).json({ token, username: user.username, email: user.email })
+})
+
+router.get('/profile', authenticated, async (req, res) => {
+	try {
+		const user = await req.user()
+		const token = signJwt(user._id)
+		res.status(200).json({ token, username: user.username, email: user.email })
+	} catch (err) {
+		logger.error(`Error while fetching profile: ${err}`)
+		res.status(500).error('global.unexpectedServerError')
+	}
 })
 
 export default router

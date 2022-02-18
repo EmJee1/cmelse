@@ -1,104 +1,147 @@
 <template>
-	<div class="wrapper">
-		<div class="login-wrapper">
-			<h1>Brouwerij Hertog Jan</h1>
-
-			<Input
-				:value="username"
-				type="text"
-				placeholder="username or email"
-				border_radius="big"
-				width="654px"
-			/>
-
-			<Input
-				:value="password"
-				type="password"
-				placeholder="password"
-				border_radius="big"
-				width="654px"
-			/>
-
-			<Button shape="round" value="Login" width="220px" />
-
-			<div class="third-party-auth-wrapper">
-				<hr />
-
-				<h4>Or</h4>
-				<h4>sign in with a authentication provider</h4>
-
-				<img
-					title="service currently unavaileble"
-					src="../assets\authProvidersIcons.png"
-					alt="icons"
+	<LoginShapesWhite class="login-page_white-shapes" />
+	<div class="login-page">
+		<main class="login-page_card">
+			<!-- TODO: Get CMS company name from configuration file -->
+			<h2 class="login-page_brand">Brouwerij Hertog Jan</h2>
+			<Form @submit.prevent="onSubmit">
+				<Notice v-if="error" type="error">{{ error }}</Notice>
+				<Input
+					v-model="identifier"
+					ref="identifierInput"
+					autocomplete="username"
+					:label="{ id: 'identifier', text: 'Username or email' }"
+					placeholder="someone@example.com"
+					:validation-schema="Joi.string().required()"
 				/>
-			</div>
+				<Input
+					v-model="password"
+					ref="passwordInput"
+					autocomplete="current-password"
+					:label="{ id: 'password', text: 'Password' }"
+					placeholder="password"
+					type="password"
+					:validation-schema="Joi.string().required()"
+				/>
+				<div class="form_actions">
+					<ButtonPrimary element="button" type="submit">Log in</ButtonPrimary>
+					<ButtonLink element="router-link" to="/forgot-password">
+						Forgot password
+					</ButtonLink>
+				</div>
+			</Form>
+		</main>
+		<div class="login-page_copyright">
+			<h4 class="login-page_copyright-title">cmelse &copy;</h4>
 		</div>
 	</div>
 </template>
 
-<script>
+<script lang="ts" setup>
+import { onBeforeUnmount, onMounted, ref } from 'vue'
+import axios, { AxiosError } from 'axios'
+import Joi from 'joi'
+import useForm from '../composables/use-form'
+import useAuthentication from '../composables/use-authentication'
 import Input from '../components/Input.vue'
-import Button from '../components/Button.vue'
+import Form from '../components/Form.vue'
+import ButtonPrimary from '../components/ButtonPrimary.vue'
+import ButtonLink from '../components/ButtonLink.vue'
+import Notice from '../components/Notice.vue'
+import LoginShapesWhite from '../assets/icons/login-shapes-white.svg'
 
-export default {
-	name: 'login',
-	components: { Input, Button },
+const { login } = useAuthentication()
+
+const identifier = ref('')
+const password = ref('')
+
+const identifierInput = ref<InstanceType<typeof Input>>()
+const passwordInput = ref<InstanceType<typeof Input>>()
+
+const { formValidate, error } = useForm([identifierInput, passwordInput])
+
+onMounted(() => {
+	document.body.style.backgroundColor = '#17141a'
+})
+
+onBeforeUnmount(() => {
+	document.body.style.backgroundColor = '#fff'
+})
+
+const onSubmit = () => {
+	error.value = undefined
+
+	if (!formValidate()) {
+		error.value = 'Please review all fields'
+		return
+	}
+
+	axios
+		.post('/authentication/login', {
+			identifier: identifier.value,
+			password: password.value,
+		})
+		.then(({ data }) => login({ username: data.username, email: data.username }))
+		.catch((err: AxiosError) => {
+			error.value = err.response?.data.err
+		})
 }
 </script>
 
 <style lang="scss" scoped>
-.wrapper {
-	background: url('../assets/login-background.png');
-	background-position: right;
-	background-size: cover;
-	background-repeat: no-repeat;
-	width: 100vw;
-	height: 100vh;
-
-	.login-wrapper {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: space-around;
-		border-radius: $big-radius;
-		position: absolute;
-		top: 100px;
-		left: 100px;
+.login-page {
+	&_card {
+		max-width: 90%;
+		margin: 50px auto auto;
 		background-color: $gray-light;
-		width: 777px;
-		height: 700px;
+		border-radius: $big-radius;
+		padding: 30px 26px;
+		box-shadow: $shadow;
 
-		h1 {
-			margin: 0;
+		@media ($mq-tablet) {
+			padding: 50px;
+			max-width: 600px;
+			margin: 100px;
 		}
+	}
 
-		.third-party-auth-wrapper {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			height: 200px;
+	&_brand {
+		text-align: center;
+		font-weight: 400;
+		font-size: rem(28px);
+		margin: 0;
 
-			hr {
-				width: 654px;
-			}
+		@media ($mq-tablet) {
+			font-size: rem(42px);
+		}
+	}
 
-			h4 {
-				margin: 0;
-				font: normal normal 300 20px Dosis;
-				color: #17141a65;
+	:deep(.form) {
+		@include content-spacing-top;
+	}
 
-				&:first-of-type {
-					position: absolute;
-					top: 468px;
-					background: $gray-light;
-					padding: 0 12px;
-				}
-			}
+	&_copyright {
+		position: fixed;
+		bottom: 0;
+		right: 0;
 
-			img {
-				margin: 35px 0 0 0;
-			}
+		&-title {
+			margin-bottom: 10px;
+			margin-right: 20px;
+			font-size: 6vw;
+			color: $black;
+		}
+	}
+
+	&_white-shapes {
+		position: fixed;
+		bottom: 0;
+		right: 0;
+		z-index: -1;
+		max-height: 50%;
+
+		@media ($mq-tablet) {
+			max-height: none;
 		}
 	}
 }

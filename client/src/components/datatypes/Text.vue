@@ -35,11 +35,14 @@ const props = defineProps<{
 	multiline?: boolean
 }>()
 
-const { error, onBlur } = useValidation(props.validationSchema)
+const { error, valid, onBlur, onInput: validationOnInput } = useValidation(props.validationSchema)
 
 const onInput = (e: Event) => {
+	validationOnInput(e as InputEvent)
 	emit('update:modelValue', (e.target as HTMLInputElement).value)
 }
+
+defineExpose({ valid })
 </script>
 
 <style lang="scss" scoped>

@@ -11,7 +11,7 @@ models.forEach(model => {
 	router.get(model.cmsMetadata.endpoint, async (req, res) => {
 		const data = await db.collection(model.cmsMetadata.collection).find().toArray()
 
-		res.json({ data })
+		res.status(200).json({ data })
 	})
 
 	router.post(
@@ -28,7 +28,7 @@ models.forEach(model => {
 
 				res.sendStatus(204)
 			} catch (err) {
-				res.status(500).json({ msg: 'Insertion error' })
+				res.status(500).error('global.unexpectedServerError')
 			}
 		}
 	)
@@ -50,7 +50,7 @@ models.forEach(model => {
 						{ $set: { ...req.body, updatedAt: new Date() } }
 					)
 			} catch (err) {
-				res.status(500).json({ err: 'Update error' })
+				res.status(500).error('global.unexpectedServerError')
 				return
 			}
 
@@ -77,7 +77,7 @@ models.forEach(model => {
 					.collection(model.cmsMetadata.collection)
 					.deleteOne({ _id: modelToDelete })
 			} catch (err) {
-				res.status(500).json({ msg: 'Deletion error' })
+				res.status(500).error('global.unexpectedServerError')
 				return
 			}
 

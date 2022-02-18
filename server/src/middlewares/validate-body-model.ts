@@ -46,7 +46,7 @@ const validateBodyModel = (model: Model, emptyValueIsValid?: boolean) => {
 		})
 
 		if (!requestValid) {
-			res.json({ err: errorMessage }).status(400)
+			res.status(400).json({ err: errorMessage })
 			return
 		}
 

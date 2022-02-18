@@ -1,67 +1,47 @@
 <template>
-	<div :style="`width: ${width};`" class="input-wrapper">
+	<div class="form_input">
+		<label v-if="label" class="form_label" :for="label?.id">{{ label.text }}</label>
 		<input
-			:name="name"
-			:value="value"
-			:type="type"
+			:autocomplete="autocomplete"
+			class="datatype-input"
+			:id="label?.id"
 			:placeholder="placeholder"
-			:style="`border-radius: ${border_radius == 'big' ? '42px' : '10px'};`"
+			:type="type"
+			:value="modelValue"
+			@input="onInput"
+			@blur="onBlur"
 		/>
+		<ErrorText v-if="error">{{ error }}</ErrorText>
 	</div>
-	<div v-show="error" class="error">{{ error }}</div>
 </template>
 
-<script>
-export default {
-	name: 'input',
-	props: {
-		value: {
-			type: String,
-			default: '',
-		},
-		name: {
-			type: String,
-			default: '',
-		},
-		type: {
-			type: String,
-			default: '',
-		},
-		placeholder: {
-			type: String,
-			default: '',
-		},
-		error: {
-			type: String,
-			default: '',
-		},
-		border_radius: {
-			type: String,
-			default: 'small',
-		},
-		width: {
-			type: String,
-			default: '100px',
-		},
-	},
+<script lang="ts" setup>
+import { AnySchema } from 'joi'
+import useValidation from '../composables/use-validation'
+import ErrorText from './ErrorText.vue'
+
+const emit = defineEmits(['update:modelValue'])
+
+interface Label {
+	text: string
+	id: string
 }
+
+const props = defineProps<{
+	modelValue: string
+	validationSchema: AnySchema
+	autocomplete?: string
+	label?: Label
+	placeholder?: string
+	type?: string
+}>()
+
+const { error, valid, onBlur, onInput: validationOnInput } = useValidation(props.validationSchema)
+
+const onInput = (e: Event) => {
+	validationOnInput(e as InputEvent)
+	emit('update:modelValue', (e.target as HTMLInputElement).value)
+}
+
+defineExpose({ valid })
 </script>
-
-<style lang="scss" scoped>
-input {
-	display: flex;
-	border: 2px solid white;
-	box-shadow: 0px 3px 6px #00000029;
-	padding: 15px 0 20px 30px;
-	font-size: 150%;
-	width: 100%;
-
-	&::placeholder {
-		position: absolute;
-		left: 30px;
-		top: 7px;
-		color: #a7a7a7;
-		font: normal normal bold 19px/25px Dosis;
-	}
-}
-</style>

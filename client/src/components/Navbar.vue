@@ -16,6 +16,10 @@
 				</router-link>
 			</li>
 		</ul>
+		<button class="navbar_item" @click="logout">
+			<i class="bi bi-box-arrow-right" />
+			Log out
+		</button>
 	</nav>
 	<NavbarToggle v-model="expanded" />
 </template>
@@ -24,6 +28,9 @@
 import { ref } from 'vue'
 import models from 'models'
 import NavbarToggle from './NavbarToggle.vue'
+import useAuthentication from '../composables/use-authentication'
+
+const { logout } = useAuthentication()
 
 const expanded = ref(false)
 </script>
@@ -46,12 +53,15 @@ $navbar-padding-left: 30px;
 	&_subitem {
 		color: $white;
 		text-decoration: none;
+		border-color: transparent;
+		background: transparent;
 		font-weight: 500;
 		font-size: rem(16px);
 		line-height: 1.4;
 		display: flex;
 		gap: 8px;
 		margin-bottom: 12px;
+		cursor: pointer;
 	}
 
 	&_subitems {

@@ -1,16 +1,13 @@
 body {
 	margin: 0;
 	font-family: 'Dosis', sans-serif;
-
-	@media ($mq-tablet) {
-		margin-left: $navbar-width;
-	}
 }
 
 *,
 *:before,
 *:after {
 	box-sizing: border-box;
+	font-family: inherit;
 }
 
 .datatype-input {
