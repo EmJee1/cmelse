@@ -9,27 +9,8 @@
 	</div>
 	<Card>
 		<div class="row">
-			<div class="col">
-				<table>
-					<thead>
-						<tr>
-							<th v-for="item in tableItems" :key="item">
-								{{ model[item].options.displayTitle }}
-							</th>
-							<th>Created at</th>
-						</tr>
-					</thead>
-					<tbody v-if="rows.length">
-						<tr v-for="(row, index) in rows" :key="index">
-							<td v-for="item in tableItems" :key="item">
-								{{ row[item] }}
-							</td>
-							<td>
-								{{ new Date(row.createdAt).toLocaleString() }}
-							</td>
-						</tr>
-					</tbody>
-				</table>
+			<div>
+				<Table :data="tableData" />
 			</div>
 		</div>
 	</Card>
@@ -44,10 +25,11 @@ import { Model } from 'models/interfaces/interfaces'
 import getModelProperties from '../helpers/get-model-properties'
 import Card from '../components/Card.vue'
 import Loader from '../components/Loader.vue'
+import Table from '../components/Table.vue'
 
 const route = useRoute()
 const model = ref<Model>()
-const rows = ref<{ [key: string]: unknown }[]>([])
+const res = ref<{ [key: string]: unknown }[]>()
 
 onMounted(() => {
 	model.value = models.find(m => m.cmsMetadata.collection === route.params.model)
@@ -65,63 +47,32 @@ onMounted(() => {
 	axios
 		.get(`/models${model.value.cmsMetadata.endpoint}`)
 		.then(({ data }) => {
-			rows.value = data.data
+			res.value = data.data
 		})
-		.catch(err => console.error(err))
+		.catch(err => {
+			// TODO: show unexpected error
+			console.error(err)
+		})
 })
 
-const tableItems = computed(() => {
-	if (!model.value) {
-		return null
+const tableData = computed(() => {
+	if (!res.value || !model.value) {
+		return undefined
 	}
 
-	return getModelProperties(model.value).slice(0, 3)
+	// preview the first three model properties and created and updated date-time
+	const previewedModelProperties = getModelProperties(model.value).slice(0, 2)
+
+	return res.value?.map(row => ({
+		[previewedModelProperties[0]]: row[previewedModelProperties[0]],
+		[previewedModelProperties[1]]: row[previewedModelProperties[1]],
+		createdAt: row.createdAt,
+	}))
 })
 </script>
 
 <style lang="scss" scoped>
 :deep(.card) {
 	max-width: 100%;
-}
-
-table {
-	width: 100%;
-	border-collapse: collapse;
-}
-
-thead {
-	margin-bottom: 20px;
-}
-
-tbody tr {
-	font-weight: 400;
-	font-size: rem(14px);
-
-	td {
-		background-color: $gray-light;
-	}
-
-	td:first-child {
-		border-radius: 90px 0 0 90px;
-	}
-
-	td:last-child {
-		border-radius: 0 90px 90px 0;
-	}
-}
-
-th {
-	font-weight: 600;
-	font-size: rem(16px);
-	padding-bottom: 10px;
-}
-
-td {
-	text-align: center;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	max-width: 20rem;
-	padding: 15px 8px;
 }
 </style>
