@@ -78,11 +78,11 @@ const computedColumns = computed<null | IColumns[]>(() => {
 		background-color: $gray-light;
 
 		&:first-child {
-			border-radius: 90px 0 0 90px;
+			border-radius: $small-radius 0 0 $small-radius;
 		}
 
 		&:last-child {
-			border-radius: 0 90px 90px 0;
+			border-radius: 0 $small-radius $small-radius 0;
 		}
 	}
 }
