@@ -36,7 +36,8 @@ const columns = computed(() => {
 <style lang="scss" scoped>
 .table {
 	width: 100%;
-	border-collapse: collapse;
+	border-collapse: separate;
+	border-spacing: 0 10px;
 
 	&_data {
 		font-size: rem(16px);
@@ -46,7 +47,7 @@ const columns = computed(() => {
 		text-overflow: ellipsis;
 		white-space: nowrap;
 		max-width: 20rem;
-		padding: 15px 8px;
+		padding: 10px 8px;
 	}
 
 	&_head &_data {
@@ -57,6 +58,7 @@ const columns = computed(() => {
 	&_body &_row {
 		font-weight: 400;
 		font-size: rem(14px);
+		margin-bottom: 8px;
 	}
 
 	&_body &_data {
