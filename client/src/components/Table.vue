@@ -1,5 +1,5 @@
 <template>
-	<table class="table" v-if="data">
+	<table v-if="data" class="table" :class="{ table_clickable: clickableProperty }">
 		<thead class="table_head">
 			<tr class="table_row">
 				<th v-for="column in computedColumns" :key="column" class="table_data">
@@ -8,7 +8,12 @@
 			</tr>
 		</thead>
 		<tbody class="table_body">
-			<tr v-for="(row, index) in data" :key="index" class="table_row">
+			<tr
+				v-for="(row, index) in data"
+				:key="index"
+				class="table_row"
+				@click="onRowClick(row[clickableProperty])"
+			>
 				<td v-for="column in computedColumns" :key="column.key" class="table_data">
 					{{ row[column.key] }}
 				</td>
@@ -28,7 +33,11 @@ interface IColumns {
 const props = defineProps<{
 	data?: { [key: string]: unknown }[]
 	columns?: IColumns[]
+	// if defined, rows are clickable and emit the 'row:clicked' event with the value of this prop key
+	clickableProperty?: string
 }>()
+
+const emit = defineEmits(['row:click'])
 
 const computedColumns = computed<null | IColumns[]>(() => {
 	if (props.columns) {
@@ -44,6 +53,14 @@ const computedColumns = computed<null | IColumns[]>(() => {
 		key,
 	}))
 })
+
+const onRowClick = (property: unknown) => {
+	if (!props.clickableProperty) {
+		return
+	}
+
+	emit('row:click', property)
+}
 </script>
 
 <style lang="scss" scoped>
@@ -72,6 +89,16 @@ const computedColumns = computed<null | IColumns[]>(() => {
 		font-weight: 400;
 		font-size: rem(14px);
 		margin-bottom: 8px;
+		border-radius: $small-radius;
+	}
+
+	&_clickable &_body &_row {
+		transition: box-shadow $transition;
+		cursor: pointer;
+
+		&:hover {
+			box-shadow: $shadow;
+		}
 	}
 
 	&_body &_data {
