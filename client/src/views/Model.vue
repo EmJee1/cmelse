@@ -59,9 +59,8 @@ onMounted(() => {
 		.then(({ data }) => {
 			res.value = data.data
 		})
-		.catch(err => {
+		.catch(() => {
 			// TODO: show unexpected error
-			console.error(err)
 		})
 })
 
