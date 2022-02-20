@@ -60,7 +60,7 @@ const tableData = computed(() => {
 		return undefined
 	}
 
-	// preview the first three model properties and created and updated date-time
+	// preview the first two model properties plus the created and updated date-time
 	const previewedModelProperties = getModelProperties(model.value).slice(0, 2)
 
 	return res.value?.map(row => ({
