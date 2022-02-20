@@ -1,15 +1,15 @@
 <template>
 	<table class="table" v-if="data">
-		<thead>
+		<thead class="table_head">
 			<tr class="table_row">
-				<th v-for="column in columns" :key="column" class="table_head-item">
+				<th v-for="column in columns" :key="column" class="table_data">
 					{{ column }}
 				</th>
 			</tr>
 		</thead>
 		<tbody class="table_body">
 			<tr v-for="(row, index) in data" :key="index" class="table_row">
-				<td v-for="column in columns" :key="column">
+				<td v-for="column in columns" :key="column" class="table_data">
 					{{ row[column] }}
 				</td>
 			</tr>
@@ -38,7 +38,7 @@ const columns = computed(() => {
 	width: 100%;
 	border-collapse: collapse;
 
-	&_head-item {
+	&_head &_data {
 		font-weight: 600;
 		font-size: rem(16px);
 		padding-bottom: 10px;
@@ -56,17 +56,17 @@ const columns = computed(() => {
 	&_body &_row {
 		font-weight: 400;
 		font-size: rem(14px);
+	}
 
-		.table_data {
-			background-color: $gray-light;
+	&_body &_data {
+		background-color: $gray-light;
 
-			:first-child {
-				border-radius: 90px 0 0 90px;
-			}
+		&:first-child {
+			border-radius: 90px 0 0 90px;
+		}
 
-			:last-child {
-				border-radius: 0 90px 90px 0;
-			}
+		&:last-child {
+			border-radius: 0 90px 90px 0;
 		}
 	}
 }
