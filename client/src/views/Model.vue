@@ -6,14 +6,14 @@
 				<h1>{{ model.cmsMetadata.title }}</h1>
 			</div>
 		</div>
-	</div>
-	<Card>
-		<div class="row">
-			<div>
-				<Table :data="tableData" />
+		<Card>
+			<div class="row">
+				<div class="col">
+					<Table :data="tableData" />
+				</div>
 			</div>
-		</div>
-	</Card>
+		</Card>
+	</div>
 </template>
 
 <script lang="ts" setup>
