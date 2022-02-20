@@ -38,19 +38,20 @@ const columns = computed(() => {
 	width: 100%;
 	border-collapse: collapse;
 
-	&_head &_data {
-		font-weight: 600;
-		font-size: rem(16px);
-		padding-bottom: 10px;
-	}
-
 	&_data {
+		font-size: rem(16px);
+		font-weight: 300;
 		text-align: center;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
 		max-width: 20rem;
 		padding: 15px 8px;
+	}
+
+	&_head &_data {
+		font-weight: 600;
+		padding-bottom: 10px;
 	}
 
 	&_body &_row {
