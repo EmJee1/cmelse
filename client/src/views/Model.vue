@@ -19,6 +19,9 @@
 			</div>
 		</Card>
 	</div>
+	<Modal v-if="selected" :title="model.cmsMetadata.title" @close="selected = undefined">
+		<h4>Hello, Modal!</h4>
+	</Modal>
 </template>
 
 <script lang="ts" setup>
@@ -31,9 +34,11 @@ import getModelProperties from '../helpers/get-model-properties'
 import Card from '../components/Card.vue'
 import Loader from '../components/Loader.vue'
 import Table from '../components/Table.vue'
+import Modal from '../components/Modal.vue'
 
 const route = useRoute()
 const model = ref<Model>()
+const selected = ref<{ [key: string]: unknown }>()
 const res = ref<{ [key: string]: unknown }[]>()
 
 onMounted(() => {
@@ -94,7 +99,12 @@ const tableData = computed(() => {
 })
 
 const onRowClick = (id: string) => {
-	// TODO: open the editing modal for corresponding model ID
+	if (!res.value) {
+		return
+	}
+
+	const rowValues = res.value.find(row => row._id === id)
+	selected.value = rowValues
 }
 </script>
 
