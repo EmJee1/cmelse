@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, watch } from 'vue'
+import { computed } from 'vue'
 
 interface IColumns {
 	displayName: string
@@ -44,11 +44,6 @@ const computedColumns = computed<null | IColumns[]>(() => {
 		key,
 	}))
 })
-
-watch(
-	() => computedColumns.value,
-	curr => console.log(curr)
-)
 </script>
 
 <style lang="scss" scoped>
