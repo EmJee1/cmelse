@@ -9,7 +9,12 @@
 		<Card>
 			<div class="row">
 				<div class="col">
-					<Table :data="tableData?.rows" :columns="tableData?.columns" />
+					<Table
+						:data="tableData?.rows"
+						:columns="tableData?.columns"
+						clickable-property="_id"
+						@row:click="onRowClick"
+					/>
 				</div>
 			</div>
 		</Card>
@@ -67,6 +72,7 @@ const tableData = computed(() => {
 		[previewedModelProperties[0]]: row[previewedModelProperties[0]],
 		[previewedModelProperties[1]]: row[previewedModelProperties[1]],
 		createdAt: row.createdAt,
+		_id: row._id,
 	}))
 
 	const columns = [
@@ -86,6 +92,10 @@ const tableData = computed(() => {
 
 	return { rows, columns }
 })
+
+const onRowClick = (id: string) => {
+	// TODO: open the editing modal for corresponding model ID
+}
 </script>
 
 <style lang="scss" scoped>
