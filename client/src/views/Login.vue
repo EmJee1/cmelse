@@ -65,7 +65,7 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => {
-	document.body.style.backgroundColor = '#fff'
+	document.body.style.backgroundColor = '#f4f4f4'
 })
 
 const onSubmit = () => {
