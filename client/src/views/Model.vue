@@ -9,7 +9,7 @@
 		<Card>
 			<div class="row">
 				<div class="col">
-					<Table :data="tableData" />
+					<Table :data="tableData?.rows" :columns="tableData?.columns" />
 				</div>
 			</div>
 		</Card>
@@ -63,11 +63,28 @@ const tableData = computed(() => {
 	// preview the first two model properties plus the created and updated date-time
 	const previewedModelProperties = getModelProperties(model.value).slice(0, 2)
 
-	return res.value?.map(row => ({
+	const rows = res.value?.map(row => ({
 		[previewedModelProperties[0]]: row[previewedModelProperties[0]],
 		[previewedModelProperties[1]]: row[previewedModelProperties[1]],
 		createdAt: row.createdAt,
 	}))
+
+	const columns = [
+		{
+			displayName: model.value[previewedModelProperties[0]].options.displayTitle,
+			key: previewedModelProperties[0],
+		},
+		{
+			displayName: model.value[previewedModelProperties[1]].options.displayTitle,
+			key: previewedModelProperties[1],
+		},
+		{
+			displayName: 'Created at',
+			key: 'createdAt',
+		},
+	]
+
+	return { rows, columns }
 })
 </script>
 
