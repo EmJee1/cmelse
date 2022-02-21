@@ -2,7 +2,9 @@
 	<Form class="model-form" @submit.prevent="onSubmit">
 		<Notice v-if="error" type="error">{{ error }}</Notice>
 		<div v-for="property in modelProperties" :key="property" class="model-form_item">
-			<p class="model-form_item-title">{{ model[property].options.displayTitle }}</p>
+			<p class="model-form_item-title">
+				{{ model[property].options.displayTitle }}
+			</p>
 			<div class="model-form_item-input">
 				<Text
 					v-if="model[property].datatype === Datatype.Text"
@@ -30,7 +32,9 @@
 			</div>
 		</div>
 		<div class="form_actions">
-			<ButtonIcon icon="bi-save" error type="button">Discard</ButtonIcon>
+			<ButtonIcon icon="bi-save" error type="button" @click="$emit('close')">
+				Discard
+			</ButtonIcon>
 			<ButtonIcon icon="bi-save" type="submit">Save</ButtonIcon>
 		</div>
 	</Form>
@@ -38,6 +42,7 @@
 
 <script lang="ts" setup>
 import { computed, onBeforeMount, ref } from 'vue'
+import axios from 'axios'
 import { Datatype } from 'models'
 import { Model } from 'models/interfaces/interfaces'
 import { IDatatype } from 'datatypes/interfaces/interfaces'
@@ -50,10 +55,12 @@ import Toggle from '../datatypes/Toggle.vue'
 import Enum from '../datatypes/Enum.vue'
 import ButtonIcon from '../ButtonIcon.vue'
 import Notice from '../Notice.vue'
-import axios from 'axios'
+
+const emit = defineEmits(['close'])
 
 const props = defineProps<{
 	model: Model
+	id?: string
 	initialValues?: { [key: string]: unknown }
 }>()
 
@@ -83,22 +90,31 @@ const getDefaultValue = (datatype: IDatatype) => {
 }
 
 onBeforeMount(() => {
-	if (props.initialValues) {
-		formValues.value = props.initialValues
-		return
-	}
-
 	modelProperties.value.forEach(property => {
-		formValues.value[property] = getDefaultValue(props.model[property] as IDatatype)
+		formValues.value[property] =
+			props.initialValues?.[property] ?? getDefaultValue(props.model[property] as IDatatype)
 	})
 })
 
 const onSubmit = () => {
+	const { endpoint } = props.model.cmsMetadata
+
+	if (props.id) {
+		axios
+			.patch(`/models${endpoint}/${props.id}`, formValues.value)
+			.then(() => emit('close'))
+			.catch(err => {
+				error.value = err.response?.data.err ?? 'Something went wrong'
+			})
+
+		return
+	}
+
 	axios
-		.post(`/models${props.model.cmsMetadata.endpoint}`, formValues.value)
-		.then(() => console.log('Insert succes!'))
+		.post(`/models${endpoint}`, formValues.value)
+		.then(() => emit('close'))
 		.catch(err => {
-			error.value = err.response?.data.err
+			error.value = err.response?.data.err ?? 'Something went wrong'
 		})
 }
 </script>

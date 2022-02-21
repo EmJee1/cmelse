@@ -2,8 +2,9 @@
 	<Loader fullscreen v-if="!model" />
 	<div class="container" v-else>
 		<div class="row">
-			<div class="col">
+			<div class="col model_head">
 				<h1>{{ model.cmsMetadata.title }}</h1>
+				<ButtonIcon icon="bi bi-plus" @click="newModel = true">Add</ButtonIcon>
 			</div>
 		</div>
 		<Card>
@@ -19,8 +20,13 @@
 			</div>
 		</Card>
 	</div>
-	<Modal v-if="selected" :title="model.cmsMetadata.title" @close="selected = undefined">
-		<ModelForm :model="model" :initial-values="selected" />
+	<Modal v-if="selected || newModel" :title="model.cmsMetadata.title" @close="closeModal">
+		<ModelForm
+			:model="model"
+			:initial-values="selected"
+			:id="selected?._id"
+			@close="closeModal"
+		/>
 	</Modal>
 </template>
 
@@ -36,9 +42,11 @@ import Loader from '../components/Loader.vue'
 import Table from '../components/Table.vue'
 import Modal from '../components/Modal.vue'
 import ModelForm from '../components/Model/ModelForm.vue'
+import ButtonIcon from '../components/ButtonIcon.vue'
 
 const route = useRoute()
 const model = ref<Model>()
+const newModel = ref(false)
 const selected = ref<{ [key: string]: unknown }>()
 const res = ref<{ [key: string]: unknown }[]>()
 
@@ -105,10 +113,21 @@ const onRowClick = (id: string) => {
 
 	selected.value = res.value.find(row => row._id === id)
 }
+
+const closeModal = () => {
+	newModel.value = false
+	selected.value = undefined
+}
 </script>
 
 <style lang="scss" scoped>
 :deep(.card) {
 	max-width: 100%;
+}
+
+.model_head {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 </style>
