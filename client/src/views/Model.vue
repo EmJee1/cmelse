@@ -20,7 +20,7 @@
 		</Card>
 	</div>
 	<Modal v-if="selected" :title="model.cmsMetadata.title" @close="selected = undefined">
-		<ModelForm :model="model" />
+		<ModelForm :model="model" :initial-values="selected" />
 	</Modal>
 </template>
 
