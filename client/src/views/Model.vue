@@ -20,7 +20,7 @@
 		</Card>
 	</div>
 	<Modal v-if="selected" :title="model.cmsMetadata.title" @close="selected = undefined">
-		<h4>Hello, Modal!</h4>
+		<ModelForm :model="model" />
 	</Modal>
 </template>
 
@@ -35,6 +35,7 @@ import Card from '../components/Card.vue'
 import Loader from '../components/Loader.vue'
 import Table from '../components/Table.vue'
 import Modal from '../components/Modal.vue'
+import ModelForm from '../components/Model/ModelForm.vue'
 
 const route = useRoute()
 const model = ref<Model>()
@@ -102,8 +103,7 @@ const onRowClick = (id: string) => {
 		return
 	}
 
-	const rowValues = res.value.find(row => row._id === id)
-	selected.value = rowValues
+	selected.value = res.value.find(row => row._id === id)
 }
 </script>
 
