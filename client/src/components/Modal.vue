@@ -54,8 +54,10 @@ onBeforeUnmount(() => {
 	background-color: $gray-light;
 	width: 100%;
 	max-width: 900px;
-	padding: 20px 40px;
+	padding: 30px;
 	border-radius: $small-radius;
+	max-height: 90%;
+	overflow-y: scroll;
 
 	&_header {
 		&_title {
@@ -67,10 +69,6 @@ onBeforeUnmount(() => {
 			color: $gray-dark;
 			margin: 6px 0 0 0;
 		}
-	}
-
-	&_body {
-		margin-bottom: 30px;
 	}
 }
 </style>

@@ -20,13 +20,13 @@ models.forEach(model => {
 		validateBodyModel(model),
 		async (req, res) => {
 			try {
-				await db.collection(model.cmsMetadata.collection).insertOne({
+				const insertResult = await db.collection(model.cmsMetadata.collection).insertOne({
 					...req.body,
 					createdAt: new Date(),
 					updatedAt: new Date(),
 				})
 
-				res.sendStatus(204)
+				res.status(201).json({ id: insertResult.insertedId })
 			} catch (err) {
 				res.status(500).error('global.unexpectedServerError')
 			}

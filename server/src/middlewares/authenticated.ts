@@ -9,14 +9,14 @@ import { verifyJwt } from '../utils/jsonwebtoken'
  */
 const authenticated = async (req: Request, res: Response, next: NextFunction) => {
 	if (!req.headers.authorization) {
-		res.status(401).json({ err: 'Authentication token is required' })
+		res.status(401).error('authentication.token.notSent')
 		return
 	}
 
 	const [protocol, token] = req.headers.authorization.split(' ')
 
 	if (protocol !== 'Bearer') {
-		res.status(401).json({ err: 'Token should be of type bearer' })
+		res.status(401).error('authentication.token.protocolBearer')
 		return
 	}
 
@@ -24,7 +24,7 @@ const authenticated = async (req: Request, res: Response, next: NextFunction) =>
 		const userId = verifyJwt(token)
 		req.user = () => db.collection('users').findOne<IUser>({ _id: userId })
 	} catch (err) {
-		res.status(401).json({ err: 'The token is not valid' })
+		res.status(401).error('authentication.token.invalid')
 		return
 	}
 

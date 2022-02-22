@@ -9,7 +9,7 @@
 const emit = defineEmits(['update:modelValue'])
 
 defineProps<{
-	modelValue: boolean
+	modelValue?: boolean
 }>()
 
 const onInput = (e: Event) => {

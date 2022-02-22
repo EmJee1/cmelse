@@ -10,6 +10,11 @@ const localeEn: LocaleMessages = {
 			incorrectIdentifier: 'We do not have an account for that username or email',
 			incorrectPassword: 'The supplied password is not valid',
 		},
+		token: {
+			notSent: 'Authentication token is required',
+			protocolBearer: 'Token should be of type bearer',
+			invalid: 'The token is not valid',
+		},
 	},
 	assets: {
 		uploadNoValidAssetInBody: 'Did not receive a valid asset to upload',
