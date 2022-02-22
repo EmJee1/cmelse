@@ -6,29 +6,7 @@
 				{{ model[property].options.displayTitle }}
 			</p>
 			<div class="model-form_item-input">
-				<Text
-					v-if="model[property].datatype === Datatype.Text"
-					v-model="formValues[property]"
-					:validation-schema="model[property].options.validationSchema"
-					:multiline="model[property].options.multiline"
-				/>
-				<Numeral
-					v-if="model[property].datatype === Datatype.Numeral"
-					v-model="formValues[property]"
-					:validation-schema="model[property].options.validationSchema"
-				/>
-				<Toggle
-					v-if="model[property].datatype === Datatype.Toggle"
-					v-model="formValues[property]"
-					:validation-schema="model[property].options.validationSchema"
-				/>
-				<Enum
-					v-if="model[property].datatype === Datatype.Enum"
-					v-model="formValues[property]"
-					:validation-schema="model[property].options.validationSchema"
-					:items="model[property].options.items"
-					:name="property"
-				/>
+				<Datatype :datatype="model[property]" v-model="formValues[property]" />
 			</div>
 		</div>
 		<div class="form_actions">
@@ -43,16 +21,12 @@
 <script lang="ts" setup>
 import { computed, onBeforeMount, ref } from 'vue'
 import axios from 'axios'
-import { Datatype } from 'models'
 import { Model } from 'models/interfaces/interfaces'
 import { IDatatype } from 'datatypes/interfaces/interfaces'
 import { IEnumOptions } from 'datatypes/Enum'
 import getModelProperties from '../../helpers/get-model-properties'
 import Form from '../Form.vue'
-import Text from '../datatypes/Text.vue'
-import Numeral from '../datatypes/Numeral.vue'
-import Toggle from '../datatypes/Toggle.vue'
-import Enum from '../datatypes/Enum.vue'
+import Datatype from '../datatypes/Datatype.vue'
 import ButtonIcon from '../ButtonIcon.vue'
 import Notice from '../Notice.vue'
 
