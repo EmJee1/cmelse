@@ -125,13 +125,10 @@ const closeModal = (newItem?: { [key: string]: unknown }) => {
 	const indexToUpdate = res.value.findIndex(item => item._id === newItem._id)
 
 	if (indexToUpdate !== -1) {
-		console.log('Found index:', indexToUpdate)
-		console.log('Updated to:', newItem)
 		res.value[indexToUpdate] = newItem
 		return
 	}
 
-	console.log('Created:', newItem)
 	res.value.push(newItem)
 }
 </script>
