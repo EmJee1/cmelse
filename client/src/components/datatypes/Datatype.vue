@@ -3,7 +3,7 @@
 		v-if="datatype.datatype === Datatype.Text"
 		v-bind="$attrs"
 		:validation-schema="datatype.options.validationSchema"
-		:multiline="(datatype.options as ITextOptions).multiline"
+		:multiline="datatype.options.multiline"
 	/>
 	<Numeral
 		v-if="datatype.datatype === Datatype.Numeral"
@@ -19,15 +19,13 @@
 		v-if="datatype.datatype === Datatype.Enum"
 		v-bind="$attrs"
 		:validation-schema="datatype.options.validationSchema"
-		:items="(datatype.options as IEnumOptions).items"
+		:items="datatype.options.items"
 		:name="datatype.options.databaseKey!"
 	/>
 </template>
 
 <script lang="ts" setup>
 import { IDatatype } from 'datatypes/interfaces/interfaces'
-import { ITextOptions } from 'datatypes/Text'
-import { IEnumOptions } from 'datatypes/Enum'
 import { Datatype } from 'models'
 import Text from './Text.vue'
 import Numeral from './Numeral.vue'
