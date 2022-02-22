@@ -19,7 +19,7 @@ import ErrorText from '../ErrorText.vue'
 const emit = defineEmits(['update:modelValue'])
 
 const props = defineProps<{
-	modelValue: number
+	modelValue?: number
 	validationSchema: AnySchema
 }>()
 

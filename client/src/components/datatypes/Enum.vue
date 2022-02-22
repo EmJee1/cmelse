@@ -22,7 +22,7 @@
 const emit = defineEmits(['update:modelValue'])
 
 defineProps<{
-	modelValue: string
+	modelValue?: string
 	name: string
 	items: string[]
 }>()

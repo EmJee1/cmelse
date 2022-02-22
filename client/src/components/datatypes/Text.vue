@@ -30,7 +30,7 @@ import ErrorText from '../ErrorText.vue'
 const emit = defineEmits(['update:modelValue'])
 
 const props = defineProps<{
-	modelValue: string
+	modelValue?: string
 	validationSchema: AnySchema
 	multiline?: boolean
 }>()
