@@ -8,6 +8,11 @@ type LocaleMessages = {
 			incorrectIdentifier: string
 			incorrectPassword: string
 		}
+		token: {
+			notSent: string
+			protocolBearer: string
+			invalid: string
+		}
 	}
 	assets: {
 		uploadNoValidAssetInBody: string
