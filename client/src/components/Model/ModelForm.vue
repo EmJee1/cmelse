@@ -3,10 +3,13 @@
 		<Notice v-if="error" type="error">{{ error }}</Notice>
 		<div v-for="property in modelProperties" :key="property" class="model-form_item">
 			<p class="model-form_item-title">
-				{{ model[property].options.displayTitle }}
+				{{ (model[property] as IDatatype).options.displayTitle }}
 			</p>
 			<div class="model-form_item-input">
-				<Datatype :datatype="model[property]" v-model="formValues[property]" />
+				<Datatype
+					:datatype="(model[property] as IDatatype)"
+					v-model="formValues[property]"
+				/>
 			</div>
 		</div>
 		<div class="form_actions">

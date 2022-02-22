@@ -20,11 +20,15 @@
 			</div>
 		</Card>
 	</div>
-	<Modal v-if="selected || newModel" :title="model.cmsMetadata.title" @close="closeModal">
+	<Modal
+		v-if="(selected || newModel) && model"
+		:title="model?.cmsMetadata.title"
+		@close="closeModal"
+	>
 		<ModelForm
 			:model="model"
 			:initial-values="selected"
-			:id="selected?._id"
+			:id="selected?._id as string"
 			@close="closeModal"
 		/>
 	</Modal>
@@ -36,6 +40,7 @@ import { useRoute } from 'vue-router'
 import { computed, onMounted, ref } from 'vue'
 import models from 'models'
 import { Model } from 'models/interfaces/interfaces'
+import { IDatatype } from 'datatypes/interfaces/interfaces'
 import getModelProperties from '../helpers/get-model-properties'
 import Card from '../components/Card.vue'
 import Loader from '../components/Loader.vue'
@@ -90,11 +95,13 @@ const tableData = computed(() => {
 
 	const columns = [
 		{
-			displayName: model.value[previewedModelProperties[0]].options.displayTitle,
+			displayName: (model.value[previewedModelProperties[0]] as IDatatype).options
+				.displayTitle,
 			key: previewedModelProperties[0],
 		},
 		{
-			displayName: model.value[previewedModelProperties[1]].options.displayTitle,
+			displayName: (model.value[previewedModelProperties[1]] as IDatatype).options
+				.displayTitle,
 			key: previewedModelProperties[1],
 		},
 		{

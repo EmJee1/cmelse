@@ -2,7 +2,7 @@
 	<table v-if="data" class="table" :class="{ table_clickable: clickableProperty }">
 		<thead class="table_head">
 			<tr class="table_row">
-				<th v-for="column in computedColumns" :key="column" class="table_data">
+				<th v-for="column in computedColumns" :key="column.key" class="table_data">
 					{{ column.displayName }}
 				</th>
 			</tr>
@@ -12,7 +12,7 @@
 				v-for="(row, index) in data"
 				:key="index"
 				class="table_row"
-				@click="onRowClick(row[clickableProperty])"
+				@click="onRowClick(row)"
 			>
 				<td v-for="column in computedColumns" :key="column.key" class="table_data">
 					{{ row[column.key] }}
@@ -54,12 +54,12 @@ const computedColumns = computed<null | IColumns[]>(() => {
 	}))
 })
 
-const onRowClick = (property: unknown) => {
+const onRowClick = (row: { [key: string]: unknown }) => {
 	if (!props.clickableProperty) {
 		return
 	}
 
-	emit('row:click', property)
+	emit('row:click', row[props.clickableProperty])
 }
 </script>
 
