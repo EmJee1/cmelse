@@ -114,9 +114,25 @@ const onRowClick = (id: string) => {
 	selected.value = res.value.find(row => row._id === id)
 }
 
-const closeModal = () => {
+const closeModal = (newItem?: { [key: string]: unknown }) => {
 	newModel.value = false
 	selected.value = undefined
+
+	if (!res.value || !newItem) {
+		return
+	}
+
+	const indexToUpdate = res.value.findIndex(item => item._id === newItem._id)
+
+	if (indexToUpdate !== -1) {
+		console.log('Found index:', indexToUpdate)
+		console.log('Updated to:', newItem)
+		res.value[indexToUpdate] = newItem
+		return
+	}
+
+	console.log('Created:', newItem)
+	res.value.push(newItem)
 }
 </script>
 

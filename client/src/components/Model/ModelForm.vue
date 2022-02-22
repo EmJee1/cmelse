@@ -102,7 +102,7 @@ const onSubmit = () => {
 	if (props.id) {
 		axios
 			.patch(`/models${endpoint}/${props.id}`, formValues.value)
-			.then(() => emit('close'))
+			.then(() => emit('close', { _id: props.id, ...formValues.value }))
 			.catch(err => {
 				error.value = err.response?.data.err ?? 'Something went wrong'
 			})
@@ -112,7 +112,9 @@ const onSubmit = () => {
 
 	axios
 		.post(`/models${endpoint}`, formValues.value)
-		.then(() => emit('close'))
+		.then(({ data }) => {
+			emit('close', { _id: data.id, ...formValues.value })
+		})
 		.catch(err => {
 			error.value = err.response?.data.err ?? 'Something went wrong'
 		})
