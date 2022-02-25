@@ -21,6 +21,7 @@
 <script lang="ts" setup>
 import { computed, onBeforeMount, ref } from 'vue'
 import axios from 'axios'
+import { IEnumOptions } from 'datatypes/Enum'
 import { Model } from 'models/interfaces/interfaces'
 import { IDatatype } from 'datatypes/interfaces/interfaces'
 import getModelProperties from '../../helpers/get-model-properties'
