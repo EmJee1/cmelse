@@ -22,6 +22,7 @@
 import { computed, onBeforeMount, ref } from 'vue'
 import axios from 'axios'
 import { Model } from 'models/interfaces/interfaces'
+import { IDatatype } from 'datatypes/interfaces/interfaces'
 import getModelProperties from '../../helpers/get-model-properties'
 import Form from '../Form.vue'
 import Datatype from '../datatypes/Datatype.vue'
